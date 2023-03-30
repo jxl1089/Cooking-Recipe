@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="mapper.recipe">
+		<resultMap type="recipeDTO" id="recipeResult">
+			<result property="id" column="id"/>
+			<result property="recipe_title" column="recipe_title"/>
+			<result property="recipe_detail" column="recipe_detail"/>
+			<result property="recipe_views" column="recipe_views"/>
+			<result property="recipe_like" column="recipe_like"/>
+			<result property="recipe_dislike" column="recipe_dislike"/>
+			<result property="recipe_image" column="recipe_image"/>
+			<result property="recipe_no" column="recipe_no"/>
+			<result property="recipe_tab" column="recipe_tab"/>
+			<result property="writeDate" column="recipe_date"/>
+		</resultMap>
+	</mapper>
