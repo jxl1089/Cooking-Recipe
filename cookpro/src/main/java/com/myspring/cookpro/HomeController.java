@@ -30,10 +30,15 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
-		
+			
 		model.addAttribute("serverTime", formattedDate );
 		
+<<<<<<< HEAD
 		return "main";
+=======
+		
+		return "home";
+>>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
 	}
 	
 }

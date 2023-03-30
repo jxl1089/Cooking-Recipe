@@ -55,5 +55,11 @@ public class MemberServiceImpl implements MemberService{
 
 	}
 
+	@Override
+	public void delete_Member(String member) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

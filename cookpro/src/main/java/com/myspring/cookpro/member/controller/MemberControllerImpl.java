@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -154,4 +157,41 @@ public class MemberControllerImpl implements MemberController{
 		return mav;
 	}
 	
+
+
+	//회원탈퇴
+	@RequestMapping(value="withdraw")
+	public ResponseEntity<String> withdraw
+	(@RequestParam("member_id")String member, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ResponseEntity<String> resEnt = null;
+		String message;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type","text/html;charset=utf-8");
+		
+		try {
+			HttpSession session = request.getSession();
+			
+			memberService.delete_Member(member);	
+			qnaService.delete_member_qna(member);
+			reviewService.delete_member_review(member);
+			
+			message = "<script>";
+			message += "alert('회원탈퇴 하였습니다.');";
+			message += "location.href='"+request.getContextPath()+"/main';";
+			message += "</script>";
+			session.invalidate();
+			resEnt = new ResponseEntity<String>(message,headers,HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			message = "<script>";
+			message += "alert('회원탈퇴에 실패하였습니다.');";
+			message += "history.go(-1);";
+			message += "</script>";
+			
+			resEnt = new ResponseEntity<String>(message,headers,HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+	
+		return resEnt;
+}
 }

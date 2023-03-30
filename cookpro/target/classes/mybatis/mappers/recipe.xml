@@ -34,4 +34,35 @@
 			]]>
 		</select> 
 		
+		<select id="selectNewRecipeNo" resultType="int">
+			<![CDATA[
+				select max(recipe_no)+1 from t_board
+			]]>
+		</select>
+		
+		<select id="selectRecipe" resultType="recipeDTO" parameterType="int">
+			<![CDATA[
+				select * from recipe_board where recipe_no=#{recipe_no}
+			]]>
+		</select>
+		
+		<update id="updateRecipe">
+			<![CDATA[
+				update recipe_board
+				set recipe_title=#{recipe_title}, recipe_detail=#{recipe_detail}
+				<if test="imageFileName != '' and imageFileName != null">
+					, imageFileName=#{imageFileName}
+				</if>
+			]]>
+			where recipe_no=#{recipe_no}
+		</update>
+		
+		<delete id="deleteRecipe" parameterType="int">
+			<![CDATA[
+				delete from recipe_board where recipeNo in (
+				select 
+			]]>
+			
+		</delete>
 	</mapper>
+	
