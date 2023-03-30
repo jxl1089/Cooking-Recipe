@@ -10,11 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface ReviewBoardController {
 
-<<<<<<< HEAD
-	public ModelAndView review_listArticles(HttpServletRequest request,
-=======
 	public ModelAndView review_listArticles(HttpServletRequest reuqest,
->>>>>>> branch 'master' of https://github.com/jxl1089/Cooking-Recipe-java.git
 			HttpServletResponse response) throws Exception;
 	public ResponseEntity review_addNewArticle(MultipartHttpServletRequest multipartRequest,
 			HttpServletResponse response) throws Exception;

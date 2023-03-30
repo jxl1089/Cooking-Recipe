@@ -1,8 +1,16 @@
 package com.myspring.cookpro.reviewboard.controller;
 
-<<<<<<< HEAD
-import javax.servlet.http.HttpServletRequest;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.cookpro.reviewboard.dto.review_article_dto;
@@ -63,8 +71,6 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 		// TODO Auto-generated method stub
 		return null;
 	}
-=======
-public class ReviewBoardControllerImpl {
->>>>>>> branch 'master' of https://github.com/jxl1089/Cooking-Recipe-java.git
-
 }
+
+
