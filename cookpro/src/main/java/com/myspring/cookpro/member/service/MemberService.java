@@ -7,5 +7,5 @@ public interface MemberService {
 	int checkById(String id);
 	MemberDTO login(MemberDTO member);
 	void sendMail(String to, String subject, String body);
-
+	void removeMember(String id);
 }

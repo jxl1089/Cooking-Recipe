@@ -44,7 +44,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		try {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
-			messageHelper.setFrom("admin@gmail.com", "관리자");
+			messageHelper.setFrom("admin@gmail.com", "愿�由ъ옄");
 			messageHelper.setSubject(subject);
 			messageHelper.setTo(to);
 			messageHelper.setText(body, true);
@@ -53,6 +53,11 @@ public class MemberServiceImpl implements MemberService{
 			e.printStackTrace();
 		}
 
+	}
+	@Override
+	public void removeMember(String id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

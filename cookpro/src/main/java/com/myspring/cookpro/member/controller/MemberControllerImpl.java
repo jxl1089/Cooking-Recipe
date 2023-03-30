@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,48 +29,48 @@ public class MemberControllerImpl implements MemberController{
 	private MemberService memberService;
 
 	private int randomNum;
-	
-	/* 메인 페이지 */
+
+	/* 硫붿씤 �럹�씠吏� */
 	@RequestMapping("/")
 	public String main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return "main";
 	}
-	
-	/* Form.jsp 실행 */
+
+	/* Form.jsp �떎�뻾 */
 	@RequestMapping("/member/*Form.do")
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
-		
+
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}
-	
-	/* 아이디 중복 체크 */
+
+	/* �븘�씠�뵒 以묐났 泥댄겕 */
 	@ResponseBody
 	@RequestMapping(value="/member/check.do", method = RequestMethod.POST)
 	public int checkId(@RequestParam("id") String id,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int result = memberService.checkById(id);
-		
+
 		return result;
 	}
-	
-	/* 이메일 인증번호 전송 */
+
+	/* �씠硫붿씪 �씤利앸쾲�샇 �쟾�넚 */
 	@RequestMapping(value="/member/mail.do", method=RequestMethod.POST)
 	public void sendMail(@RequestParam("email") String email,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Random r = new Random();
 		randomNum = r.nextInt(888888) + 111111;
-		
+
 		String msg;
-		msg = "안녕하세요. 인증번호는 ";
+		msg = "�븞�뀞�븯�꽭�슂. �씤利앸쾲�샇�뒗 ";
 		msg += randomNum;
-		msg += " 입니다.";
-		
-		memberService.sendMail(email, "[CookPro] 인증번호", msg);
+		msg += " �엯�땲�떎.";
+
+		memberService.sendMail(email, "[CookPro] �씤利앸쾲�샇", msg);
 	}
-	
-	/* 이메일 인증번호 확인 */
+
+	/* �씠硫붿씪 �씤利앸쾲�샇 �솗�씤 */
 	@ResponseBody
 	@RequestMapping(value="/member/auth.do", method=RequestMethod.POST)
 	public String checkAuth(@RequestParam("authNo") int authNo,
@@ -78,8 +81,8 @@ public class MemberControllerImpl implements MemberController{
 			return "N";
 		}
 	}
-	
-	/* 회원가입 */
+
+	/* �쉶�썝媛��엯 */
 	@RequestMapping(value = "/member/addMember.do", method = RequestMethod.POST)
 	public void addMember(@ModelAttribute("member") MemberDTO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -87,76 +90,74 @@ public class MemberControllerImpl implements MemberController{
 		PrintWriter out = response.getWriter();
 
 		int result = memberService.addMember(member);
-		
+
 		out.print("<script>");
 		if(result == 1) {
-			out.print("alert('회원가입에 성공하였습니다. 환영합니다!');");
+			out.print("alert('�쉶�썝媛��엯�뿉 �꽦怨듯븯���뒿�땲�떎. �솚�쁺�빀�땲�떎!');");
 			out.print("location.href='"+request.getContextPath()+"/'");
 		} else {
-			out.print("alert('회원가입에 실패하였습니다. 다시 시도해주세요.');");
+			out.print("alert('�쉶�썝媛��엯�뿉 �떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱꽭�슂.');");
 			out.print("location.href='"+request.getContextPath()+"/member/memberForm.do'");
 		}
 		out.print("</script>");
 		out.close();
 	}
-	
-	/* 로그인 */
+
+	/* 濡쒓렇�씤 */
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
 	public ModelAndView login(MemberDTO member, RedirectAttributes rAttr, 
 			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+					throws Exception {
 		member = memberService.login(member);
-		
+
 		ModelAndView mav = new ModelAndView();
 
 		if(member != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", member);
 			session.setAttribute("isLogOn", true);
-			
+
 			rAttr.addAttribute("msg", "login");
-			
+
 			String action = (String) session.getAttribute("action");
 			session.removeAttribute("action");
-			
+
 			if(action != null) {
 				mav.setViewName("redirect:"+action);
 			} else {
 				mav.setViewName("redirect:/");
 			}
-			
+
 		} else {
 			rAttr.addAttribute("result", "loginFailed");
 			mav.setViewName("redirect:/member/loginForm.do");
 		}
-		
+
 		return mav;
 	}
-	
-	/* 로그아웃 */
+
+	/* 濡쒓렇�븘�썐 */
 	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
 	public ModelAndView logout(RedirectAttributes rAttr, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession(false);
-		
+
 		Boolean isLogOn = (Boolean) session.getAttribute("isLogOn");
-		
+
 		ModelAndView mav = new ModelAndView();
-		
+
 		if(session != null && isLogOn != null) {
 			session.invalidate();
 			rAttr.addAttribute("result", "logout");
 		} else {
 			rAttr.addAttribute("result", "notLogin");
 		}
-		
+
 		mav.setViewName("redirect:/member/loginForm.do");
 		return mav;
 	}
-	
-}
 
-	//회원탈퇴
+	//�쉶�썝�깉�눜
 	@RequestMapping(value="withdraw")
 	public ResponseEntity<String> withdraw
 	(@RequestParam("member_id")String member, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -164,16 +165,14 @@ public class MemberControllerImpl implements MemberController{
 		String message;
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type","text/html;charset=utf-8");
-		
+
 		try {
 			HttpSession session = request.getSession();
-			
-			memberService.delete_Member(member);	
-			qnaService.delete_member_qna(member);
-			reviewService.delete_member_review(member);
-			
+
+			memberService.removeMember(member);	
+
 			message = "<script>";
-			message += "alert('회원탈퇴 하였습니다.');";
+			message += "alert('�쉶�썝�깉�눜 �븯���뒿�땲�떎.');";
 			message += "location.href='"+request.getContextPath()+"/main';";
 			message += "</script>";
 			session.invalidate();
@@ -181,13 +180,14 @@ public class MemberControllerImpl implements MemberController{
 		} catch (Exception e) {
 			// TODO: handle exception
 			message = "<script>";
-			message += "alert('회원탈퇴에 실패하였습니다.');";
+			message += "alert('�쉶�썝�깉�눜�뿉 �떎�뙣�븯���뒿�땲�떎.');";
 			message += "history.go(-1);";
 			message += "</script>";
-			
+
 			resEnt = new ResponseEntity<String>(message,headers,HttpStatus.BAD_REQUEST);
 			e.printStackTrace();
 		}
-	
+
 		return resEnt;
+	}
 }
