@@ -7,18 +7,19 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.myspring.cookpro.reviewboard.dto.review_article_dto;
-import com.myspring.cookpro.reviewboard.dto.review_image_dto;
+import com.myspring.cookpro.reviewboard.dto.Review_article_dto;
+import com.myspring.cookpro.reviewboard.dto.Review_image_dto;
 
-public class review_daoimpl implements review_dao{
+@Repository
+public class Review_daoimpl implements Review_dao{
 
 	@Autowired
 	SqlSession sqlSession;
 	
 	@Override
-	public List<review_article_dto> selectAllArticlesList() {
+	public List<Review_article_dto> selectAllArticlesList() {
 		// TODO Auto-generated method stub
-		List<review_article_dto> articlesList=  sqlSession.selectList("mapper.reviewboard.selectAllArticlesList");
+		List<Review_article_dto> articlesList=  sqlSession.selectList("mapper.reviewboard.selectAllArticlesList");
 		return articlesList;
 	}
 
@@ -36,7 +37,7 @@ public class review_daoimpl implements review_dao{
 	}
 
 	@Override
-	public review_article_dto selectArticle(int articleNo) {
+	public Review_article_dto selectArticle(int articleNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mapper.reviewboard.selectArticle",articleNo);
 	}
@@ -56,10 +57,10 @@ public class review_daoimpl implements review_dao{
 	@Override
 	public void review_insertNewImage(Map<String, Object> articleMap) {
 		// TODO Auto-generated method stub
-		List<review_image_dto> imageFileList = (List<review_image_dto>) articleMap.get("imageFileList");
+		List<Review_image_dto> imageFileList = (List<Review_image_dto>) articleMap.get("imageFileList");
 		int articleNo = (Integer)articleMap.get("articleNo");
 		int imageFileNo = selectNewImageFileNo();
-		for(review_image_dto image:imageFileList) {
+		for(Review_image_dto image:imageFileList) {
 			image.setImageFileNo(++imageFileNo);
 			image.setArticleNo(articleNo);
 		}
@@ -70,10 +71,10 @@ public class review_daoimpl implements review_dao{
 	}
 
 	@Override
-	public List<review_image_dto> selectImageFileList(int articleNo) {
+	public List<Review_image_dto> selectImageFileList(int articleNo) {
 		// TODO Auto-generated method stub
-		List<review_image_dto> imageFileList = sqlSession.selectList("mapper.reviewboard.selectImageFIleList",articleNo);
-		for(review_image_dto image:imageFileList) {
+		List<Review_image_dto> imageFileList = sqlSession.selectList("mapper.reviewboard.selectImageFIleList",articleNo);
+		for(Review_image_dto image:imageFileList) {
 			System.out.println(image.getImageFileName());
 		}
 		return imageFileList; 

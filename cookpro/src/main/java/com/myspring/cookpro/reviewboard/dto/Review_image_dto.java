@@ -1,7 +1,10 @@
 package com.myspring.cookpro.reviewboard.dto;
 import java.sql.Date;
 
-public class review_image_dto {
+import org.springframework.stereotype.Component;
+
+@Component
+public class Review_image_dto {
 private int imageFileNo;
 private String imageFileName;
 private Date regDate; //등록일자

@@ -7,16 +7,17 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myspring.cookpro.reviewboard.dao.review_dao;
-import com.myspring.cookpro.reviewboard.dto.review_article_dto;
-import com.myspring.cookpro.reviewboard.dto.review_image_dto;
+import com.myspring.cookpro.reviewboard.dao.Review_dao;
+import com.myspring.cookpro.reviewboard.dto.Review_article_dto;
+import com.myspring.cookpro.reviewboard.dto.Review_image_dto;
 
+@Service
 public class ReviewServiceImpl implements ReviewService{
 	@Autowired
-	review_dao review_dao;
+	Review_dao review_dao;
 	
 	@Override
-	public List<review_article_dto> review_listArticles() {
+	public List<Review_article_dto> review_listArticles() {
 		// TODO Auto-generated method stub
 		return review_dao.selectAllArticlesList();
 	}
@@ -34,8 +35,8 @@ public class ReviewServiceImpl implements ReviewService{
 	public Map review_viewArticle(int articleNo) {
 		// TODO Auto-generated method stub
 		Map articleMap = new HashMap();
-		review_article_dto review_article_dto = review_dao.selectArticle(articleNo);
-		List<review_image_dto> imageFileList = review_dao.selectImageFileList(articleNo);
+		Review_article_dto review_article_dto = review_dao.selectArticle(articleNo);
+		List<Review_image_dto> imageFileList = review_dao.selectImageFileList(articleNo);
 		articleMap.put("article",review_article_dto);
 		articleMap.put("imageFileList", imageFileList);
 		return articleMap;

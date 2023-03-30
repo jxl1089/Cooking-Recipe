@@ -4,7 +4,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component
-public class review_article_dto {
+public class Review_article_dto {
 private int level;
 private int articleNo;
 private String title;
