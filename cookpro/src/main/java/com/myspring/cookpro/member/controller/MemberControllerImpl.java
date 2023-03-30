@@ -155,3 +155,39 @@ public class MemberControllerImpl implements MemberController{
 	}
 	
 }
+
+	//회원탈퇴
+	@RequestMapping(value="withdraw")
+	public ResponseEntity<String> withdraw
+	(@RequestParam("member_id")String member, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ResponseEntity<String> resEnt = null;
+		String message;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type","text/html;charset=utf-8");
+		
+		try {
+			HttpSession session = request.getSession();
+			
+			memberService.delete_Member(member);	
+			qnaService.delete_member_qna(member);
+			reviewService.delete_member_review(member);
+			
+			message = "<script>";
+			message += "alert('회원탈퇴 하였습니다.');";
+			message += "location.href='"+request.getContextPath()+"/main';";
+			message += "</script>";
+			session.invalidate();
+			resEnt = new ResponseEntity<String>(message,headers,HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			message = "<script>";
+			message += "alert('회원탈퇴에 실패하였습니다.');";
+			message += "history.go(-1);";
+			message += "</script>";
+			
+			resEnt = new ResponseEntity<String>(message,headers,HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+	
+		return resEnt;
+}
