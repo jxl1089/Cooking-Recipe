@@ -4,15 +4,34 @@
 	
 	<mapper namespace="mapper.recipe">
 		<resultMap type="recipeDTO" id="recipeResult">
+			<result property="recipe_no" column="recipe_no"/>
+			<result property="parentNo" column="parentNo"/>
 			<result property="id" column="id"/>
+			<result property="recipe_tab" column="recipe_tab"/>
+			<result property="writeDate" column="recipe_date"/>
 			<result property="recipe_title" column="recipe_title"/>
 			<result property="recipe_detail" column="recipe_detail"/>
+			<result property="recipe_image" column="recipe_image"/>
 			<result property="recipe_views" column="recipe_views"/>
 			<result property="recipe_like" column="recipe_like"/>
 			<result property="recipe_dislike" column="recipe_dislike"/>
-			<result property="recipe_image" column="recipe_image"/>
-			<result property="recipe_no" column="recipe_no"/>
-			<result property="recipe_tab" column="recipe_tab"/>
-			<result property="writeDate" column="recipe_date"/>
 		</resultMap>
+		
+		<insert id="insertRecipe" parameterType="recipeDTO">
+			<![CDATA[
+				insert into recipe_board(recipe_no , id , recipe_tab, recipe_tilte, recipe_deatail, recipe_image,) 
+				values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail}, #{recipe_image})
+			]]>
+		</insert>
+		
+		<select id="selectAllRecipeList" resultMap="recipeResult">
+			<![CDATA[
+				select recipe_no, id, recipe_tab, recipe_date, recipe_title, recipe_detail, recipe_iamge,
+				recipe_views, recipe_like, recipe_dislike from recipe_board
+				start with parentNo=0
+				connect by prior recipe_no = parentNo
+				order by siblings by recipe_no desc
+			]]>
+		</select> 
+		
 	</mapper>
