@@ -157,7 +157,7 @@ public class MemberControllerImpl implements MemberController{
 		return mav;
 	}
 
-	//�쉶�썝�깉�눜
+	//회원탈퇴
 	@RequestMapping(value="withdraw")
 	public ResponseEntity<String> withdraw
 	(@RequestParam("member_id")String member, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -172,7 +172,7 @@ public class MemberControllerImpl implements MemberController{
 			memberService.removeMember(member);	
 
 			message = "<script>";
-			message += "alert('�쉶�썝�깉�눜 �븯���뒿�땲�떎.');";
+			message += "alert('회원탈퇴 하였습니다.');";
 			message += "location.href='"+request.getContextPath()+"/main';";
 			message += "</script>";
 			session.invalidate();
@@ -180,7 +180,7 @@ public class MemberControllerImpl implements MemberController{
 		} catch (Exception e) {
 			// TODO: handle exception
 			message = "<script>";
-			message += "alert('�쉶�썝�깉�눜�뿉 �떎�뙣�븯���뒿�땲�떎.');";
+			message += "alert('회원탈퇴에 실패하였습니다.');";
 			message += "history.go(-1);";
 			message += "</script>";
 
