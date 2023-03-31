@@ -30,13 +30,13 @@ public class MemberControllerImpl implements MemberController{
 
 	private int randomNum;
 
-	/* 硫붿씤 �럹�씠吏� */
+	/* 메인 페이지 */
 	@RequestMapping("/")
 	public String main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return "main";
 	}
 
-	/* Form.jsp �떎�뻾 */
+	/* Form.jsp 실행 */
 	@RequestMapping("/member/*Form.do")
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
@@ -45,7 +45,7 @@ public class MemberControllerImpl implements MemberController{
 		return mav;
 	}
 
-	/* �븘�씠�뵒 以묐났 泥댄겕 */
+	/* 아이디 중복 체크 */
 	@ResponseBody
 	@RequestMapping(value="/member/check.do", method = RequestMethod.POST)
 	public int checkId(@RequestParam("id") String id,
@@ -55,7 +55,7 @@ public class MemberControllerImpl implements MemberController{
 		return result;
 	}
 
-	/* �씠硫붿씪 �씤利앸쾲�샇 �쟾�넚 */
+	/* 이메일 인증번호 전송 */
 	@RequestMapping(value="/member/mail.do", method=RequestMethod.POST)
 	public void sendMail(@RequestParam("email") String email,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -63,14 +63,14 @@ public class MemberControllerImpl implements MemberController{
 		randomNum = r.nextInt(888888) + 111111;
 
 		String msg;
-		msg = "�븞�뀞�븯�꽭�슂. �씤利앸쾲�샇�뒗 ";
+		msg = "안녕하세요. 인증번호는 ";
 		msg += randomNum;
-		msg += " �엯�땲�떎.";
+		msg += " 입니다.";
 
-		memberService.sendMail(email, "[CookPro] �씤利앸쾲�샇", msg);
+		memberService.sendMail(email, "[CookPro] 인증번호", msg);
 	}
 
-	/* �씠硫붿씪 �씤利앸쾲�샇 �솗�씤 */
+	/* 이메일 인증번호 확인 */
 	@ResponseBody
 	@RequestMapping(value="/member/auth.do", method=RequestMethod.POST)
 	public String checkAuth(@RequestParam("authNo") int authNo,
@@ -82,7 +82,7 @@ public class MemberControllerImpl implements MemberController{
 		}
 	}
 
-	/* �쉶�썝媛��엯 */
+	/* 회원가입 */
 	@RequestMapping(value = "/member/addMember.do", method = RequestMethod.POST)
 	public void addMember(@ModelAttribute("member") MemberDTO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -93,17 +93,17 @@ public class MemberControllerImpl implements MemberController{
 
 		out.print("<script>");
 		if(result == 1) {
-			out.print("alert('�쉶�썝媛��엯�뿉 �꽦怨듯븯���뒿�땲�떎. �솚�쁺�빀�땲�떎!');");
+			out.print("alert('회원가입에 성공하였습니다. 환영합니다!');");
 			out.print("location.href='"+request.getContextPath()+"/'");
 		} else {
-			out.print("alert('�쉶�썝媛��엯�뿉 �떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱꽭�슂.');");
+			out.print("alert('회원가입에 실패하였습니다. 다시 시도해주세요.');");
 			out.print("location.href='"+request.getContextPath()+"/member/memberForm.do'");
 		}
 		out.print("</script>");
 		out.close();
 	}
 
-	/* 濡쒓렇�씤 */
+	/* 로그인 */
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
 	public ModelAndView login(MemberDTO member, RedirectAttributes rAttr, 
 			HttpServletRequest request, HttpServletResponse response)
@@ -136,7 +136,7 @@ public class MemberControllerImpl implements MemberController{
 		return mav;
 	}
 
-	/* 濡쒓렇�븘�썐 */
+	/* 로그아웃 */
 	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
 	public ModelAndView logout(RedirectAttributes rAttr, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
