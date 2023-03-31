@@ -33,12 +33,11 @@ public class HomeController {
 			
 		model.addAttribute("serverTime", formattedDate );
 		
-<<<<<<< HEAD
+
 		return "main";
-=======
-		
-		return "home";
->>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
+
+	
+
 	}
 	
 }
