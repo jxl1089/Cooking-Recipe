@@ -190,18 +190,23 @@ public class MemberControllerImpl implements MemberController{
 
 		return resEnt;
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
 
 
-	/* 게시글 수정 페이지 실행 */
-	@RequestMapping(value="/board/modArticle.do")
-	public ModelAndView modArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request,
-		HttpServletResponse response) throws Exception {
-	String viewName = (String) request.getAttribute("viewName");
-
-	ModelAndView mav = new ModelAndView();
-	mav.addObject("article", boardService.viewArticle(articleNO));
-	mav.setViewName(viewName);
-
-	return mav;
+//	/* 게시글 수정 페이지 실행 */
+//	@RequestMapping(value="/board/modArticle.do")
+//	public ModelAndView modArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request,
+//		HttpServletResponse response) throws Exception {
+//	String viewName = (String) request.getAttribute("viewName");
+//
+//	ModelAndView mav = new ModelAndView();
+//	mav.addObject("article", boardService.viewArticle(articleNO));
+//	mav.setViewName(viewName);
+//
+//	return mav;
+//	}
 }
 }

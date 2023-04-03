@@ -9,9 +9,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeList.jsp"/>
 	</definition>
 	
-	<definition name="recipeboard/recipeArticleForm" extends="baseLayout">
+	<definition name="recipeboard/recipeForm" extends="baseLayout">
 		<put-attribute name="title" value="레시피 쓰기"/>
-		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeArticleForm.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeForm.jsp"/>
+	</definition>
+	
+	<definition name="recipeboard/recipeView" extedns="baseLayout">
+		<put-attribute name="title" value="레시피  보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeView.jsp"/>
 	</definition>
 	
 	
