@@ -71,7 +71,7 @@ $(function(){
 					if(data == "Y"){
 						alert('인증번호 확인이 완료되었습니다.');
 						$("#authCheck").attr("value", "Y");
-						document.getElementById('authNo').readOnly = true; ;
+						document.getElementById('authNo').readOnly = true;
 					} else{
 						alert("인증번호가 일치하지 않습니다. 다시 입력해주세요.");
 						$("#authNo").val("").trigger("focus");

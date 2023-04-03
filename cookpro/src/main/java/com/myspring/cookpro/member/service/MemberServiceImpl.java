@@ -54,16 +54,17 @@ public class MemberServiceImpl implements MemberService{
 		}
 
 	}
+	
 	@Override
-	public void removeMember(String id) {
+	public int modMember(MemberDTO member) {
 		// TODO Auto-generated method stub
-		
+		return memberDAO.updateMember(member);
 	}
 
 	@Override
-	public void delete_Member(String member) {
+	public int delMember(String id) {
 		// TODO Auto-generated method stub
-		
+		return memberDAO.deleteMember(id);
 	}
 
 

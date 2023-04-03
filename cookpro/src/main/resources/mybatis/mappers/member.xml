@@ -34,5 +34,19 @@
 		]]>
 	</select>
 	
+	<!-- 회원 정보 수정 -->
+	<insert id="updateMember" parameterType="memberDTO">
+		<![CDATA[
+			update user_board set pwd=#{pwd}, email=#{email}, name=#{name} where id=#{id}
+		]]>
+	</insert>
+
+	<!-- 회원 탈퇴 -->
+	<insert id="deleteMember" parameterType="String">
+		<![CDATA[
+			delete from user_board where id=#{id}
+		]]>
+	</insert>
+	
 	
 </mapper>

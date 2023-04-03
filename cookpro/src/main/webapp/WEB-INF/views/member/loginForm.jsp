@@ -35,7 +35,7 @@
 			<td width="400"><input type="password" name="pwd"></td>
 		</tr>
 		<tr>
-			<td></td>
+			<td><p align="right">&nbsp;</p></td>
 			<td>
 				<input type="submit" value="로그인">
 				<input type="reset" value="다시입력">

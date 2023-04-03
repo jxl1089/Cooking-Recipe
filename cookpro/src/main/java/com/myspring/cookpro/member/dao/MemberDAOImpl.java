@@ -31,5 +31,17 @@ public class MemberDAOImpl implements MemberDAO{
 		
 		return member;
 	}
+	
+	@Override
+	public int updateMember(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.member.updateMember", member);
+	}
+
+	@Override
+	public int deleteMember(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("mapper.member.deleteMember", id);
+	}
 
 }

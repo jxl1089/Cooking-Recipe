@@ -156,47 +156,69 @@ public class MemberControllerImpl implements MemberController{
 		mav.setViewName("redirect:/member/loginForm.do");
 		return mav;
 	}
-
-	//회원탈퇴
-	@RequestMapping(value="withdraw")
-	public ResponseEntity<String> withdraw
-	(@RequestParam("member_id")String member, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		ResponseEntity<String> resEnt = null;
-		String message;
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type","text/html;charset=utf-8");
-
-		try {
-			HttpSession session = request.getSession();
-
-			memberService.removeMember(member);	
-
-			message = "<script>";
-			message += "alert('회원탈퇴 하였습니다.');";
-			message += "location.href='"+request.getContextPath()+"/main';";
-			message += "</script>";
-			session.invalidate();
-			resEnt = new ResponseEntity<String>(message,headers,HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO: handle exception
-			message = "<script>";
-			message += "alert('회원탈퇴에 실패하였습니다.');";
-			message += "history.go(-1);";
-			message += "</script>";
-
-			resEnt = new ResponseEntity<String>(message,headers,HttpStatus.BAD_REQUEST);
-			e.printStackTrace();
+	
+	/* 회원 정보 수정 */
+	@RequestMapping(value="/member/modMember.do", method=RequestMethod.POST)
+	public void modMember(@ModelAttribute("member") MemberDTO member, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		int result = memberService.modMember(member);
+		
+		out.print("<script>");
+		if(result == 1) {
+			out.print("alert('정보 수정이 완료되었습니다');");
+			out.print("location.href='"+request.getContextPath()+"/member/myPageForm.do'");
+		} else {
+			out.print("alert('정보 수정에 실패했습니다. 다시 시도해주세요.');");
+			out.print("location.href='"+request.getContextPath()+"/member/modForm.do'");
 		}
-
-		return resEnt;
+		out.print("</script>");
+		out.close();
 	}
-<<<<<<< HEAD
-=======
+
+	/* 회원 탈퇴 */
+	@RequestMapping(value = "/member/delMember.do", method = RequestMethod.GET)
+	public void removeMember(@RequestParam("id") String id, RedirectAttributes rAttr,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		int result = memberService.delMember(id);
+		
+		out.print("<script>");
+		if(result == 1) {
+			out.print("alert('회원 탈퇴가 완료되었습니다. 이용해주셔서 감사드립니다.');");
+			out.print("location.href='"+request.getContextPath()+"/'");
+		} else {
+			out.print("alert('탈퇴에 실패했습니다. 다시 시도해주세요.');");
+			out.print("location.href='"+request.getContextPath()+"/member/myPageForm.do'");
+		}
+		out.print("</script>");
+		out.close();
+		
+		HttpSession session = request.getSession(false);
+		Boolean isLogOn = (Boolean) session.getAttribute("isLogOn");
+		
+		if(session != null && isLogOn != null) {
+			session.invalidate();
+			rAttr.addAttribute("result", "logout");
+		} else {
+			rAttr.addAttribute("result", "notLogin");
+		}
+	}
+	
+	
+}
 
 
 
 
->>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
+
+
+
 //	/* 게시글 수정 페이지 실행 */
 //	@RequestMapping(value="/board/modArticle.do")
 //	public ModelAndView modArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request,
@@ -209,10 +231,3 @@ public class MemberControllerImpl implements MemberController{
 //
 //	return mav;
 //	}
-<<<<<<< HEAD
-
-}
-=======
-}
-
->>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git

@@ -17,15 +17,23 @@
 	</definition>
 	
 	<definition name="/member/memberForm" extends="baseLayout">
-		<put-attribute name="title" value="회원가입창" />
+		<put-attribute name="title" value="회원가입" />
 		<put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
 	</definition>
 	
 	<definition name="/member/loginForm" extends="baseLayout">
-		<put-attribute name="title" value="로그인창" />
+		<put-attribute name="title" value="로그인" />
 		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
 	</definition>
 	
+	<definition name="/member/myPageForm" extends="baseLayout">
+		<put-attribute name="title" value="마이페이지" />
+		<put-attribute name="body" value="/WEB-INF/views/member/myPageForm.jsp" />
+	</definition>
 	
+	<definition name="/member/modForm" extends="baseLayout">
+		<put-attribute name="title" value="회원정보수정" />
+		<put-attribute name="body" value="/WEB-INF/views/member/modForm.jsp" />
+	</definition>
 	
 </tiles-definitions>

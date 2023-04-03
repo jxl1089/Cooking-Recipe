@@ -25,4 +25,8 @@ public interface MemberController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView logout(RedirectAttributes rAttr, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public void modMember(@ModelAttribute("member") MemberDTO member, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public void removeMember(@RequestParam("id") String id, RedirectAttributes rAttr,
+			HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
