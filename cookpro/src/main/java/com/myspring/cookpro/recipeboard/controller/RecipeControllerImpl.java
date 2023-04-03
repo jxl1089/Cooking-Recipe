@@ -13,7 +13,7 @@ public class RecipeControllerImpl implements RecipeController{
 
 	@Override
 	@RequestMapping("/recipeboard/recipeList.do")
-	public ModelAndView listArticle(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView listRecipe(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName= request.getParameter("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
@@ -23,6 +23,15 @@ public class RecipeControllerImpl implements RecipeController{
 	@RequestMapping(value="/recipeboard/*Form.do", method=RequestMethod.GET)
 	public ModelAndView r_form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		String viewName= request.getParameter("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/recipeboard/recipeView.do", method=RequestMethod.GET)
+	public ModelAndView viewRecipe(int recipeNo, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		String viewName= request.getParameter("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
