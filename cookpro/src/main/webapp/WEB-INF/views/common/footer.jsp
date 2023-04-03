@@ -19,19 +19,9 @@
                     <div class="col-lg-7">
                         <p class="copyright__text text-white"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                           <script>document.write(new Date().getFullYear());</script> 한국 요리 사이트&nbsp;|&nbsp;<a href="http//www.naver.com" target="_blank">후원사이트 바로가기</a>
-                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                      </p>
+                        </p>
                   </div>
-                  <!-- <div class="col-lg-5">
-                    <div class="copyright__widget">
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Site Map</a></li>
-                        </ul>
-                    </div>
-	              </div> -->
-	            </div>
+                 </div>
 	        </div>
 	    </div>
 	</footer>

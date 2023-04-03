@@ -6,7 +6,7 @@
 <table border="0" width="100%"">
 	<tr>
 		<td>
-			<h1><font size="30">header</font></h1>
+			<h1><font size="40">header</font></h1>
 		</td>
 		<td>
 			<c:choose>

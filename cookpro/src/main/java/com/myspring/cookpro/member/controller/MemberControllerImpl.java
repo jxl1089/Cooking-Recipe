@@ -190,12 +190,6 @@ public class MemberControllerImpl implements MemberController{
 
 		return resEnt;
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
-
-
 //	/* 게시글 수정 페이지 실행 */
 //	@RequestMapping(value="/board/modArticle.do")
 //	public ModelAndView modArticle(@RequestParam("articleNO") int articleNO, HttpServletRequest request,
@@ -208,5 +202,5 @@ public class MemberControllerImpl implements MemberController{
 //
 //	return mav;
 //	}
-}
+
 }

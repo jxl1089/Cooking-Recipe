@@ -56,15 +56,7 @@
 	                            	  </c:if>
                                 </ul>
                             </div>
-                            <!--  <div class="header__logo">
-                                <a href="../main/main.do"><img src="../img/logo.png" alt=""></a>
-                            </div>
-                            <div class="header__top__right">
-                                <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="../img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="../img/icon/heart.png" alt=""></a>
-                                </div>
-                            </div> -->
+                            
                         </div>
                     </div>
                 </div>
@@ -74,22 +66,22 @@
         <div class="container">
             <div class="row">
             	<div class="col-lg-2 mango_logo">
-            		<a href="../main/main.do"><img src="../img/logo.png" alt=""></a>
+            		<a href="../main/main.do"><img src="img/logo.png" alt=""></a>
             	</div>
                 <div class="col-lg-10">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li><a href="../main/main.do">HOME</a></li>
-                            <li><a href="../fridge/fridge_main.do">MY냉장고</a></li>
-                            <li><a href="../recipe/list.do">레시피</a></li>
-                           	<li><a href="../recommand/weather_list.do">추천</a>
+                            <li><a href=>HOME</a></li>
+                            <li><a href=>MY냉장고</a></li>
+                            <li><a href=>레시피</a></li>
+                           	<li><a href=>추천</a>
                             	<ul class="dropdown">
-                                    <li><a href="../recommand/weather_list.do">오늘의 요리</a></li>
-                                    <li><a href="../recommand/tag_list.do">태그</a></li>
+                                    <li><a href=>오늘의 요리</a></li>
+                                    <li><a href=>태그</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../community/list.do">커뮤니티</a></li>
-                            <li><a href="../shopping/list.do">최저가</a></li>
+                            <li><a href=>커뮤니티</a></li>
+                            <li><a href=>최저가</a></li>
                         </ul>
                     </nav>
                 </div>

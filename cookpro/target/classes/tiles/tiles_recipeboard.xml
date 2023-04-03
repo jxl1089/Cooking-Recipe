@@ -14,7 +14,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeForm.jsp"/>
 	</definition>
 	
-	<definition name="recipeboard/recipeView" extedns="baseLayout">
+	<definition name="recipeboard/recipeView" extends="baseLayout">
 		<put-attribute name="title" value="레시피  보기"/>
 		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeView.jsp"/>
 	</definition>
