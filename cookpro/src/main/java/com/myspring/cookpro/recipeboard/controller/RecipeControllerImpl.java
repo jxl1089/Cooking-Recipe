@@ -27,6 +27,8 @@ public class RecipeControllerImpl implements RecipeController{
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}
+	
+	
 
 	
 }
