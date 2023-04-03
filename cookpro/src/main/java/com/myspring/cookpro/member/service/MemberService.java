@@ -7,10 +7,6 @@ public interface MemberService {
 	int checkById(String id);
 	MemberDTO login(MemberDTO member);
 	void sendMail(String to, String subject, String body);
-
-	void delete_Member(String member);
-
-
-	void removeMember(String id);
-
+	int modMember(MemberDTO member);
+	int delMember(String id);
 }

@@ -6,5 +6,6 @@ public interface MemberDAO {
 	int insertMember(MemberDTO member);
 	int checkById(String id);
 	MemberDTO loginById(MemberDTO member);
-
+	int updateMember(MemberDTO member);
+	int deleteMember(String id);
 }
