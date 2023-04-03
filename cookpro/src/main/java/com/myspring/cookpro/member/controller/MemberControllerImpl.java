@@ -190,7 +190,7 @@ public class MemberControllerImpl implements MemberController{
 
 		return resEnt;
 	}
-}
+
 
 	/* 게시글 수정 페이지 실행 */
 	@RequestMapping(value="/board/modArticle.do")
@@ -203,4 +203,5 @@ public class MemberControllerImpl implements MemberController{
 	mav.setViewName(viewName);
 
 	return mav;
+}
 }
