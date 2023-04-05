@@ -9,4 +9,6 @@ public interface MemberService {
 	void sendMail(String to, String subject, String body);
 	int modMember(MemberDTO member);
 	int delMember(String id);
+	String searchId(MemberDTO member);
+	String searchPwd(MemberDTO member);
 }

@@ -211,6 +211,29 @@ public class MemberControllerImpl implements MemberController{
 			rAttr.addAttribute("result", "notLogin");
 		}
 	}
+	
+	/* 아이디 찾기 */
+	@ResponseBody
+	@RequestMapping(value="/member/searchId.do", method = RequestMethod.POST)
+	public String searchId(@ModelAttribute("member") MemberDTO member,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String result = memberService.searchId(member);
+		
+		return result;
+	}
+	
+	/* 비밀번호 찾기 */
+	@ResponseBody
+	@RequestMapping(value="/member/searchPwd.do", method = RequestMethod.POST)
+	public String searchPwd(@ModelAttribute("member") MemberDTO member,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String result = memberService.searchPwd(member);
+
+		return result;
+	}
+	
 }
 	
 	

@@ -43,5 +43,17 @@ public class MemberDAOImpl implements MemberDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.delete("mapper.member.deleteMember", id);
 	}
+	
+	@Override
+	public String searchId(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.member.searchId", member);
+	}
+
+	@Override
+	public String searchPwd(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.member.searchPwd", member);
+	}
 
 }

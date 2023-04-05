@@ -48,5 +48,19 @@
 		]]>
 	</insert>
 	
+	<!-- 아이디 찾기 -->
+	<select id="searchId" parameterType="memberDTO" resultType="String">
+		<![CDATA[
+			select * from user_board where name=#{name} and email=#{email}
+		]]>
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="searchPwd" parameterType="memberDTO" resultType="String">
+		<![CDATA[
+			select * from user_board where id=#{id} and name=#{name} and email=#{email}
+		]]>
+	</select>
+	
 	
 </mapper>

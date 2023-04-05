@@ -48,8 +48,8 @@
 							<tr align="center">
 								<td width="400"><input type="password" name="pwd" placeholder="비밀번호를 입력하세요"></td>
 							</tr>
-							<tr>
-								<td><input type="submit" value="로그인"><input type="button" value="회원가입" onclick="location.href='${contextPath }/member/memberForm.do';"></td>
+							<tr align="center">
+								<td width="400"><input type="submit" value="로그인"><input type="button" value="회원가입" onclick="location.href='${contextPath }/member/memberForm.do';"></td>
 							</tr>
 						</table>
 					</form>

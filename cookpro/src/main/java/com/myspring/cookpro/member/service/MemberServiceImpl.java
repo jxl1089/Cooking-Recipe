@@ -67,5 +67,15 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.deleteMember(id);
 	}
 
+	@Override
+	public String searchId(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return memberDAO.searchId(member);
+	}
 
+	@Override
+	public String searchPwd(MemberDTO member) {
+		// TODO Auto-generated method stub
+		return memberDAO.searchPwd(member);
+	}
 }
