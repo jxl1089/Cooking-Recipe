@@ -21,23 +21,7 @@
 		cnt++;
 	}
 	function addRow(){
-		var photo;
-		photo = document.all("tblShow").insertRow();
 		
-		var photoRow = photo.insertCell();
-		photoRow.innerHTML = "<input type="button" value="파일추가" onclick="fn_addFile()">";
-		
-		var imageAdd;
-		imageAdd = document.all("tblShow").insertRow();
-		
-		var imageRow = imageAdd.insertCell();
-		imageRow.innerHTML = "<div id="d_file"></div>";
-		
-		var texts;
-		texts = document.all("tblsShow").insertRow();
-		
-		var textRow = texts.insertCell();
-		textRow.innerHTML = "<textarea name="content" rows="10" cols="69" maxlength="500"></textarea>";
 	}
 </script>
 <title>Insert title here</title>
