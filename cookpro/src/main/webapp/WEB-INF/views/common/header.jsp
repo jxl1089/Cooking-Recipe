@@ -37,6 +37,7 @@
 					<h4>${member.name }님<br>환영합니다!</h4>
 					<a href="${contextPath }/member/logout.do">로그아웃</a>
 					<a href="${contextPath }/member/myPageForm.do">마이페이지</a>
+					<a href="${contextPath }/reviewBoard/review_Form.do">리뷰게시판</a>
 				</c:when>
 				<c:otherwise>
 					<form method="post" action="${contextPath }/member/login.do">
