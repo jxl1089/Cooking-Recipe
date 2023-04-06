@@ -15,34 +15,27 @@
 		obj.action = "${contextPath}/board/listArticles.do";
 		obj.submit();
 	}
-	let cnt =1;
-	function fn_addFile(){
-		$("#d_file").append("<br>" + "<input type='file' name='file"+cnt+"'>");
-		cnt++;
-	}
-	function addRow(){
-		
-	}
+
 </script>
 <title>Insert title here</title>
 </head>
 <body>
-	
 	<form name="recipeForm" action="post" action="${contextPath }/recipeboard/addNewRecipe.do" enctype="multipart/form-data">
-		<table border="1" align="center">
-			<tr>
-				<td align="center">
-					<input type="button" id="addBtn" name="addBtn" value="칸 추가" onclick="rowAdd()">
-					<tbody id="tblShow"></tbody>
-				</td>
-			</tr>
-			<tr>
-				<td align="right"></td>
-				<td colspan="2">
-					<input type="submit" value="글쓰기">
-					<input type="button" value="목록보기" onclick="backToList(this.form)">
-				</td>
-			</tr>
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<select name="category" class="category" data-filter-message-isnull="탭을 선택하시기 바랍니다">
+							<option>한식</option>
+							<option>중식</option>
+							<option>일식</option>
+							<option>양식</option>
+							<option>기타</option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		
 		</table>
 	</form>
 </body>
