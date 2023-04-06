@@ -34,12 +34,11 @@
 			<td width="100" align="right">암호</td>
 			<td width="400"><input type="password" name="pwd"></td>
 		</tr>
-		<tr>
-			<td><p align="right">&nbsp;</p></td>
-			<td>
-				<input type="submit" value="로그인">
-				<input type="reset" value="다시입력">
-			</td>
+		<tr align="center">
+			<td colspan="2"><input type="submit" value="로그인"><input type="reset" value="다시입력"></td>
+		</tr>
+		<tr align="center">
+			<td colspan="2"><a href="${contextPath }/member/searchForm.do">아이디/비밀번호 찾기</a></td>
 		</tr>
 	</table>
 </form>

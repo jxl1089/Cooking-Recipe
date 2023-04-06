@@ -8,4 +8,6 @@ public interface MemberDAO {
 	MemberDTO loginById(MemberDTO member);
 	int updateMember(MemberDTO member);
 	int deleteMember(String id);
+	String searchId(MemberDTO member);
+	String searchPwd(MemberDTO member);
 }
