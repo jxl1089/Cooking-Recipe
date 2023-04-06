@@ -2,6 +2,9 @@ package com.myspring.cookpro.recipeboard.dto;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ImageDTO {
 	
 	private int imageFileNo;
