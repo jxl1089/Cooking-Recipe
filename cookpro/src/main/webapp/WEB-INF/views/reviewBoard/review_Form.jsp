@@ -20,7 +20,7 @@
 		}
 	}
 	function backToList(obj){
-		obj.action = "${contextPath}/reveiwBoard/review_listArticles.do";
+		obj.action = "${contextPath}/reviewBoard/review_listArticles.do";
 		obj.submit();
 	}
 	let cnt = 1;
