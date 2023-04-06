@@ -148,7 +148,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 		return fileList;
 	}
 
-	@Override
+	
 	@RequestMapping(value="/reviewBoard/*review_Form.do", method=RequestMethod.GET)
 	public ModelAndView review_form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub

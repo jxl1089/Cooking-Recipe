@@ -2,6 +2,9 @@ package com.myspring.cookpro.recipeboard.dto;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RecipeDTO {
 	private String id;
 	private String recipe_title;
