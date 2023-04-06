@@ -1,6 +1,7 @@
 package com.myspring.cookpro.recipeboard.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -115,33 +117,10 @@ public class RecipeControllerImpl implements RecipeController{
 	
 	
 	
-	private List<String> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
-		List<String> fileList = new ArrayList<String>();
-		Map<String, String> recipeMap = new HashMap<String, String>();
-		Iterator<String> fileNames = multipartRequest.getFileNames();
-		
-		while(fileNames.hasNext()) {
-			String fileName = fileNames.next();
-			MultipartFile mFile = multipartRequest.getFile(fileName);
-			String originalFileName = mFile.getOriginalFilename();
-			fileList.add(originalFileName);
-			File file = new File(CURR_IMAGE_REPO_PATH+ "\\" + fileName);
-			if(mFile.getSize()!=0) {
-				if(!file.exists()) {
-					if(file.getParentFile().mkdirs()) {
-						file.createNewFile();
-					}
-				}
-				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH+"\\temp\\"+originalFileName));
-			}
-		}
-		
-		return fileList;
-			
-	}
+
 
 	@Override
-	@RequestMapping(value="/board/removeArticle", method=RequestMethod.POST)
+	@RequestMapping(value="/recipeboard/removeRecipe", method=RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity removceArticle(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -174,19 +153,80 @@ public class RecipeControllerImpl implements RecipeController{
 		
 		return resEnt;
 	}
+	
+	private List<String> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
+		List<String> fileList = new ArrayList<String>();
+		Map<String, String> recipeMap = new HashMap<String, String>();
+		Iterator<String> fileNames = multipartRequest.getFileNames();
+		
+		while(fileNames.hasNext()) {
+			String fileName = fileNames.next();
+			MultipartFile mFile = multipartRequest.getFile(fileName);
+			String originalFileName = mFile.getOriginalFilename();
+			fileList.add(originalFileName);
+			File file = new File(CURR_IMAGE_REPO_PATH+ "\\" + fileName);
+			if(mFile.getSize()!=0) {
+				if(!file.exists()) {
+					if(file.getParentFile().mkdirs()) {
+						file.createNewFile();
+					}
+				}
+				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH+"\\temp\\"+originalFileName));
+			}
+		}
+		
+		return fileList;
+			
+	}
 
 	@Override
+	@RequestMapping(value="/recipeboard/imageUpload.do")
 	public String imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		JsonObject json = new JsonObject();
+		JsonObject jsonObject = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		
 		MultipartFile file = multipartRequest.getFile("upload");
 		if(file!=null) {
 			if(file.getSize() > 0 && !StringUtils.isEmpty(file.getName())) {
-				
+				try {
+					String fileName = file.getOriginalFilename();
+		            byte[] bytes = file.getBytes();
+					String uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/testimage");
+					System.out.println("uploadPath" + uploadPath);
+					
+					File uploadFile = new File(uploadPath);
+					if(!uploadFile.exists()) {
+						uploadFile.mkdir();
+					}
+					String fileName2 = UUID.randomUUID().toString();
+					uploadPath = uploadPath + "/" + fileName2 + fileName;
+					
+					out = new FileOutputStream(new File(uploadPath));
+					out.write(bytes);
+					
+					printWriter = response.getWriter();
+		            String fileUrl = request.getContextPath() + "/resources/image/testimage/" +fileName2 +fileName; //url경로
+		            System.out.println("fileUrl :" + fileUrl);
+		            JsonObject json = new JsonObject();
+		            json.addProperty("uploaded", 1);
+		            json.addProperty("fileName", fileName);
+		            json.addProperty("url", fileUrl);
+		            printWriter.print(json);
+		            System.out.println(json);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				} finally {
+					if(out != null) {
+						out.close();
+					}
+				}
+				if (printWriter != null) {
+                    printWriter.close();
+                }
 			}
 		}
 		return null;

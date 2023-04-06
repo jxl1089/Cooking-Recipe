@@ -44,7 +44,7 @@ function fn_addFile(){
 		<table>
 			<tr align="left">
 				<td>
-					<select name="category" class="category" data-filter-message-isnull="탭을 선택하시기 바랍니다">
+					<select name="recipe_tab" class="category" data-filter-message-isnull="탭을 선택하시기 바랍니다">
 						<option>한식</option>
 						<option>중식</option>
 						<option>일식</option>
