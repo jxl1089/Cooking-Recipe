@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,12 +24,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.cookpro.member.dto.MemberDTO;
 import com.myspring.cookpro.recipeboard.dto.ImageDTO;
+import com.myspring.cookpro.recipeboard.dto.RecipeDTO;
+import com.myspring.cookpro.recipeboard.service.RecipeService;
 
 @Controller
 public class RecipeControllerImpl implements RecipeController{
 	
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\Users\\tmdwn\\git\\Cooking-Recipe\\cookpro\\recipe_imageFile";
 
+	@Autowired
+	RecipeService recipeService;
+	
+	@Autowired
+	RecipeDTO recipeDTO;
+	
 	@Override
 	@RequestMapping("/recipeboard/recipeList.do")
 	public ModelAndView listRecipe(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -94,7 +103,7 @@ public class RecipeControllerImpl implements RecipeController{
 		responseHeader.add("Content-Type", "text/html;charset=utf-8");
 		
 		try {
-			
+			int recipeNo;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

@@ -175,7 +175,77 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 	public ResponseEntity review_modArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		multipartRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> articleMap = new HashMap<String, Object>();
+		
+		String articleNo = multipartRequest.getParameter("articleNo");
+		articleMap.put("articleNo", articleNo);
+		
+		System.out.println("articleNo : " + articleNo);
+		String content = multipartRequest.getParameter("content");
+		articleMap.put("content",content);
+		
+		String title = multipartRequest.getParameter("title");
+		articleMap.put("title", title);
+		
+		List<String> fileList = review_upload(multipartRequest);
+		HttpSession session = multipartRequest.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+
+		
+		String id = member.getId();
+		articleMap.put("id", id);
+		List<Review_image_dto> imageFileList = new ArrayList<Review_image_dto>();
+		if(fileList != null && fileList.size() != 0) {
+			for(String fileName : fileList) {
+				Review_image_dto image = new Review_image_dto();
+				image.setImageFileName(fileName);
+				imageFileList.add(image);
+			}
+			articleMap.put("imageFileList", imageFileList);
+		}
+		 
+		String message = null;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
+		try {
+			reviewService.review_modArticle(articleMap);
+			if(imageFileList != null && imageFileList.size() != 0) {
+				for(Review_image_dto imageDTO : imageFileList) {
+					File srcFile = new File(CURR_IMAGE_REPO_PATH + "\\temp\\" + imageDTO.getImageFileName());
+					File destDir = new File(CURR_IMAGE_REPO_PATH + "\\" + articleNo);
+					FileUtils.moveFileToDirectory(srcFile, destDir, true);
+					
+					String originalFileName = (String)articleMap.get("originalFileName");
+					File oldFile = new File(CURR_IMAGE_REPO_PATH + "\\" + articleNo + "\\" + originalFileName);
+					oldFile.delete();
+				}
+			}
+			message = "<script>";
+			message += "alert('글이 수정 되었습니다.');";
+			message += "location.href='"+multipartRequest.getContextPath()
+				+"/board/viewArticle.do?articleNo="+articleNo+"';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			// TODO: handle exception
+			if(imageFileList != null && imageFileList.size() != 0) {
+				for(Review_image_dto imageDTO : imageFileList) {
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\temp\\"
+							+imageDTO.getImageFileName());
+					srcFile.delete();
+				}
+			}
+			message = "<script>";
+			message += "alert('글 수정 중 에러가 발생했습니다. 다시 시도 하세요.');";
+			message += "location.href='"+multipartRequest.getContextPath()
+				+"/board/viewArticle.do?articleNo="+articleNo+"';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		return resEnt;
 	}
 
 	@Override

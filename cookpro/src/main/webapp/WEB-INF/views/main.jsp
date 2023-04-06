@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	메인<br>
-	<a href="${contextPath }/member/memberForm.do">회원가입</a>
+	<h1>메인페이지</h1>
 </body>
 </html>
