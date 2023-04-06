@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 				<td align="right">글제목</td>
-				<td colspan="2"><input type="text" size="67" maxlength="500" name="title"></td>
+				<td colspan="2" align="left"><input type="text" size="86" maxlength="500" name="title"></td>
 			</tr>
 			<tr>
 				<td align="right" valign="top">글내용</td>
