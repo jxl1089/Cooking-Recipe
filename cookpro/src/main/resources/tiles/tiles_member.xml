@@ -42,3 +42,8 @@
 	</definition>
 	
 </tiles-definitions>
+
+	<definition name="/member/delmember" extends="baseLayout">
+		<put-attribute name="title" value="회원탈퇴"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/delete.jsp" />
+	</definition>
