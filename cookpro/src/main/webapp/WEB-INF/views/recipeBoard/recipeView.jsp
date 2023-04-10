@@ -70,6 +70,14 @@
 		}
 	}
 	
+	function likeup(){
+		
+	}
+	
+	function dislikeup(){
+		
+	}
+	
 </script>
 </body>
 	<form name="frmRecipe" method="post" enctype="multipart/form-data">
@@ -106,6 +114,10 @@
 						${recipe.recipe_detail}</textarea>
 				</td>
 			</tr>
+			<tr>
+				<td><input type="button" value="추천" onclick=""></td>
+				<td><input type="button" value="비추천" onclick=""></td>
+			</tr>
 			<tr id="tr_btn_modify">
 				<td colspan="2" align="center">
 				<c:if test="${member.id == recipe.id }">
@@ -114,6 +126,7 @@
 				</c:if>
 					<input type="button" value="목록" onclick="backToList(this.form)">
 				</td>
+			</tr>
 		</table>
 	</form>
 </html>
