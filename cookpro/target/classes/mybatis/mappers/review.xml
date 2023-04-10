@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.myspring.cookpro.reviewboard.dao.ReviewDao">
+<mapper namespace="mapper.reviewArticle">
 
-  <resultMap id="reviewArticleResultMap" type="com.myspring.cookpro.reviewboard.dto.Review_article_dto">
+  <resultMap id="reviewArticleResultMap" type="reviewDTO">
     <id property="articleNo" column="ARTICLE_NO"/>
     <result property="level" column="LEVEL"/>
     <result property="title" column="TITLE"/>

@@ -11,7 +11,7 @@ import com.myspring.cookpro.reviewboard.dto.Review_article_dto;
 import com.myspring.cookpro.reviewboard.dto.Review_image_dto;
 
 @Repository
-public class Review_daoimpl implements Review_dao{
+public class Review_dao_impl implements Review_dao{
 
 	@Autowired
 	SqlSession sqlSession;
