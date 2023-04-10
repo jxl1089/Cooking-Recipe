@@ -40,10 +40,13 @@
 		<put-attribute name="title" value="아이디/비밀번호 찾기" />
 		<put-attribute name="body" value="/WEB-INF/views/member/searchForm.jsp" />
 	</definition>
-	
-</tiles-definitions>
-
-	<definition name="/member/delmember" extends="baseLayout">
+		
+		<definition name="/member/delmember" extends="baseLayout">
 		<put-attribute name="title" value="회원탈퇴"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/delete.jsp" />
 	</definition>
+	
+	
+</tiles-definitions>
+
+	

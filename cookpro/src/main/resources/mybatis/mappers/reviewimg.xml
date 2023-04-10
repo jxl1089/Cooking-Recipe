@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.reviewImg">
 <resultMap type="review_image_dto" id="reviewImageResult">
 	<result property="imageFileNo" column="imageFileNo"/>
 	<result property="imageFileName" column="imageFileName"/>
@@ -40,3 +44,4 @@
 		select * from review_board_image where articleNo=#{articleNo}
 	]]>
 </select>
+</mapper>
