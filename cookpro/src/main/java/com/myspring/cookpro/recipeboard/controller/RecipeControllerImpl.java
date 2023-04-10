@@ -180,56 +180,62 @@ public class RecipeControllerImpl implements RecipeController{
 	}
 
 	@Override
-	@RequestMapping(value="/recipeboard/imageUpload.do")
-	public String imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
+	@RequestMapping(value="/recipeboard/imageUpload.do", method=RequestMethod.POST)
+	public void imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		JsonObject jsonObject = new JsonObject();
+		request.setCharacterEncoding("utf-8");
+		
+		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
-		
 		MultipartFile file = multipartRequest.getFile("upload");
-		if(file!=null) {
+		if(file != null) {
 			if(file.getSize() > 0 && !StringUtils.isEmpty(file.getName())) {
-				try {
-					String fileName = file.getOriginalFilename();
-		            byte[] bytes = file.getBytes();
-					String uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/testimage");
-					System.out.println("uploadPath" + uploadPath);
-					
-					File uploadFile = new File(uploadPath);
-					if(!uploadFile.exists()) {
-						uploadFile.mkdir();
-					}
-					String fileName2 = UUID.randomUUID().toString();
-					uploadPath = uploadPath + "/" + fileName2 + fileName;
-					
-					out = new FileOutputStream(new File(uploadPath));
-					out.write(bytes);
-					
-					printWriter = response.getWriter();
-		            String fileUrl = request.getContextPath() + "/resources/image/testimage/" +fileName2 +fileName; //url경로
-		            System.out.println("fileUrl :" + fileUrl);
-		            JsonObject json = new JsonObject();
-		            json.addProperty("uploaded", 1);
-		            json.addProperty("fileName", fileName);
-		            json.addProperty("url", fileUrl);
-		            printWriter.print(json);
-		            System.out.println(json);
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				} finally {
-					if(out != null) {
-						out.close();
+				if(file.getContentType().toLowerCase().startsWith("image/")) {
+					try {
+						String fileName = file.getName();
+						byte[] bytes;
+						bytes = file.getBytes();
+						String uploadPath = "C:\\Users\\tmdwn\\git\\Cooking-Recipe\\cookpro\\src\\main\\webapp\\resources\\image\\testimage";
+						File uploadFile = new File(uploadPath);
+						if (!uploadFile.exists()) {
+							uploadFile.mkdirs();
+						}
+						fileName = UUID.randomUUID().toString();
+						uploadPath = uploadPath + "/" + fileName;
+						out = new FileOutputStream(new File(uploadPath));
+						out.write(bytes);
+						printWriter = response.getWriter();
+						response.setContentType("text/html");
+						
+						String callback = request.getParameter("CKEditorFuncNum");
+				    	printWriter = response.getWriter();
+						
+						String fileUrl = request.getContextPath() + "/resources/image/testimage/" + fileName;
+						
+						json.addProperty("uploaded", 1);
+						json.addProperty("fileName", fileName);
+						json.addProperty("url", fileUrl);
+
+						printWriter.println(json);
+						
+					} catch (Exception e) {
+						// TODO: handle exception
+						e.printStackTrace();
+					}  finally {
+						if(out !=null) {
+							out.close();
+						}
+						if(printWriter != null) {
+							printWriter.close();
+						}
 					}
 				}
-				if (printWriter != null) {
-                    printWriter.close();
-                }
 			}
 		}
-		return null;
+		
+
 	}
 	
 }

@@ -34,7 +34,7 @@ import com.myspring.cookpro.reviewboard.dto.Review_image_dto;
 
 @Controller
 public class ReviewBoardControllerImpl implements ReviewBoardController{
-	private static final String CURR_IMAGE_REPO_PATH = ""; // ³ªÁß¿¡ Ã¤¿ö¾ßÇÔ °æ·Î
+	private static final String CURR_IMAGE_REPO_PATH = ""; // ï¿½ï¿½ï¿½ß¿ï¿½ Ã¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@Autowired
 	ReviewService reviewService;
 	@Autowired
@@ -100,7 +100,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('»õ±ÛÀ» Ãß°¡Çß½À´Ï´Ù.');";
+			message += "alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.');";
 			message += "location.href='" + multipartRequest.getContextPath()
 				+"/board/listArticles.do';";
 			message += "</script>";
@@ -115,7 +115,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä.');";
+			message += "alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.');";
 			message += "location.href='" + multipartRequest.getContextPath()
 				+"/board/articleForm.do';";
 			message += "</script>";
@@ -223,7 +223,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('±ÛÀÌ ¼öÁ¤ µÇ¾ú½À´Ï´Ù.');";
+			message += "alert('ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');";
 			message += "location.href='"+multipartRequest.getContextPath()
 				+"/board/viewArticle.do?articleNo="+articleNo+"';";
 			message += "</script>";
@@ -238,7 +238,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('±Û ¼öÁ¤ Áß ¿¡·¯°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½Ãµµ ÇÏ¼¼¿ä.');";
+			message += "alert('ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½.');";
 			message += "location.href='"+multipartRequest.getContextPath()
 				+"/board/viewArticle.do?articleNo="+articleNo+"';";
 			message += "</script>";
@@ -264,14 +264,14 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 			FileUtils.deleteDirectory(destDir);
 			
 			message = "<script>";
-			message += "alert('»èÁ¦°¡ ¿Ï·á µÇ¾ú½À´Ï´Ù.');";
+			message += "alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');";
 			message += "location.href='"+request.getContextPath()+"/board/listArticles.do';";
 			message += "</script>";
 			
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			message = "<script>";
-			message += "alert('»èÁ¦¿¡ ½ÇÆÐ ÇÏ¾ú½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä.');";
+			message += "alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.');";
 			message += "location.href='"+request.getContextPath()+"/board/listArticles.do';";
 			message += "</script>";
 			

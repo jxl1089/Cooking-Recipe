@@ -17,5 +17,5 @@ public interface RecipeController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity addNewRecipe(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	public ResponseEntity removceArticle (@RequestParam("articleNo") int recipe_no, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public String imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public void imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

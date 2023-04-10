@@ -23,7 +23,7 @@
 	
 	<context:component-scan base-package="com.myspring.cookpro" />
 	
-	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**"></resources>
+	
 	
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">
@@ -51,6 +51,7 @@
 		<beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
 	
+	<resources location="/resources/image/testimage/" mapping="/testimage/**"></resources>
 	
 	
 </beans:beans>
