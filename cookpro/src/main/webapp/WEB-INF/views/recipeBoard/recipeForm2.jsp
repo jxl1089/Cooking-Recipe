@@ -30,9 +30,13 @@
 		}
 	}
 	function fn_addFile(){
-		$("#d_file").append("<br><input type='file' name='file"+cnt+"' > ");
+		$("#d_file").append("<br><input type='file' name='file"+cnt+"' > <button value='테스트'></button>");
 		cnt++;
 	}
+	
+  
+	
+	
 </script>
 <style>
 	.r_detail {
@@ -49,12 +53,48 @@
 				<td colspan="2" align="left"><input type="text" size="20" maxlength="100" name="name" value="${member.name }" readonly="readonly"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="text" size="63" maxlength="500" name="title" placeholder="제목"></td>
+				<td align="left">
+					<select name="recipe_tab" class="category" data-filter-message-isnull="탭을 선택하시기 바랍니다">
+						<option>한식</option>
+						<option>중식</option>
+						<option>일식</option>
+						<option>양식</option>
+						<option>기타</option>
+					</select>
+					<input type="text" size="63" maxlength="500" name="recipe_title" placeholder="제목">
+				</td>
+			</tr>
+			<tr>
+				<td align="left">
+				<div class="editor-menu">
+				    <button type="button" id="btn-bold">
+      					  <b>B</b>
+ 					</button>
+					<button type="button" id="btn-italic">
+        					<i>I</i>
+    				</button>
+    				<button type="button" id="btn-underline">
+        				<u>U</u>
+    				</button>
+    				<button type="button" id="btn-strike">
+        				<s>S</s>
+    				</button>
+    				<button type="button" id="btn-ordered-list">
+        					OL
+    				</button>
+    				<button type="button" id="btn-unordered-list">
+        					UL
+    				</button>
+    				<button type="button" id="btn-image">
+        					IMG
+    				</button>
+				</div>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 				<!-- <textarea name="recipe_detail" rows="10" cols="69" maxlength="4000"></textarea> -->
-					<div class="r_detail" contentEditable="true" id="recipe_detail" name="recipe_detail" rows="10" cols="69"></div>
+					<div align="left" class="r_detail" contentEditable="true" id="recipe_detail" name="recipe_detail" rows="10" cols="69"></div>
 				</td>
 			</tr>
 			<tr>
@@ -74,4 +114,47 @@
 		</table>
 	</form>
 </body>
+<script>
+const editor = document.getElementById('editor');
+const btnBold = document.getElementById('btn-bold');
+const btnItalic = document.getElementById('btn-italic');
+const btnUnderline = document.getElementById('btn-underline');
+const btnStrike = document.getElementById('btn-strike');
+const btnOrderedList = document.getElementById('btn-ordered-list');
+const btnUnorderedList = document.getElementById('btn-unordered-list');
+
+btnBold.addEventListener('click', function () {
+    setStyle('bold');
+});
+
+btnItalic.addEventListener('click', function () {
+    setStyle('italic');
+});
+
+btnUnderline.addEventListener('click', function () {
+    setStyle('underline');
+});
+
+btnStrike.addEventListener('click', function () {
+    setStyle('strikeThrough')
+});
+
+btnOrderedList.addEventListener('click', function () {
+    setStyle('insertOrderedList');
+});
+
+btnUnorderedList.addEventListener('click', function () {
+    setStyle('insertUnorderedList');
+});
+
+function setStyle(style) {
+    document.execCommand(style);
+    //focusEditor(); 오류땜에 사용끔
+}
+
+// 버튼 클릭 시 에디터가 포커스를 잃기 때문에 다시 에디터에 포커스를 해줌 오류땜에 사용끔
+/*function focusEditor() {
+    editor.focus({preventScroll: true});
+}*/
+</script>
 </html>
