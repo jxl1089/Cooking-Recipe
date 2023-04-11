@@ -100,7 +100,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('������ �߰��߽��ϴ�.');";
+			message += "alert('글 작성에 실패하였습니다.');";
 			message += "location.href='" + multipartRequest.getContextPath()
 				+"/board/listArticles.do';";
 			message += "</script>";
@@ -115,7 +115,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���.');";
+			message += "alert('다시 글 작성 페이지로 이동합니다.');";
 			message += "location.href='" + multipartRequest.getContextPath()
 				+"/board/articleForm.do';";
 			message += "</script>";
@@ -223,7 +223,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('���� ���� �Ǿ����ϴ�.');";
+			message += "alert('글이 수정되었습니다.');";
 			message += "location.href='"+multipartRequest.getContextPath()
 				+"/board/viewArticle.do?articleNo="+articleNo+"';";
 			message += "</script>";
@@ -238,7 +238,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('�� ���� �� ������ �߻��߽��ϴ�. �ٽ� �õ� �ϼ���.');";
+			message += "alert('글 수정 중 오류가 발생하였습니다. 다시 시도해주세요.');";
 			message += "location.href='"+multipartRequest.getContextPath()
 				+"/board/viewArticle.do?articleNo="+articleNo+"';";
 			message += "</script>";
@@ -264,14 +264,14 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 			FileUtils.deleteDirectory(destDir);
 			
 			message = "<script>";
-			message += "alert('������ �Ϸ� �Ǿ����ϴ�.');";
+			message += "alert('글이 삭제되었습니다.');";
 			message += "location.href='"+request.getContextPath()+"/board/listArticles.do';";
 			message += "</script>";
 			
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			message = "<script>";
-			message += "alert('������ ���� �Ͼ����ϴ�. �ٽ� �õ��� �ּ���.');";
+			message += "alert('글 삭제에 실패하였습니다. 다시 시도해주세요.');";
 			message += "location.href='"+request.getContextPath()+"/board/listArticles.do';";
 			message += "</script>";
 			
