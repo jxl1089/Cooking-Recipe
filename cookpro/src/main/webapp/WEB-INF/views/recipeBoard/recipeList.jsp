@@ -29,17 +29,19 @@
 			<td>작성자</td>
 			<td>제목</td>
 			<td>작성일자</td>
+			<td>조회수</td>
+			<td>추천수</td>
 		</tr>
 		<c:choose>
-			<c:when test="${recipeList == null }">
+			<c:when test="${recipesList == null }">
 				<tr height=10">
 					<td colspan="4">
 						<b><span style="font-size:9pt;"></span></b>
 					</td>
 				</tr>
 			</c:when>
-			<c:when test="${recipeList != null }">
-				<c:forEach var="recipe" items="${recipeList }" varStauts="recipe_no">
+			<c:when test="${recipesList != null }">
+				<c:forEach var="recipe" items="${recipesList }" varStauts="recipe_no">
 					<tr align="center">
 						<td width="5%">${recipeNum.count }</td>
 						<td width="10%">${recipe.id }</td>
@@ -49,13 +51,55 @@
 								${recipe.title }
 							</a>
 						</td>
-						<tr>
 					</tr>
-				
+					<tr>
+						<td width="10%"><fmt:formatDate value="${recipe.writeDate }"/></td>
+					</tr>
+					<tr>
+						<td>${recipe.recipe_views }</td>
+					</tr>
+					<tr>
+						<td>${recipe.recipe_like }</td>
+					</tr>
 				</c:forEach>
-			
 			</c:when>
 		</c:choose>
 	</table>
+	<div class="cls2">
+		<c:if test="totRecipes != null">
+			<c:choose>
+				<c:when test="${totRecipes > 100 }">
+					<c:forEach var="page" begin="1" end="10" step="1">
+						<c:if test="${section > 1 && page==1 }">
+							<a class="no-uline" href="${contextPath }/recipeboard/recipeList.do?section=${section}&pageNum=${(section-1)*10+1}">&nbsp;</a>						
+						</c:if>
+						<a class="no-uline" href="${contextPath }/recipeboard/recipeList.do?section=${section}&pageNum=${page }">${(section-1)*10 + page }</a>
+						<c:if test="${page == 10 }">
+							<a class="no-uline" href="${contextPath }/recipeboard/recipeList.do?section=${section}&pageNum=${(section-1)*10+1}">&nbsp;next</a>
+						</c:if>
+					</c:forEach>
+				</c:when>
+				<c:when test="${totRecipes == 100 }">
+					<c:forEach	var="page" begin="1" end="10" step="1">
+						<a class="no-uline" href="#">{page}</a>
+					</c:forEach>
+				</c:when>
+				<c:when test="${totRecipes < 100 }">
+				<c:forEach var="page" begin="1" end="${totRecipes/10 +1 }" step="1">
+					<c:choose>
+						<c:when test="${page == pageNum }">
+							<a class="sel-page" href="${contextPath }/recipeboard/recipeList.do?section=${section }&pageNum=${page }">${page }</a> 
+						</c:when>
+						<c:otherwise>
+							<a class="no-uline" href="${contextPath }/recipeboard/recipeList.do?section=${section }&pageNum=${page }">${page }</a> 
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				</c:when>
+			</c:choose>
+		</c:if>
+	</div>
+	<a class="cls1" href="javascript:fn_recipeForm('${isLogOn }','${contextPath }/recipeboard/recipeForm.do','${contextPath }/member/loginForm.do')">
+	<p class="cls2">글쓰기</p></a>
 </body>
 </html>

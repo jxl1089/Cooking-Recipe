@@ -8,7 +8,7 @@
 			<result property="parentNo" column="parentNo"/>
 			<result property="id" column="id"/>
 			<result property="recipe_tab" column="recipe_tab"/>
-			<result property="writeDate" column="recipe_date"/>
+			<result property="writeDate" column="writeDate"/>
 			<result property="recipe_title" column="recipe_title"/>
 			<result property="recipe_detail" column="recipe_detail"/>
 			<result property="recipe_image" column="recipe_image"/>
@@ -26,8 +26,8 @@
 		
 		<select id="selectAllRecipeList" resultMap="recipeResult">
 			<![CDATA[
-				select recipe_no, id, recipe_tab, recipe_date, recipe_title, recipe_detail, recipe_iamge,
-				recipe_views, recipe_like, recipe_dislike from recipe_board
+				select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail, recipe_image,
+				recipe_views, recipe_like, recipe_dislike from recipe
 				start with parentNo=0
 				connect by prior recipe_no = parentNo
 				order by siblings by recipe_no desc

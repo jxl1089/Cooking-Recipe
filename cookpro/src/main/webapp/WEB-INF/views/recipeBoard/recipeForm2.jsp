@@ -12,7 +12,7 @@
 <title>레시피쓰기</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	
+	let cnt = 1;
 	function backToList(){
 		let form = document.articleForm;
 		form.action="${path}/recipeboard/recipeList.do"
@@ -36,7 +36,7 @@
 </head>
 <body>
 	<form name="recipeForm" method="post" action="${path }/recipeboard/addRecipe.do" enctype="multipart/form-data">
-		<table border="1" align="center">
+		<table border="0" align="center">
 			<tr>
 				<td colspan="2" align="left"><input type="text" size="20" maxlength="100" name="name" value="${member.name }" readonly="readonly"></td>
 			</tr>

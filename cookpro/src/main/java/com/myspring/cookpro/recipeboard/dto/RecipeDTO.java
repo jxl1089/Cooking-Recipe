@@ -16,6 +16,7 @@ public class RecipeDTO {
 	private int recipe_no;
 	private String recipe_tab;
 	private Date writeDate;
+	private int parentNo;
 	
 	public String getId() {
 		return id;
@@ -76,6 +77,12 @@ public class RecipeDTO {
 	}
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
+	}
+	public int getParentNo() {
+		return parentNo;
+	}
+	public void setParentNo(int parentNo) {
+		this.parentNo = parentNo;
 	}
 	
 	
