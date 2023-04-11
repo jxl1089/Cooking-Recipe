@@ -44,9 +44,18 @@
 		width:600px;
 		height:600px;
 	}
+	
+	#img-selector {
+    	    display: none;
+		}
+		
+	 #editor img {
+    	max-width: 100%;
+    }
 </style>
 </head>
 <body>
+	<input id="img-selector" type="file" accept="image/*"/>
 	<form name="recipeForm" method="post" action="${path }/recipeboard/addRecipe.do" enctype="multipart/form-data">
 		<table border="0" align="center">
 			<tr>
@@ -85,6 +94,7 @@
     				<button type="button" id="btn-unordered-list">
         					UL
     				</button>
+    				
     				<button type="button" id="btn-image">
         					IMG
     				</button>
@@ -94,16 +104,18 @@
 			<tr>
 				<td colspan="2">
 				<!-- <textarea name="recipe_detail" rows="10" cols="69" maxlength="4000"></textarea> -->
-					<div align="left" class="r_detail" contentEditable="true" id="recipe_detail" name="recipe_detail" rows="10" cols="69"></div>
+					<div align="left" class="r_detail" contentEditable="true" id="recipe_detail" name="recipe_detail">
+						
+					</div>
 				</td>
 			</tr>
-			<tr>
+			<!--  <tr>
 				<td align="right">요리사진 추가</td>
 				<td align="left"><input type="button" value="파일추가" onclick="fn_addFile()"></td>
 			</tr>
 			<tr>
 				<td colspan="4"><div id="d_file"></div></td>
-			</tr>
+			</tr>-->
 			<tr>
 				<td align="right"></td>
 				<td colspan="2">
@@ -115,42 +127,63 @@
 	</form>
 </body>
 <script>
-const editor = document.getElementById('editor');
-const btnBold = document.getElementById('btn-bold');
-const btnItalic = document.getElementById('btn-italic');
-const btnUnderline = document.getElementById('btn-underline');
-const btnStrike = document.getElementById('btn-strike');
-const btnOrderedList = document.getElementById('btn-ordered-list');
-const btnUnorderedList = document.getElementById('btn-unordered-list');
+	const editor = document.getElementById('editor');
+	const btnBold = document.getElementById('btn-bold');
+	const btnItalic = document.getElementById('btn-italic');
+	const btnUnderline = document.getElementById('btn-underline');
+	const btnStrike = document.getElementById('btn-strike');
+	const btnOrderedList = document.getElementById('btn-ordered-list');
+	const btnUnorderedList = document.getElementById('btn-unordered-list');
+	const btnImage = document.getElementById('btn-image');
+    const imageSelector = document.getElementById('img-selector');
 
-btnBold.addEventListener('click', function () {
-    setStyle('bold');
-});
+	btnBold.addEventListener('click', function () {
+	    setStyle('bold');
+	});
 
-btnItalic.addEventListener('click', function () {
-    setStyle('italic');
-});
+	btnItalic.addEventListener('click', function () {
+	    setStyle('italic');
+	});
 
-btnUnderline.addEventListener('click', function () {
-    setStyle('underline');
-});
+	btnUnderline.addEventListener('click', function () {
+	    setStyle('underline');
+	});
 
-btnStrike.addEventListener('click', function () {
-    setStyle('strikeThrough')
-});
+	btnStrike.addEventListener('click', function () {
+	    setStyle('strikeThrough')
+	});
 
-btnOrderedList.addEventListener('click', function () {
-    setStyle('insertOrderedList');
-});
+	btnOrderedList.addEventListener('click', function () {
+	    setStyle('insertOrderedList');
+	});
 
-btnUnorderedList.addEventListener('click', function () {
-    setStyle('insertUnorderedList');
-});
+	btnUnorderedList.addEventListener('click', function () {
+	    setStyle('insertUnorderedList');
+	});
 
-function setStyle(style) {
-    document.execCommand(style);
+	function setStyle(style) {
+	    document.execCommand(style);
     //focusEditor(); 오류땜에 사용끔
-}
+	}
+	
+    btnImage.addEventListener('click', function () {
+        imageSelector.click();
+    });
+
+    imageSelector.addEventListener('change', function (e) {
+        const files = e.target.files;
+        if (!!files) {
+            insertImageDate(files[0]);
+        }
+    });
+    
+    function insertImageDate(file) {
+        const reader = new FileReader();
+        reader.addEventListener('load', function (e) {
+            document.execCommand('insertImage', false, `${reader.result}`);
+        });
+        reader.readAsDataURL(file);
+    }
 
 // 버튼 클릭 시 에디터가 포커스를 잃기 때문에 다시 에디터에 포커스를 해줌 오류땜에 사용끔
 /*function focusEditor() {
