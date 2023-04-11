@@ -63,3 +63,8 @@
 	text-align: center;
 	font-size: 30px;
 }
+.r_detail {
+	border: 5px solid darkblue;
+  	height: 600px;
+  	width: 600px;
+}

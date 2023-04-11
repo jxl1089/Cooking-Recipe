@@ -74,7 +74,7 @@ public class RecipeControllerImpl implements RecipeController{
 	}
 
 	@Override
-	@RequestMapping(value="/recipeboard/addNewRecipe.do")
+	@RequestMapping(value="/recipeboard/addRecipe.do")
 	public ResponseEntity addNewRecipe(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
