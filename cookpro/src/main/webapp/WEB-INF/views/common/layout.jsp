@@ -14,7 +14,6 @@
 	<div id="container">
 		<div id="header">
 			<tiles:insertAttribute name="header"></tiles:insertAttribute>
-			<tiles:insertAttribute name="side"></tiles:insertAttribute>
 		</div>
 		<%-- <div id="nav">
 			<tiles:insertAttribute name="side"></tiles:insertAttribute>

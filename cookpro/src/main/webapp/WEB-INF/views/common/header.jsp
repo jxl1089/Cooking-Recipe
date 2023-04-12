@@ -34,6 +34,9 @@
 			</a>
 		</td>
 		<td>
+			<%@ include file="side.jsp" %>
+		</td>
+		<td>
 			<c:choose>
 				<c:when test="${isLogOn == true && member != null }">
 					<h4>${member.name }님의 레시피</h4>
