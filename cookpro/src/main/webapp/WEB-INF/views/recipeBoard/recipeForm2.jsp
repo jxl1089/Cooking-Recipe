@@ -20,7 +20,7 @@
 		form.submit();
 	}
 	
-	function readURL(input){
+	/*function readURL(input){
 		if(input.files && input.files[0]){
 			let reader = new FileReader();
 			reader.onload = function(e){
@@ -32,7 +32,7 @@
 	function fn_addFile(){
 		$("#d_file").append("<br><input type='file' name='file"+cnt+"' > <button value='테스트'></button>");
 		cnt++;
-	}
+	}*/
 	
   
 	
@@ -40,22 +40,22 @@
 </script>
 <style>
 	.r_detail {
-		border : 1px solid black; 
-		width:600px;
-		height:600px;
+		padding: 16px 24px;
+        border: 1px solid #D6D6D6;
+        border-radius: 4px;
 	}
 	
 	#img-selector {
     	    display: none;
 		}
 		
-	 #editor img {
+	/* #editor img {
     	max-width: 100%;
-    }
+    }*/
 </style>
 </head>
 <body>
-	<input id="img-selector" type="file" accept="image/*"/>
+	
 	<form name="recipeForm" method="post" action="${path }/recipeboard/addRecipe.do" enctype="multipart/form-data">
 		<table border="0" align="center">
 			<tr>
@@ -98,6 +98,7 @@
     				<button type="button" id="btn-image">
         					IMG
     				</button>
+    				<input id="img-selector" type="file" accept="image/*"/>
 				</div>
 				</td>
 			</tr>
@@ -125,9 +126,8 @@
 			</tr>
 		</table>
 	</form>
-</body>
 <script>
-	const editor = document.getElementById('editor');
+	const editor = document.getElementById('recipe_detail');
 	const btnBold = document.getElementById('btn-bold');
 	const btnItalic = document.getElementById('btn-italic');
 	const btnUnderline = document.getElementById('btn-underline');
@@ -139,6 +139,7 @@
 
 	btnBold.addEventListener('click', function () {
 	    setStyle('bold');
+	    
 	});
 
 	btnItalic.addEventListener('click', function () {
@@ -163,7 +164,7 @@
 
 	function setStyle(style) {
 	    document.execCommand(style);
-    //focusEditor(); 오류땜에 사용끔
+    	focusEditor(); //오류땜에 사용끔
 	}
 	
     btnImage.addEventListener('click', function () {
@@ -173,21 +174,26 @@
     imageSelector.addEventListener('change', function (e) {
         const files = e.target.files;
         if (!!files) {
-            insertImageDate(files[0]);
+        	insertImageDate(files[0]);
         }
     });
     
     function insertImageDate(file) {
         const reader = new FileReader();
         reader.addEventListener('load', function (e) {
-            document.execCommand('insertImage', false, `${reader.result}`);
+        	focusEditor();
+            document.execCommand('insertImage', false, reader.result);
+            focusEditor();
         });
         reader.readAsDataURL(file);
+        focusEditor()
     }
 
 // 버튼 클릭 시 에디터가 포커스를 잃기 때문에 다시 에디터에 포커스를 해줌 오류땜에 사용끔
-/*function focusEditor() {
-    editor.focus({preventScroll: true});
-}*/
+	function focusEditor() {
+    	editor.focus({preventScroll: true});
+	}
 </script>
+</body>
+
 </html>
