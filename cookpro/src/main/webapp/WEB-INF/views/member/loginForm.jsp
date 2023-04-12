@@ -36,7 +36,7 @@
 			<td width="400"><input type="password" name="pwd"></td>
 		</tr>
 		<tr align="center">
-			<td colspan="2"><input type="submit" value="로그인"><input type="reset" value="다시입력"></td>
+			<td colspan="2"><input class="button" type="submit" value="로그인"><input class="button" type="reset" value="다시입력"></td>
 		</tr>
 		<tr align="center">
 			<td colspan="2"><a class="no-underline-orange" href="${contextPath }/member/searchForm.do">아이디/비밀번호 찾기</a></td>

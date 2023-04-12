@@ -9,6 +9,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>메인페이지</h1>
+	<div class="main-layout">
+		<a href=""><button class="main-btn">Recipe</button></a>
+		<a href=""><button class="main-btn">Review</button></a>
+		<a href=""><button class="main-btn">QnA</button></a>
+		<br>
+		<a href=""><img class="main-image" src="${contextPath }/resources/image/bibimbap.jpg"></a>
+		<a href=""><img class="main-image" src="${contextPath }/resources/image/pasta.jpg"></a>
+		<a href=""><img class="main-image" src="${contextPath }/resources/image/sushi.jpg"></a>
+		<a href=""><img class="main-image" src="${contextPath }/resources/image/mandu.jpg"></a>
+	</div>
 </body>
 </html>

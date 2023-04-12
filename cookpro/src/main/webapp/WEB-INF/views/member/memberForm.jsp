@@ -129,7 +129,7 @@ function checkJoin() {
 			<tr>
 				<td width="200"><p align="right">아이디</p></td>
 				<td width="400"><input type="text" name="id" id="id"></td>
-				<td width="100"><button type="button" id="idChk" value="N">중복확인</button></td>
+				<td width="100"><button class="button" type="button" id="idChk" value="N">중복확인</button></td>
 			</tr>
 			<tr>
 				<td width="200"><p align="right">비밀번호</p></td>
@@ -138,12 +138,12 @@ function checkJoin() {
 			<tr>
 				<td width="200"><p align="right">이메일</p></td>
 				<td width="400"><input type="email" name="email" id="email"></td>
-				<td width="100"><button type="button" id="authSend" value="N">인증번호 발송</td>
+				<td width="100"><button class="button" type="button" id="authSend" value="N">인증번호 발송</td>
 			</tr>
 			<tr>
 				<td width="200"><p align="right">인증번호 입력</p></td>
 				<td width="400"><input type="text" name="authNo" id="authNo"></td>
-				<td width="100"><button type="button" id="authCheck" value="N">인증번호 확인</button></td>
+				<td width="100"><button class="button" type="button" id="authCheck" value="N">인증번호 확인</button></td>
 			</tr>
 			<tr>
 				<td width="200"><p align="right">이름</p></td>
@@ -156,8 +156,8 @@ function checkJoin() {
 			<tr>
 				<td width="200"><p align="right">&nbsp;</p></td>
 				<td width="400">
-				 	<button type="button" onclick="checkJoin()">가입하기</button>
-					<input type="reset" value="다시입력">
+				 	<button class="button" type="button" onclick="checkJoin()">가입하기</button>
+					<input class="button" type="reset" value="다시입력">
 				</td>
 			</tr>
 		</table>

@@ -89,7 +89,7 @@ function searchPwd(){
 		<td width="200"><input type="email" name="email" id="email1"></td>
 	</tr>
 	<tr align="center">
-		<td colspan="2"><button type="button" onclick="searchId()">아이디 찾기</button></td>
+		<td colspan="2"><button class="button" type="button" onclick="searchId()">아이디 찾기</button></td>
 	</tr>
 </table>
 
@@ -112,6 +112,6 @@ function searchPwd(){
 		<td width="200"><input type="email" name="email" id="email2"></td>
 	</tr>
 	<tr align="center">
-		<td colspan="2"><button type="button" onclick="searchPwd()">비밀번호 찾기</button></td>
+		<td colspan="2"><button class="button" type="button" onclick="searchPwd()">비밀번호 찾기</button></td>
 	</tr>
 </table>
