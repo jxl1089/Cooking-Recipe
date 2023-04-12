@@ -12,6 +12,7 @@
 </style>
 </head>
 <body>
+<hr>
     <!-- Footer Section Begin -->
         <div class="copyright">
             <div class="container">

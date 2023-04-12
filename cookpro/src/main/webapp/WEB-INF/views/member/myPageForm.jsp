@@ -13,12 +13,12 @@
 		}
 	}
 </script>
-<h1 style="text-align:center;">${member.name }님의 마이페이지</h1>
+<h1 style="text-align:center; color:#FF7629;">${member.name }님의 마이페이지</h1>
 <br>
 <table align='center'>
 	<tr align="left">
 		<th width="150">회원정보 수정</th>
-		<td width="200"><a href="${contextPath }/member/modForm.do">이메일 등 개인정보</a></td>
+		<td width="200"><a class="no-underline" href="${contextPath }/member/modForm.do">이메일 등 개인정보</a></td>
 	</tr>
 	<tr align="left">
 		<th width="150">계정 관리</th>

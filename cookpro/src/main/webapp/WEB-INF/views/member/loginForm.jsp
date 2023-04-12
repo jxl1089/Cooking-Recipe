@@ -25,6 +25,7 @@
 </script>
 </c:if>
 <form method="post" action="${contextPath }/member/login.do">
+	<h1 style="text-align: center; color:#FF7629;">로그인 창</h1>
 	<table align="center">
 		<tr align="center">
 			<td width="200" align="right">아이디</td>
@@ -38,7 +39,7 @@
 			<td colspan="2"><input type="submit" value="로그인"><input type="reset" value="다시입력"></td>
 		</tr>
 		<tr align="center">
-			<td colspan="2"><a href="${contextPath }/member/searchForm.do">아이디/비밀번호 찾기</a></td>
+			<td colspan="2"><a class="no-underline-orange" href="${contextPath }/member/searchForm.do">아이디/비밀번호 찾기</a></td>
 		</tr>
 	</table>
 </form>

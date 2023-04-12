@@ -77,7 +77,7 @@ function searchPwd(){
 }
 </script>
 
-<h2 style="text-align:center;">아이디 찾기</h2>
+<h2 style="text-align:center; color:#FF7629;">아이디 찾기</h2>
 <br>
 <table align='center'>
 	<tr align="left">
@@ -96,7 +96,7 @@ function searchPwd(){
 <br>
 <br>
 
-<h2 style="text-align:center;">비밀번호 찾기</h2>
+<h2 style="text-align:center; color:#FF7629;">비밀번호 찾기</h2>
 <br>
 <table align='center'>
 	<tr align="left">
