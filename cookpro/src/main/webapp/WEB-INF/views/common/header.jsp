@@ -34,7 +34,7 @@
 			</a>
 		</td>
 		<td>
-			<%@ include file="side.jsp" %>
+			<%@ include file="nav.jsp" %>
 		</td>
 		<td>
 			<c:choose>
