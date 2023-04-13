@@ -44,7 +44,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		try {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
-			messageHelper.setFrom("admin@gmail.com", "관리자");
+			messageHelper.setFrom("admin@admin.com", "우리의레시피");
 			messageHelper.setSubject(subject);
 			messageHelper.setTo(to);
 			messageHelper.setText(body, true);
