@@ -54,7 +54,7 @@
 								<td width="400"><input type="password" name="pwd" placeholder="비밀번호를 입력하세요"></td>
 							</tr>
 							<tr align="center">
-								<td width="400"><input class="button" type="submit" value="로그인"><input class="button" type="button" value="회원가입" onclick="location.href='${contextPath }/member/memberForm.do';"></td>
+								<td width="400"><input class="button" type="submit" value="로그인"> <input class="button" type="button" value="회원가입" onclick="location.href='${contextPath }/member/memberForm.do';"></td>
 							</tr>
 						</table>
 					</form>

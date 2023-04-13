@@ -87,6 +87,7 @@ function modSubmit() {
 <body>
 	<form name="frm" method="post" action="${contextPath }/member/modMember.do">
 		<h1 style="text-align:center; color:#FF7629;">회원 정보 수정</h1>
+		<br>
 		<table align="center">
 			<tr>
 				<td width="200"><p align="right">아이디</p></td>

@@ -124,7 +124,8 @@ function checkJoin() {
 </head>
 <body>
 	<form name="frm" method="post" action="/cookpro/member/addMember.do">
-		<h1 style="text-align:center; color:#FF7629;">회원 가입 창</h1>
+		<h1 style="text-align:center; color:#FF7629;">회원 가입</h1>
+		<br>
 		<table align="center">
 			<tr>
 				<td width="200"><p align="right">아이디</p></td>
