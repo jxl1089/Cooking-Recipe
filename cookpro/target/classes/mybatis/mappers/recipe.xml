@@ -19,7 +19,7 @@
 		
 		<insert id="insertRecipe" parameterType="recipeDTO">
 			<![CDATA[
-				insert into recipe_board(recipe_no , id , recipe_tab, recipe_tilte, recipe_deatail, recipe_image,) 
+				insert into recipe(recipe_no , id , recipe_tab, recipe_tilte, recipe_deatail, recipe_image,) 
 				values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail}, #{recipe_image})
 			]]>
 		</insert>
@@ -36,19 +36,19 @@
 		
 		<select id="selectNewRecipeNo" resultType="int">
 			<![CDATA[
-				select max(recipe_no)+1 from t_board
+				select max(recipe_no)+1 from recipe
 			]]>
 		</select>
 		
 		<select id="selectRecipe" resultType="recipeDTO" parameterType="int">
 			<![CDATA[
-				select * from recipe_board where recipe_no=#{recipe_no}
+				select * from recipe where recipe_no=#{recipe_no}
 			]]>
 		</select>
 		
 		<update id="updateRecipe">
 			<![CDATA[
-				update recipe_board
+				update recipe 
 				set recipe_title=#{recipe_title}, recipe_detail=#{recipe_detail}
 				<if test="imageFileName != '' and imageFileName != null">
 					, imageFileName=#{imageFileName}
@@ -59,7 +59,7 @@
 		
 		<delete id="deleteRecipe" parameterType="int">
 			<![CDATA[
-				delete from recipe_board where recipeNo in (
+				delete from recipe where recipeNo in (
 				select 
 			]]>
 			

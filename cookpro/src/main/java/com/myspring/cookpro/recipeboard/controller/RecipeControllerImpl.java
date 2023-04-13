@@ -112,8 +112,38 @@ public class RecipeControllerImpl implements RecipeController{
 		responseHeader.add("Content-Type", "text/html;charset=utf-8");
 		
 		try {
+			
+			int recipeNo = recipeService.addNewRecipe(recipeMap);
+			if(imageFileList != null && imageFileList.size() != 0) {
+				for(ImageDTO imageDTO : imageFileList) {
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\temp\\"+imageDTO.getImageFileName());
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+recipeNo);
+					FileUtils.moveFileToDirectory(srcFile, destDir, true);
+				}
+			}
+			message = "<script>";
+			message += "alert('레시피 추가!.');";
+			message += "location.href='" + multipartRequest.getContextPath()
+				+"/board/listArticles.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeader, HttpStatus.CREATED);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
+			if(imageFileList != null && imageFileList.size() != 0) {
+				for(ImageDTO imageDTO : imageFileList) {
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\temp\\"
+							+imageDTO.getImageFileName());
+					srcFile.delete();
+				}
+			}
+			message = "<script>";
+			message += "alert('오류가 발생했습니다. 다시 시도해 주세요.');";
+			message += "location.href='" + multipartRequest.getContextPath()
+				+"/board/articleForm.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeader, HttpStatus.CREATED);
+			e.printStackTrace();
 			e.printStackTrace();
 		}
 		return resEnt;
@@ -183,63 +213,11 @@ public class RecipeControllerImpl implements RecipeController{
 			
 	}
 
-//	@Override
-//	@RequestMapping(value="/recipeboard/imageUpload.do", method=RequestMethod.POST)
-//	public void imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
-//			HttpServletResponse response) throws Exception {
-//		// TODO Auto-generated method stub
-//		request.setCharacterEncoding("utf-8");
-//		
-//		JsonObject json = new JsonObject();
-//		PrintWriter printWriter = null;
-//		OutputStream out = null;
-//		MultipartFile file = multipartRequest.getFile("upload");
-//		if(file != null) {
-//			if(file.getSize() > 0 && !StringUtils.isEmpty(file.getName())) {
-//				if(file.getContentType().toLowerCase().startsWith("image/")) {
-//					try {
-//						String fileName = file.getName();
-//						byte[] bytes;
-//						bytes = file.getBytes();
-//						String uploadPath = "C:\\Users\\tmdwn\\git\\Cooking-Recipe\\cookpro\\src\\main\\webapp\\resources\\image\\testimage";
-//						File uploadFile = new File(uploadPath);
-//						if (!uploadFile.exists()) {
-//							uploadFile.mkdirs();
-//						}
-//						fileName = UUID.randomUUID().toString();
-//						uploadPath = uploadPath + "/" + fileName;
-//						out = new FileOutputStream(new File(uploadPath));
-//						out.write(bytes);
-//						printWriter = response.getWriter();
-//						response.setContentType("text/html");
-//						
-//						String callback = request.getParameter("CKEditorFuncNum");
-//				    	printWriter = response.getWriter();
-//						
-//						String fileUrl = request.getContextPath() + "/resources/image/testimage/" + fileName;
-//						
-//						json.addProperty("uploaded", 1);
-//						json.addProperty("fileName", fileName);
-//						json.addProperty("url", fileUrl);
-//
-//						printWriter.println(json);
-//						
-//					} catch (Exception e) {
-//						// TODO: handle exception
-//						e.printStackTrace();
-//					}  finally {
-//						if(out !=null) {
-//							out.close();
-//						}
-//						if(printWriter != null) {
-//							printWriter.close();
-//						}
-//					}
-//				}
-//			}
-//		}
-//		
-//
-//	}
-	
+	@Override
+	public ResponseEntity modRecipe(MultipartHttpServletRequest multiRequest, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

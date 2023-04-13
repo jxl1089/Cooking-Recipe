@@ -49,9 +49,9 @@
     	    display: none;
 		}
 		
-	/* #editor img {
+	#recipe_detail img {
     	max-width: 100%;
-    }*/
+    }
 </style>
 </head>
 <body>
