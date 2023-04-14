@@ -16,4 +16,6 @@ public interface RecipeService {
 
 	int addNewRecipe(Map<String, Object> recipeMap);
 
+	Map viewRecipe(int recipeNo);
+
 }

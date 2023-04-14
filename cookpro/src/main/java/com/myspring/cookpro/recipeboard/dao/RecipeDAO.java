@@ -11,6 +11,8 @@ public interface RecipeDAO {
 
 	int insertNewRecipe(Map<String, Object> recipeMap);
 
-	void insertNewImage(Map<String, Object> recipeMap);
+	RecipeDTO selectRecipe(int recipeNo);
+
+	//void insertNewImage(Map<String, Object> recipeMap);
 
 }
