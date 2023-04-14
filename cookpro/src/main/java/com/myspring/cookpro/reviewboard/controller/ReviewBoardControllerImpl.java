@@ -53,7 +53,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 	}
 
 	@Override
-	@RequestMapping(value="/reveiwBoard/review_addNewArticles.do",method=RequestMethod.POST)
+	@RequestMapping(value="/reviewBoard/review_addNewArticles.do",method=RequestMethod.POST)
 	public ResponseEntity review_addNewArticle(MultipartHttpServletRequest multipartRequest,
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
