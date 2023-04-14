@@ -14,10 +14,26 @@
 		<a href=""><button class="main-btn">Review</button></a>
 		<a href=""><button class="main-btn">QnA</button></a>
 		<br>
-		<a href=""><img class="main-image" src="${contextPath }/resources/image/bibimbap.jpg"></a>
-		<a href=""><img class="main-image" src="${contextPath }/resources/image/pasta.jpg"></a>
-		<a href=""><img class="main-image" src="${contextPath }/resources/image/sushi.jpg"></a>
-		<a href=""><img class="main-image" src="${contextPath }/resources/image/mandu.jpg"></a>
+		<%@ include file="mainView.jsp" %>
+		<br>
+		<table class="main-table">
+			<tr>
+				<th>
+					주간 인기 레시피
+				</th>
+				<th>
+					주간 인기 리뷰
+				</th>
+			</tr>
+			<tr>
+				<td>
+					추천수 기준 나열 해야함
+				</td>
+				<td>
+					추천수 기준 나열 해야함
+				</td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

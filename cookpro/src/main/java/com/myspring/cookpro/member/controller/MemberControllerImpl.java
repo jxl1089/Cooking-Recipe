@@ -62,12 +62,18 @@ public class MemberControllerImpl implements MemberController{
 		Random r = new Random();
 		randomNum = r.nextInt(888888) + 111111;
 
-		String msg;
-		msg = "안녕하세요. 인증번호는 ";
-		msg += randomNum;
-		msg += " 입니다.";
-
-		memberService.sendMail(email, "[CookPro] 인증번호", msg);
+		StringBuffer sb = new StringBuffer();
+		sb.append("<html><body>");
+		sb.append("<meta http-equiv='Content-Type' content='text/html;charset=utf-8'>");
+		sb.append("<br><a href=\"http://localhost:8080/cookpro/\"><img style='width:35%;' src=\"https://i.ibb.co/db797fM/logo.png\" alt=\"logo\" border=\"0\"></a>");
+		sb.append("<br><h2>회원가입 인증번호</h2>");
+		sb.append("안녕하세요. 우리의레시피입니다.<br>회원가입 인증번호를 안내해드립니다.<br><br>");
+		sb.append("<h3 style='color:#FF7629;'>");
+		sb.append(randomNum);
+		sb.append("</h3><br><br>");
+		sb.append("</body></html>");
+		String msg = sb.toString();
+		memberService.sendMail(email, "[우리의레시피] 회원가입 인증번호 발송", msg);
 	}
 
 	/* 이메일 인증번호 확인 */
@@ -94,7 +100,7 @@ public class MemberControllerImpl implements MemberController{
 		out.print("<script>");
 		if(result == 1) {
 			out.print("alert('회원가입에 성공하였습니다. 환영합니다!');");
-			out.print("location.href='"+request.getContextPath()+"/'");
+			out.print("location.href='"+request.getContextPath()+"/member/loginForm.do'");
 		} else {
 			out.print("alert('회원가입에 실패하였습니다. 다시 시도해주세요.');");
 			out.print("location.href='"+request.getContextPath()+"/member/memberForm.do'");

@@ -36,7 +36,6 @@ ul li a{
   display: inline-block;
 }
 .main1>li {
-  float: left;
   width: 13%;
   line-height: 50px;
   position: relative;

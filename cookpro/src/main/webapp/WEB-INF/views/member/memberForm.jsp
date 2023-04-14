@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <title>회원 가입 창</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/loading.css"/>
+<script type="text/javascript" src="${contextPath}/resources/js/loadingoverlay.min.js"></script>
+
 <script>
 $(function(){
 	
@@ -43,6 +47,15 @@ $(function(){
 				alert("이메일을 입력해주세요.");
 				$("#email").focus();
 			} else{
+				$.LoadingOverlay("show", {
+					background       : "rgba(0, 0, 0, 0.5)",
+					image            : "",
+					maxSize          : 60,
+					fontawesome      : "fa fa-spinner fa-pulse fa-fw",
+					fontawesomeColor : "#FFFFFF",
+				});
+				
+				
 				$.ajax({
 				type:"post",
 				url:"/cookpro/member/mail.do",
@@ -50,8 +63,10 @@ $(function(){
 				success:function(data, textStatus){
 					alert('인증번호가 전송되었습니다.')
 					$("#authNo").val("").trigger("focus");
+					$.LoadingOverlay("hide");
 				}, error:function(data, textStatus){
 					alert("에러가 발생했습니다");
+					$.LoadingOverlay("hide");
 				}
 			}); 
 		}
@@ -124,7 +139,8 @@ function checkJoin() {
 </head>
 <body>
 	<form name="frm" method="post" action="/cookpro/member/addMember.do">
-		<h1 style="text-align:center; color:#FF7629;">회원 가입 창</h1>
+		<h1 style="text-align:center; color:#FF7629;">회원 가입</h1>
+		<br>
 		<table align="center">
 			<tr>
 				<td width="200"><p align="right">아이디</p></td>
