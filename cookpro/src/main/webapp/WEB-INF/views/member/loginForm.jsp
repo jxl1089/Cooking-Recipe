@@ -30,11 +30,11 @@
 	<table align="center">
 		<tr align="center">
 			<td width="200" align="right">아이디</td>
-			<td width="400"><input type="text" name="id"></td>
+			<td width="400"><input type="text" name="id" placeholder="아이디를 입력하세요"></td>
 		</tr>
 		<tr align="center">
 			<td width="100" align="right">암호</td>
-			<td width="400"><input type="password" name="pwd"></td>
+			<td width="400"><input type="password" name="pwd" placeholder="비밀번호를 입력하세요"></td>
 		</tr>
 		<tr align="center">
 			<td colspan="2"><input class="button" type="submit" value="로그인"> <input class="button" type="reset" value="다시입력"></td>

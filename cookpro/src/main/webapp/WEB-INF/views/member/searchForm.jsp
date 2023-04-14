@@ -82,11 +82,14 @@ function searchPwd(){
 <table align='center'>
 	<tr align="left">
 		<th width="150">이름</th>
-		<td width="200"><input type="text" name="name" id="name1"></td>
+		<td width="200"><input type="text" name="name" id="name1" placeholder="이름을 입력하세요"></td>
 	</tr>
 	<tr align="left">
 		<th width="150">이메일</th>
-		<td width="200"><input type="email" name="email" id="email1"></td>
+		<td width="200"><input type="email" name="email" id="email1" placeholder="이메일을 입력하세요"></td>
+	</tr>
+	<tr>
+		<th></th>
 	</tr>
 	<tr align="center">
 		<td colspan="2"><button class="button" type="button" onclick="searchId()">아이디 찾기</button></td>
@@ -101,15 +104,18 @@ function searchPwd(){
 <table align='center'>
 	<tr align="left">
 		<th width="150">아이디</th>
-		<td width="200"><input type="text" name="id" id="id"></td>
+		<td width="200"><input type="text" name="id" id="id" placeholder="아이디를 입력하세요"></td>
 	</tr>
 	<tr align="left">
 		<th width="150">이름</th>
-		<td width="200"><input type="text" name="name" id="name2"></td>
+		<td width="200"><input type="text" name="name" id="name2" placeholder="이름을 입력하세요"></td>
 	</tr>
 	<tr align="left">
 		<th width="150">이메일</th>
-		<td width="200"><input type="email" name="email" id="email2"></td>
+		<td width="200"><input type="email" name="email" id="email2" placeholder="이메일을 입력하세요"></td>
+	</tr>
+	<tr>
+		<th></th>
 	</tr>
 	<tr align="center">
 		<td colspan="2"><button class="button" type="button" onclick="searchPwd()">비밀번호 찾기</button></td>
