@@ -32,7 +32,8 @@
 		recipe_detail.setAttribute("name", "recipe_detail");
 		recipe_detail.setAttribute("value", detail);
 		
-		recipe_image.setAttribute("name", "recipe_image");
+		
+		recipe_image.setAttribute("name", "recipe_imageList");
 		recipe_image.setAttribute("value", images);
 		
 		recipeForm.append(recipe_detail);
@@ -103,14 +104,14 @@
     				<button type="button" id="btn-image">
         					IMG
     				</button>
-    				<input id="img-selector" type="file" accept="image/*"/>
+    				<input id="img-selector" type="file" name="img-selector" accept="image/*"/>
 				</div>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
 				
-					<div align="left" class="r_detail" contentEditable="true" id="recipe_detail" >
+					<div align="left" class="r_detail" contentEditable="true" id="recipe_detail" style="overflow:scroll; width:700px; height:400px;">
 						
 					</div>
 				</td>

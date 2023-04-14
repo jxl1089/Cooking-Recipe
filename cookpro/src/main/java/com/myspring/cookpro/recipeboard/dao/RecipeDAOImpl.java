@@ -42,7 +42,7 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public void insertNewImage(Map<String, Object> recipeMap) {
 		// TODO Auto-generated method stub
-		List<ImageDTO> imageFileList = (List<ImageDTO>) recipeMap.get("recipe_image");
+		List<ImageDTO> imageFileList = (List<ImageDTO>) recipeMap.get("recipe_imageList");
 		int recipeNo = (Integer)recipeMap.get("recipe_no");
 		int imageFileNo = selectNewImageFileNo();
 		for(ImageDTO image : imageFileList) {

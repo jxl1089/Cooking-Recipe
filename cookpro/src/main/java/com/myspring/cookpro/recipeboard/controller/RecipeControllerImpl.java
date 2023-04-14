@@ -96,9 +96,9 @@ public class RecipeControllerImpl implements RecipeController{
 				image.setImageFileName(fileName);
 				imageFileList.add(image);
 			}
-			recipeMap.put("recipe_image", imageFileList);
+			recipeMap.put("recipe_imageList", imageFileList);
 		}
-		//이미지부분
+		
 		HttpSession session = multipartRequest.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		
