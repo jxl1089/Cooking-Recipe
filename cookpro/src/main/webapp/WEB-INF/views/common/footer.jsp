@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <p class="copyright__text text-white"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                          <script>document.write(new Date().getFullYear());</script> 한국 요리 사이트&nbsp;|&nbsp;<a href="http://www.naver.com" target="_blank">후원사이트 바로가기</a>
+                          <script>document.write(new Date().getFullYear());</script> 우리의 레시피 &nbsp;|&nbsp;<a href="http://www.naver.com" target="_blank">후원사이트 바로가기</a>
                         </p>
                   </div>
                  </div>
