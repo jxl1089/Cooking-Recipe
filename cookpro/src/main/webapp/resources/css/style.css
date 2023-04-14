@@ -39,16 +39,27 @@
 	font-size: 15px;
 }
 
+#wrapper-confoo{
+	min-height: 100%;
+	position: relative;
+}
+
 #content{
 	padding: 5px;
 	border: 0px solid #bcbcbc;
+	padding-bottom: 176px;
 }
 
 #footer{
 	clear: both;
 	padding: 5px;
 	border: 0px solid #bcbcbc;
-	background-color: #d6d6d6;
+	background-color: #e4e4e4;
+	height: 176x;
+	position: absolute;
+	bottom: 0;
+	left:0;
+	width:100%;
 }
 
 .footer_p{

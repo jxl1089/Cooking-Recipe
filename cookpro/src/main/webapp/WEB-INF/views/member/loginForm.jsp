@@ -27,7 +27,7 @@
 <form method="post" action="${contextPath }/member/login.do">
 	<h1 style="text-align: center; color:#FF7629;">로그인</h1>
 	<br>
-	<table align="center">
+	<table align="center" height="200">
 		<tr align="center">
 			<td width="200" align="right">아이디</td>
 			<td width="400"><input type="text" name="id" placeholder="아이디를 입력하세요"></td>
