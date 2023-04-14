@@ -48,17 +48,27 @@
 	clear: both;
 	padding: 5px;
 	border: 0px solid #bcbcbc;
-	background-color: white;
+	background-color: #d6d6d6;
+}
+
+.footer_p{
+	font-size: 14px;
+	text-align: center;
+	width:100%;
+}
+
+.footer_p tr{
+	text-align: left;
+}
+
+.footer_p td{
+	text-align: left;
+	font-size: 12px;
 }
 
 .no-underline{
 	text-decoration: none;
 	color:black;
-}
-
-.footer_p{
-	font-size: 15px;
-	text-align: left;
 }
 
 .no-underline-orange{
