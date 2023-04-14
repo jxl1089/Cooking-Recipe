@@ -15,26 +15,31 @@
 <script>
 	let cnt = 1;
 	function backToList(){
-		let form = document.articleForm;
-		form.action="${path}/recipeboard/recipeList.do";
+		let form = document.recipeForm;
+		form.action="${contextPath}/recipeboard/recipeList.do";
 		form.submit();
 	}
 	
-	/*function readURL(input){
-		if(input.files && input.files[0]){
-			let reader = new FileReader();
-			reader.onload = function(e){
-				$('preivew').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0])
-		}
+	function submitData(){
+		var detail = document.getElementById("recipe_detail").innerHTML;
+		var images = document.getElementById("img-selector").innerHTML;
+		
+		let recipeForm = document.recipeForm;
+		
+		let recipe_detail = document.createElement("input");
+		let recipe_image = document.createElement("input");
+		
+		recipe_detail.setAttribute("name", "recipe_detail");
+		recipe_detail.setAttribute("value", detail);
+		
+		recipe_image.setAttribute("name", "recipe_image");
+		recipe_image.setAttribute("value", images);
+		
+		recipeForm.append(recipe_detail);
+		recipeForm.append(recipe_image);
+		
+		recipeForm.submit();
 	}
-	function fn_addFile(){
-		$("#d_file").append("<br><input type='file' name='file"+cnt+"' > <button value='테스트'></button>");
-		cnt++;
-	}*/
-	
-  
 	
 	
 </script>
@@ -56,7 +61,7 @@
 </head>
 <body>
 	
-	<form name="recipeForm" method="post" action="${path }/recipeboard/addRecipe.do" enctype="multipart/form-data">
+	<form name="recipeForm" method="post" action="${contextPath }/recipeboard/addRecipe.do" enctype="multipart/form-data">
 		<table border="0" align="center">
 			<tr>
 				<td colspan="2" align="left"><input type="text" size="20" maxlength="100" name="name" value="${member.name }" readonly="readonly"></td>
@@ -104,8 +109,8 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				<!-- <textarea name="recipe_detail" rows="10" cols="69" maxlength="4000"></textarea> -->
-					<div align="left" class="r_detail" contentEditable="true" id="recipe_detail" name="recipe_detail">
+				
+					<div align="left" class="r_detail" contentEditable="true" id="recipe_detail" >
 						
 					</div>
 				</td>
@@ -120,7 +125,7 @@
 			<tr>
 				<td align="right"></td>
 				<td colspan="2">
-					<input type="submit" value="글쓰기">
+					<input type="button" value="글쓰기" onclick="submitData()">
 					<input type="button" value="목록" onclick="backToList(this.form)">
 				</td>
 			</tr>

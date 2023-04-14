@@ -17,10 +17,17 @@
 			<result property="recipe_dislike" column="recipe_dislike"/>
 		</resultMap>
 		
-		<insert id="insertRecipe" parameterType="recipeDTO">
+		<resultMap type="imageDTO" id="imageResult">
+			<result property="imageFileNo" column="imageFileNo"/>
+			<result property="imageFileName" column="imageFileName"/>
+			<result property="recipe_no" column="recipe_no"/>
+		
+		</resultMap>
+		
+		<insert id="insertNewRecipe" parameterType="recipeDTO">
 			<![CDATA[
-				insert into recipe(recipe_no , id , recipe_tab, recipe_tilte, recipe_deatail, recipe_image,) 
-				values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail}, #{recipe_image})
+				insert into recipe(recipe_no , id , recipe_tab, recipe_title, recipe_detail, recipe_image) 
+				values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail}, null)
 			]]>
 		</insert>
 		
@@ -64,5 +71,27 @@
 			]]>
 			
 		</delete>
+		
+		<insert id="insertNewImage" parameterType="java.util.Map">
+			<foreach collection="list" item="item" open="insert all" separator=" "
+				close="select * from dual">
+				into rp_image(imageFileNo, imageFileName, recipe_no, regDate)
+				 values (#{item.imageFileNo}, #{item.imageFileName}, #{item.recipe_no}, sysdate)
+			</foreach>
+		</insert>
+		
+		<select id="selectNewImageFileNo" resultType="int">
+			<![CDATA[
+				select nvl(max(imageFileNo),0) from rp_image
+			]]>
+		
+		</select>
+		
+		<select id="selectImageFileList" resultMap="imageResult" parameterType="int">
+			<![CDATA[
+				select * from rp_image where articleNo=#{articleNo}
+			]]>
+		</select>
+		
 	</mapper>
 	

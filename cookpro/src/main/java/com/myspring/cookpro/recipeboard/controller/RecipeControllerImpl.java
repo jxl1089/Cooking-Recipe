@@ -74,7 +74,7 @@ public class RecipeControllerImpl implements RecipeController{
 	}
 
 	@Override
-	@RequestMapping(value="/recipeboard/addRecipe.do")
+	@RequestMapping(value="/recipeboard/addRecipe.do", method=RequestMethod.POST)
 	public ResponseEntity addNewRecipe(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
@@ -96,16 +96,23 @@ public class RecipeControllerImpl implements RecipeController{
 				image.setImageFileName(fileName);
 				imageFileList.add(image);
 			}
-			recipeMap.put("imageFileList", imageFileList);
+			recipeMap.put("recipe_image", imageFileList);
 		}
-		
+		//이미지부분
 		HttpSession session = multipartRequest.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		
 		
 		String id = member.getId();
 		recipeMap.put("parentNo", 0);
 		recipeMap.put("id",id);
 		
+		String data = multipartRequest.getParameter("recipe_detail");
+		
+		recipeMap.put("recipe_detail", data);
+		System.out.println(recipeMap.get("recipe_detail"));
+		System.out.println(recipeMap.get("recipe_image"));
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeader = new HttpHeaders();
@@ -124,7 +131,7 @@ public class RecipeControllerImpl implements RecipeController{
 			message = "<script>";
 			message += "alert('레시피 추가!.');";
 			message += "location.href='" + multipartRequest.getContextPath()
-				+"/board/listArticles.do';";
+				+"/recipeboard/recipeList.do';";
 			message += "</script>";
 			resEnt = new ResponseEntity(message, responseHeader, HttpStatus.CREATED);
 			
@@ -140,7 +147,7 @@ public class RecipeControllerImpl implements RecipeController{
 			message = "<script>";
 			message += "alert('오류가 발생했습니다. 다시 시도해 주세요.');";
 			message += "location.href='" + multipartRequest.getContextPath()
-				+"/board/articleForm.do';";
+				+"/recipeboard/recipeForm.do';";
 			message += "</script>";
 			resEnt = new ResponseEntity(message, responseHeader, HttpStatus.CREATED);
 			e.printStackTrace();
@@ -156,7 +163,7 @@ public class RecipeControllerImpl implements RecipeController{
 	@Override
 	@RequestMapping(value="/recipeboard/removeRecipe", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity removceArticle(int recipe_no, HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity removceRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
 		String message;
@@ -170,7 +177,7 @@ public class RecipeControllerImpl implements RecipeController{
 			
 			message = "<script>";
 			message += "alert('삭제가 완료 되었습니다.');";
-			message += "location.href='"+request.getContextPath()+"/board/listArticles.do';";
+			message += "location.href='"+request.getContextPath()+"/recipeboard/reicpeList.do';";
 			message += "</script>";
 			
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -178,7 +185,7 @@ public class RecipeControllerImpl implements RecipeController{
 			// TODO: handle exception
 			message = "<script>";
 			message += "alert('삭제에 실패 하었습니다. 다시 시도해 주세요.');";
-			message += "location.href='"+request.getContextPath()+"/board/listArticles.do';";
+			message += "location.href='"+request.getContextPath()+"/reciepboard/reciepForm.do';";
 			message += "</script>";
 			
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
