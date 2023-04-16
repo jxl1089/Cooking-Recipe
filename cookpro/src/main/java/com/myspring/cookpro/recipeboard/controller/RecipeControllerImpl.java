@@ -184,7 +184,7 @@ public class RecipeControllerImpl implements RecipeController{
 
 			File destDir = new File(CURR_IMAGE_REPO_PATH + "\\" + recipe_no);
 			FileUtils.deleteDirectory(destDir);
-
+//
 			message = "<script>";
 			message += "alert('삭제가 완료 되었습니다.');";
 			message += "location.href='"+request.getContextPath()+"/recipeboard/reicpeList.do';";
