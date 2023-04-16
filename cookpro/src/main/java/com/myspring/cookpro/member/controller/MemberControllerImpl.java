@@ -240,6 +240,26 @@ public class MemberControllerImpl implements MemberController{
 		return result;
 	}
 	
+	/* 이메일 문의 */
+	@RequestMapping(value="/member/csMail.do", method=RequestMethod.POST)
+	public void csMail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		
+		/* 원래는 관리자 이메일로 보내도록 해야함(임시로 고객이메일 사용) */
+		memberService.sendMail(email, "[우리의레시피] "+ name + "님의 문의 : " + subject, content+"<br><br>답변 받을 이메일: " + email);
+		
+		out.print("<script>");
+		out.print("alert('문의 내용이 전송되었습니다. 빠른 시일 내에 답변 드리겠습니다.');");
+		out.print("location.href='"+request.getContextPath()+"/'");
+		out.print("</script>");
+	}
+	
 }
 	
 	

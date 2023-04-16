@@ -37,6 +37,12 @@
 						src="${contextPath }/resources/image/mandu.jpg"></a>
 					<p class="text">중식</p>
 				</div>
+				<div class="card">
+					<a href=""><img class="TeamPic"
+						src="${contextPath }/resources/image/juice.jpg"
+						alt="TeamPicture"></a>
+					<p class="text">기타</p>
+				</div>
 			</div>
 			<span class="slider-rightBtn sliderBtn"></span>
 		</div>

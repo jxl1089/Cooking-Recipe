@@ -70,6 +70,30 @@ ul li a{
   margin: 10px;
 }
 
+<<<<<<< HEAD
+=======
+.main2>li:hover .main3 {
+  left: 100%;
+}
+
+.main2>li a, .main3>li a {
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.main3 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: -9999px;
+  padding: 0 5px 0 5px;
+}
+
+.main3>li a:hover {
+  font-weight: bold;
+}
+
+>>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
 </style>
 <body>
 <div id="menu">
@@ -80,10 +104,22 @@ ul li a{
 			<li style="border: none;"><a href="#">추천</a>
 				<ul class="main2">
 					<li><a href="#">오늘의 요리</a></li>
-					<li><a href="#">태그</a></li>
+					<li><a href="#">태그</a>
+						<ul class="main3">
+            				<li><a href="#">한식</a></li>
+							<li><a href="#">중식</a></li>
+							<li><a href="#">일식</a></li>
+							<li><a href="#">양식</a></li>
+							<li><a href="#">기타</a></li>
+          				</ul>
+          			</li>
 				</ul></li>
-			<li><a href="#">커뮤니티</a></li>
-			<li><a href="#">최저가</a></li>
+			<li><a href="#">커뮤니티</a>
+				<ul class="main2">
+					<li><a href="${contextPath}/reviewBoard/review_listArticles.do">리뷰게시판</a></li>
+					<li><a href="#">QnA</a></li>
+				</ul></li>
+			<li><a href="https://www.kurly.com/main">최저가</a></li>
 		</ul>
 	</div>
 </body>

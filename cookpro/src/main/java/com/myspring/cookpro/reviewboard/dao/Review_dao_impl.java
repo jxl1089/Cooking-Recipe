@@ -85,15 +85,14 @@ public class Review_dao_impl implements Review_dao{
 /*
 @Repository
 public class Review_dao_impl implements Review_dao {
-
     @Autowired
     private SqlSession sqlSession;
-
+    
     @Override
     public List<Review_article_dto> selectAllArticlesList() {
         return sqlSession.selectList("mapper.reviewboard.selectAllArticlesList");
     }
-
+    
     @Override
     public int review_insertNewArticle(Map<String, Object> articleMap) {
         int articleNo = selectNewNo("mapper.reviewboard.selectNewArticleNo");
@@ -101,27 +100,30 @@ public class Review_dao_impl implements Review_dao {
         sqlSession.insert("mapper.reviewboard.insertNewArticle", articleMap);
         return articleNo;
     }
-
+    
     private int selectNewNo(String queryId) {
         Integer newNo = sqlSession.selectOne(queryId);
-        return (newNo != null) ? newNo : 1;
+        if (newNo == null) {
+            throw new RuntimeException("Failed to get new number");
+        }
+        return newNo;
     }
-
+    
     @Override
     public Review_article_dto selectArticle(int articleNo) {
         return sqlSession.selectOne("mapper.reviewboard.selectArticle", articleNo);
     }
-
+    
     @Override
-    public void reivew_updateArticle(Map<String, Object> articleMap) {
+    public void review_updateArticle(Map<String, Object> articleMap) {
         sqlSession.update("mapper.reviewboard.updateArticle", articleMap);
     }
-
+    
     @Override
     public void review_deleteArticle(int articleNo) {
         sqlSession.delete("mapper.reviewboard.deleteArticle", articleNo);
     }
-
+    
     @Override
     public void review_insertNewImage(Map<String, Object> articleMap) {
         List<Review_image_dto> imageFileList = (List<Review_image_dto>) articleMap.get("imageFileList");
@@ -135,12 +137,13 @@ public class Review_dao_impl implements Review_dao {
             sqlSession.insert("mapper.reviewboard.insertNewImage", imageFileList);
         } catch (Exception e) {
             // 오류 처리
+            e.printStackTrace();
         }
     }
-
+    
     @Override
     public List<Review_image_dto> selectImageFileList(int articleNo) {
-        return sqlSession.selectList("mapper.reviewboard.selectImageFIleList", articleNo);
+        return sqlSession.selectList("mapper.reviewboard.selectImageFileList", articleNo);
     }
 }
 */

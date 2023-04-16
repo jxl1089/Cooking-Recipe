@@ -42,10 +42,10 @@
 					<h4>${member.name } 님의 레시피</h4>
 					<a class="no-underline-orange" href="${contextPath }/member/logout.do">로그아웃</a>
 					<a class="no-underline-orange" href="${contextPath }/member/myPageForm.do">마이페이지</a>
-					<a class="no-underline-orange" href="${contextPath }/reviewBoard/review_Form.do">리뷰게시판</a>
+					<a class="no-underline-orange" href="${contextPath }/reviewBoard/review_Form.do">리뷰작성하기</a>
 				</c:when>
 				<c:otherwise>
-					<form method="post" action="${contextPath }/member/login.do">
+					<%-- <form method="post" action="${contextPath }/member/login.do">
 						<table>
 							<tr align="center">
 								<td width="400"><input type="text" name="id" placeholder="아이디를 입력하세요"></td>
@@ -57,7 +57,10 @@
 								<td width="400"><input class="button" type="submit" value="로그인"> <input class="button" type="button" value="회원가입" onclick="location.href='${contextPath }/member/memberForm.do';"></td>
 							</tr>
 						</table>
-					</form>
+					</form> --%>
+					<a class="no-underline-orange" href="${contextPath }/member/loginForm.do">로그인</a>
+					&nbsp;
+					<a class="no-underline-orange" href="${contextPath }/member/memberForm.do">회원가입</a>
 				</c:otherwise>
 			</c:choose>
 		</td>

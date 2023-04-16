@@ -33,4 +33,5 @@ public interface MemberController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public String searchPwd(@ModelAttribute("member") MemberDTO member,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public void csMail(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

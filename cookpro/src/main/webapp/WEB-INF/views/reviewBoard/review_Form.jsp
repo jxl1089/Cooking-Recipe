@@ -32,7 +32,7 @@
 </head>
 <body>
 	<h1 style="text-align: center;">새 글 쓰기</h1>
-	<form name="articleForm" method="post" action="${contextPath }/reveiwBoard/review_addNewArticles.do"
+	<form name="articleForm" method="post" action="${contextPath }/reviewBoard/review_addNewArticles.do"
 		enctype="multipart/form-data">
 		<table border="0" align="center">
 			<tr>

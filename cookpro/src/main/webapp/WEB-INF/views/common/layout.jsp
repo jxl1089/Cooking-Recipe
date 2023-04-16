@@ -15,14 +15,14 @@
 		<div id="header">
 			<tiles:insertAttribute name="header"></tiles:insertAttribute>
 		</div>
-		<%-- <div id="nav">
-			<tiles:insertAttribute name="side"></tiles:insertAttribute>
-		</div> --%>
-		<div id="content">
-			<tiles:insertAttribute name="body"></tiles:insertAttribute>
-		</div>
-		<div id="footer">
-			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+		<div id="wrapper-confoo">
+			<div id="content">
+				<tiles:insertAttribute name="body"></tiles:insertAttribute>
+			</div>
+		<br><br>
+			<div id="footer">
+				<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+			</div>
 		</div>
 	</div>
 </body>
