@@ -59,9 +59,7 @@
         
         <delete id="deleteRecipe" parameterType="int">
             <![CDATA[
-                delete from recipe_board where recipeNo in (
-                select 
+                delete from recipe_board where recipe_no=#{recipe_no}
             ]]>
-            
         </delete>
     </mapper>
