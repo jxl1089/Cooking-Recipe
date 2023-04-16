@@ -29,11 +29,7 @@ function backToList(obj){
 	obj.submit();
 }
 let cnt = 1;
-function fn_addFile(){
-	$("#d_file").append("<br>" + "<input type='file' name='file"+cnt+"'>" + 
-			"<input type='button' value='사진 삽입' onclick='fn_insertFile()'></div>");
-	cnt++;
-}
+
 </script>
 <title>Insert title here</title>
 </head>
