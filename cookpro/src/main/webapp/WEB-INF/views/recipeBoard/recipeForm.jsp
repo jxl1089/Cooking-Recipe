@@ -34,7 +34,7 @@ let cnt = 1;
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="recipeForm" action="post" action="${contextPath }/recipeboard/addNewRecipe.do" enctype="multipart/form-data">
+	<form name="recipeForm" method="post" action="${contextPath }/recipeboard/addRecipe.do" enctype="multipart/form-data">
 		<table>
 			<tr align="left">
 				<td>
