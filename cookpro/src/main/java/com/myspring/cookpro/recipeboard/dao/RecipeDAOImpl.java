@@ -42,7 +42,14 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public RecipeDTO selectRecipe(int recipeNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("mapper.recipe.selectRecipe", recipeNo);
+	}
+
+	@Override
+	public void updateRecipe(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.recipe.updateRecipe", recipeMap);
+		
 	}
 
 

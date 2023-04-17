@@ -43,12 +43,12 @@
 			<c:when test="${recipesList != null }">
 				<c:forEach var="recipe" items="${recipesList }" varStatus="recipe_no">
 					<tr align="center">
-						<td width="5%">${recipeNum.count }</td>
+						<td width="5%">${recipe.recipe_no }</td>
 						<td width="10%">${recipe.id }</td>
 						<td align="left" width="35%">
 							<span style="padding-right:30px;"></span>
 							<a class="cls1" href="${contextPath }/recipeboard/recipeView.do?recipe_no=${recipe.recipe_no}">
-								${recipe.title }
+								${recipe.recipe_title }
 							</a>
 						</td>
 						<td width="10%"><fmt:formatDate value="${recipe.writeDate }"/></td>

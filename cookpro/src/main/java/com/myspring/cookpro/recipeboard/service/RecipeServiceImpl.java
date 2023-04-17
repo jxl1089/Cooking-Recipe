@@ -38,4 +38,11 @@ public class RecipeServiceImpl implements RecipeService{
 		recipeMap.put("recipe", recipeDTO);
 		return recipeMap;
 	}
+
+	@Override
+	public void modRecipe(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		recipeDAO.updateRecipe(recipeMap);
+		
+	}
 }

@@ -60,6 +60,7 @@ public class RecipeControllerImpl implements RecipeController{
 		List<RecipeDTO> recipesList = recipeService.recipesList();
 
 		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
 		return mav;
 	}
 
@@ -75,12 +76,12 @@ public class RecipeControllerImpl implements RecipeController{
 
 	@Override
 	@RequestMapping(value="/recipeboard/recipeView.do", method=RequestMethod.GET)
-	public ModelAndView viewRecipe(int recipeNo, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView viewRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName= (String)request.getAttribute("viewName");
-		Map recipeMap = recipeService.viewRecipe(recipeNo);
+		Map recipeMap = recipeService.viewRecipe(recipe_no);
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("recipeeMap", recipeMap);
+		mav.addObject("recipeMap", recipeMap);
 		return mav;
 	}
 
@@ -99,16 +100,7 @@ public class RecipeControllerImpl implements RecipeController{
 			recipeMap.put(name, value);
 		}
 
-		//		List<String> fileList = upload(multipartRequest);
-		//		List<ImageDTO> imageFileList= new ArrayList<ImageDTO>();
-		//		if(fileList != null && fileList.size() != 0) {
-		//			for(String fileName : fileList) {
-		//				ImageDTO image = new ImageDTO();
-		//				image.setImageFileName(fileName);
-		//				imageFileList.add(image);
-		//			}
-		//			recipeMap.put("recipe_imageList", imageFileList);
-		//		}
+
 
 		HttpSession session = multipartRequest.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
@@ -122,8 +114,6 @@ public class RecipeControllerImpl implements RecipeController{
 		String data = multipartRequest.getParameter("recipe_detail");
 
 		recipeMap.put("recipe_detail", data);
-		System.out.println(recipeMap.get("recipe_detail"));
-		System.out.println(recipeMap.get("recipe_image"));
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeader = new HttpHeaders();
@@ -232,10 +222,55 @@ public class RecipeControllerImpl implements RecipeController{
 	//	}
 
 	@Override
+	@RequestMapping(value="/recipeboard/modRecipe.do", method=RequestMethod.POST)
+	@ResponseBody
 	public ResponseEntity modRecipe(MultipartHttpServletRequest multiRequest, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		multiRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> recipeMap = new HashMap<String, Object>();
+		
+		String recipe_no = multiRequest.getParameter("recipe_no");
+		recipeMap.put("recipe_no", recipe_no);
+		
+		System.out.println("recipe_no: " + recipe_no);
+		String detail = multiRequest.getParameter("recipe_detail");
+		recipeMap.put("recipe_detail", detail);
+		
+		String title = multiRequest.getParameter("recipe_title");
+		recipeMap.put("recipe_title", title);
+		
+		HttpSession session = multiRequest.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		String id = member.getId();
+		recipeMap.put("recipe_id", id);
+		
+		String message = null;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
+		
+		try {
+			recipeService.modRecipe(recipeMap);
+			message = "<script>";
+			message += "alert('글이 수정 되었습니다.');";
+			message += "location.href='"+multiRequest.getContextPath()
+				+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			// TODO: handle exception
+			message = "<script>";
+			message += "alert('글이 수정 중 문제 발생.');";
+			message += "location.href='"+multiRequest.getContextPath()
+				+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		
+		return resEnt;
 	}
 
 	@Override

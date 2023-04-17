@@ -14,10 +14,10 @@ public interface RecipeController {
 	
 	public ModelAndView listRecipe(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView r_form(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView viewRecipe(@RequestParam("recipe_no") int recipeNo, 
+	public ModelAndView viewRecipe(@RequestParam("recipe_no") int recipe_no, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity addNewRecipe(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
-	public ResponseEntity removceRecipe (@RequestParam("articleNo") int recipe_no, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity removceRecipe (@RequestParam("recipe_no") int recipe_no, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity modRecipe(MultipartHttpServletRequest multiRequest, HttpServletResponse response) throws Exception;
 	public void imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	//ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception;

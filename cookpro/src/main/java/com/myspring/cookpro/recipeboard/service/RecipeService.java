@@ -18,4 +18,6 @@ public interface RecipeService {
 
 	Map viewRecipe(int recipeNo);
 
+	void modRecipe(Map<String, Object> recipeMap);
+
 }

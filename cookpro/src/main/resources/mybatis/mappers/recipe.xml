@@ -22,7 +22,7 @@
 		<insert id="insertNewRecipe" parameterType="recipeDTO">
 			<![CDATA[
 				insert into recipe(recipe_no , id , recipe_tab, recipe_title, recipe_detail) 
-				values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail}, null)
+				values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail})
 			]]>
 		</insert>
 		
@@ -51,15 +51,17 @@
 		<update id="updateRecipe">
 			<![CDATA[
 				update recipe 
-				set recipe_title=#{recipe_title}, recipe_detail=#{recipe_detail}
+				set recipe_title = #{recipe_title}, recipe_detail = #{recipe_detail}
+				where recipe_no=#{recipe_no}
 			]]>
-			where recipe_no=#{recipe_no}
 		</update>
 		
 		<delete id="deleteRecipe" parameterType="int">
 			<![CDATA[
-				delete from recipe where recipeNo in (
-				select 
+				delete from recipe where recipe_no in (
+				select recipe_no from recipe
+				start with recipe_no =#{recipe_no}
+				connect by prior recipe_no=parentNo)
 			]]>
 			
 		</delete>
