@@ -1,161 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	
-	<mapper namespace="mapper.recipe">
-		<resultMap type="recipeDTO" id="recipeResult">
-			<result property="recipe_no" column="recipe_no"/>
-			<result property="parentNo" column="parentNo"/>
-			<result property="id" column="id"/>
-			<result property="recipe_tab" column="recipe_tab"/>
-			<result property="writeDate" column="writeDate"/>
-			<result property="recipe_title" column="recipe_title"/>
-			<result property="recipe_detail" column="recipe_detail"/>
-			<result property="recipe_image" column="recipe_image"/>
-			<result property="recipe_views" column="recipe_views"/>
-			<result property="recipe_like" column="recipe_like"/>
-			<result property="recipe_dislike" column="recipe_dislike"/>
-		</resultMap>
-		
-		<resultMap type="imageDTO" id="imageResult">
-			<result property="imageFileNo" column="imageFileNo"/>
+<mapper namespace="mapper.review">
+  <resultMap type="Review_article_dto" id="reviewResult">
+    <result property="review_no" column="review_no"/>
+    <result property="review_level" column="REVIEW_LEVEL"/>
+    <result property="review_title" column="REVIEW_TITLE"/>
+    <result property="review_content" column="REVIEW_CONTENT"/>
+    <result property="id" column="ID"/>
+    <result property="writeDate" column="WRITE_DATE"/>
+    <result property="reviewParent_no" column="reviewParent_no"/>
+  </resultMap>
+
+  <resultMap type="Review_image_dto" id="review_imageResult">
+            <result property="imageFileNo" column="imageFileNo"/>
 			<result property="imageFileName" column="imageFileName"/>
-			<result property="recipe_no" column="recipe_no"/>
-		
-		</resultMap>
-		
-		<insert id="insertNewRecipe" parameterType="recipeDTO">
+			<result property="review_no" column="review_no"/>
+  </resultMap>
+
+ <insert id="insertArticle" parameterType="Review_article_dto" >
+ <![CDATA[
+    INSERT INTO REVIEW_BOARD (review_level, review_title, review_content, ID, WRITE_DATE)
+    VALUES (#{review_level}, #{review_title}, #{review_content}, #{id}, #{writeDate}, null)
+    ]]>
+  </insert>
+  
+<select id="selectAllReviewList" resultMap="reviewResult">
 			<![CDATA[
-				insert into recipe(recipe_no , id , recipe_tab, recipe_title, recipe_detail, recipe_image) 
-				values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail}, null)
-			]]>
-		</insert>
-		
-		<select id="selectAllRecipeList" resultMap="recipeResult">
-			<![CDATA[
-				select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail, recipe_image
-				,recipe_views, recipe_like, recipe_dislike from recipe
-				start with parentNo=0
-				connect by prior recipe_no = parentNo
-				order by siblings by recipe_no desc
+				select review_no, id, review_level, review_title, writeDate, review_content,reviewParent_no from REVIEW_BOARD
+				start with reviewParent_no=0
+				connect by prior review_no = reviewParent_no
+				order siblings by review_no desc
 			]]>
 		</select> 
 		
-		<select id="selectNewRecipeNo" resultType="int">
+		<select id="selectNewReviewNo" resultType="int">
 			<![CDATA[
-				select max(recipe_no)+1 from recipe
+				select max(review_no)+1 from REVIEW_BOARD
 			]]>
 		</select>
 		
-		<select id="selectRecipe" resultType="recipeDTO" parameterType="int">
+		<select id="selectReview" resultType="Review_article_dto" parameterType="int">
 			<![CDATA[
-				select * from recipe where recipe_no=#{recipe_no}
+				select * from REVIEW_BOARD where review_no=#{review_no}
 			]]>
 		</select>
 		
-		<update id="updateRecipe">
+		<update id="updateReview">
 			<![CDATA[
-				update recipe 
-				set recipe_title=#{recipe_title}, recipe_detail=#{recipe_detail}
+				update REVIEW_BOARD 
+				set review_title=#{review_title}, review_content=#{review_content}
 				<if test="imageFileName != '' and imageFileName != null">
 					, imageFileName=#{imageFileName}
 				</if>
 			]]>
-			where recipe_no=#{recipe_no}
+			where review_no=#{review_no}
 		</update>
 		
-		<delete id="deleteRecipe" parameterType="int">
+		<delete id="deleteReview" parameterType="int">
 			<![CDATA[
-				delete from recipe where recipeNo in (
+				delete from REVIEW_BOARD where reviewNo in (
 				select 
 			]]>
 			
 		</delete>
-		
-		<insert id="insertNewImage" parameterType="java.util.Map">
-			<foreach collection="list" item="item" open="insert all" separator=" "
-				close="select * from dual">
-				into rp_image(imageFileNo, imageFileName, recipe_no, regDate)
-				 values (#{item.imageFileNo}, #{item.imageFileName}, #{item.recipe_no}, sysdate)
-			</foreach>
-		</insert>
-		
-		<select id="selectNewImageFileNo" resultType="int">
-			<![CDATA[
-				select nvl(max(imageFileNo),0) from rp_image
-			]]>
-		
-		</select>
-		
-		<select id="selectImageFileList" resultMap="imageResult" parameterType="int">
-			<![CDATA[
-				select * from rp_image where articleNo=#{articleNo}
-			]]>
-		</select>
-		
-	</mapper>
-	
 
-    
-    <mapper namespace="mapper.recipe">
-        <resultMap type="recipeDTO" id="recipeResult">
-            <result property="recipe_no" column="recipe_no"/>
-            <result property="parentNo" column="parentNo"/>
-            <result property="id" column="id"/>
-            <result property="recipe_tab" column="recipe_tab"/>
-            <result property="writeDate" column="writeDate"/>
-            <result property="recipe_title" column="recipe_title"/>
-            <result property="recipe_detail" column="recipe_detail"/>
-            <result property="recipe_image" column="recipe_image"/>
-            <result property="recipe_views" column="recipe_views"/>
-            <result property="recipe_like" column="recipe_like"/>
-            <result property="recipe_dislike" column="recipe_dislike"/>
-        </resultMap>
-        
-        <insert id="insertRecipe" parameterType="recipeDTO">
-            <![CDATA[
-                insert into recipe_board(recipe_no , id , recipe_tab, recipe_title, recipe_detail, recipe_image) 
-                values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail}, #{recipe_image})
-            ]]>
-        </insert>
-        
-        <select id="selectAllRecipeList" resultMap="recipeResult">
-            <![CDATA[
-                select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail, recipe_image
-                ,recipe_views, recipe_like, recipe_dislike from recipe
-                start with parentNo=0
-                connect by prior recipe_no = parentNo
-                order siblings by recipe_no desc
-            ]]>
-        </select> 
-        
-        <select id="selectNewRecipeNo" resultType="int">
-            <![CDATA[
-                select max(recipe_no)+1 from t_board
-            ]]>
-        </select>
-        
-        <select id="selectRecipe" resultType="recipeDTO" parameterType="int">
-            <![CDATA[
-                select * from recipe_board where recipe_no=#{recipe_no}
-            ]]>
-        </select>
-        
-        <update id="updateRecipe">
-            <![CDATA[
-                update recipe_board
-                set recipe_title=#{recipe_title}, recipe_detail=#{recipe_detail}
-                <if test="imageFileName != '' and imageFileName != null">
-                    , imageFileName=#{imageFileName}
-                </if>
-            ]]>
-            where recipe_no=#{recipe_no}
-        </update>
-        
-        <delete id="deleteRecipe" parameterType="int">
-            <![CDATA[
-                delete from recipe_board where recipe_no=#{recipe_no}
-            ]]>
-        </delete>
-    </mapper>
->>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
+</mapper>
