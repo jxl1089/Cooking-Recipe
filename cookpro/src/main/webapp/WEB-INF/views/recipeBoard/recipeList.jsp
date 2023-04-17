@@ -51,14 +51,8 @@
 								${recipe.title }
 							</a>
 						</td>
-					</tr>
-					<tr>
 						<td width="10%"><fmt:formatDate value="${recipe.writeDate }"/></td>
-					</tr>
-					<tr>
 						<td>${recipe.recipe_views }</td>
-					</tr>
-					<tr>
 						<td>${recipe.recipe_like }</td>
 					</tr>
 				</c:forEach>

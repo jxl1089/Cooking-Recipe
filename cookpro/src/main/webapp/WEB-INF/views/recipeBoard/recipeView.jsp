@@ -24,7 +24,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	function backToList(obj){
-		obj.action="${contextPath}/recipeboard/recipeList.di";
+		obj.action="${contextPath}/recipeboard/recipeList.do";
 		obj.submit();
 	}
 	
@@ -103,7 +103,7 @@
 				<td width="150" align="center" bgcolor="#D3D3D3">제목</td>
 				<td>
 					<select name="recipe_tab" class="category" data-filter-message-isnull="탭을 선택하시기 바랍니다" disabled="disabled">
-						<option>한식</o	ption>
+						<option>한식</option>
 						<option>중식</option>
 						<option>일식</option>
 						<option>양식</option>
@@ -115,8 +115,8 @@
 			<tr>
 				<td width="150" align="center" bgcolor="#FF9933">내용</td>
 				<td>
-					<textarea rows="20" cols="60" name="recipe_detail" id="rp_detail" disabled="disabled">
-						${recipe.recipe_detail}</textarea>
+					<div rows="20" cols="60" name="recipe_detail" id="rp_detail" disabled="disabled">
+						${recipe.recipe_detail}</div>
 				</td>
 			</tr>
 			<tr>
