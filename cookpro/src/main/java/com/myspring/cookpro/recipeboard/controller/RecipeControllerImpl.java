@@ -274,7 +274,7 @@ public class RecipeControllerImpl implements RecipeController{
 	}
 
 	@Override
-	@RequestMapping(value="/recipeboard/imageUpload.do")
+	@RequestMapping(value="/recipeboard/imageUpload.do")//
 	public void imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("utf-8");
