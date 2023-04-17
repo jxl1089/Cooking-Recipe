@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
@@ -71,7 +70,7 @@
 			<![CDATA[
 				update recipe 
 				set recipe_like = recipe_like+1
-				where recipe_no=#{recipe_no}1
+				where recipe_no=#{recipe_no}
 			]]>
 		</update>
 
