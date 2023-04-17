@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-<<<<<<< HEAD
+
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-	<mapper namespace="mapper.recipe">
-		<resultMap type="recipeDTO" id="recipeResult">
-			<result property="recipe_no" column="recipe_no"/>
-			<result property="parentNo" column="parentNo"/>
-			<result property="id" column="id"/>
-			<result property="recipe_tab" column="recipe_tab"/>
-			<result property="writeDate" column="writeDate"/>
-			<result property="recipe_title" column="recipe_title"/>
-			<result property="recipe_detail" column="recipe_detail"/>
-			<result property="recipe_image" column="recipe_image"/>
-			<result property="recipe_views" column="recipe_views"/>
-			<result property="recipe_like" column="recipe_like"/>
-			<result property="recipe_dislike" column="recipe_dislike"/>
-		</resultMap>
+   <mapper namespace="mapper.recipe">
+        <resultMap type="recipeDTO" id="recipeResult">
+            <result property="recipe_no" column="recipe_no"/>
+            <result property="parentNo" column="parentNo"/>
+            <result property="id" column="id"/>
+            <result property="recipe_tab" column="recipe_tab"/>
+            <result property="writeDate" column="writeDate"/>
+            <result property="recipe_title" column="recipe_title"/>
+            <result property="recipe_detail" column="recipe_detail"/>
+            <result property="recipe_image" column="recipe_image"/>
+            <result property="recipe_views" column="recipe_views"/>
+            <result property="recipe_like" column="recipe_like"/>
+            <result property="recipe_dislike" column="recipe_dislike"/>
+        </resultMap>
 		
 		<resultMap type="imageDTO" id="imageResult">
 			<result property="imageFileNo" column="imageFileNo"/>
@@ -96,72 +96,4 @@
 		
 	</mapper>
 	
-=======
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <mapper namespace="mapper.recipe">
-        <resultMap type="recipeDTO" id="recipeResult">
-            <result property="recipe_no" column="recipe_no"/>
-            <result property="parentNo" column="parentNo"/>
-            <result property="id" column="id"/>
-            <result property="recipe_tab" column="recipe_tab"/>
-            <result property="writeDate" column="writeDate"/>
-            <result property="recipe_title" column="recipe_title"/>
-            <result property="recipe_detail" column="recipe_detail"/>
-            <result property="recipe_image" column="recipe_image"/>
-            <result property="recipe_views" column="recipe_views"/>
-            <result property="recipe_like" column="recipe_like"/>
-            <result property="recipe_dislike" column="recipe_dislike"/>
-        </resultMap>
-        
-        <insert id="insertRecipe" parameterType="recipeDTO">
-            <![CDATA[
-                insert into recipe_board(recipe_no , id , recipe_tab, recipe_title, recipe_detail, recipe_image) 
-                values(#{recipe_no}, #{id}, #{recipe_tab}, #{recipe_title}, #{recipe_detail}, #{recipe_image})
-            ]]>
-        </insert>
-        
-        <select id="selectAllRecipeList" resultMap="recipeResult">
-            <![CDATA[
-                select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail, recipe_image
-                ,recipe_views, recipe_like, recipe_dislike from recipe_board
-                start with parentNo=0
-                connect by prior recipe_no = parentNo
-                order by siblings by recipe_no desc
-            ]]>
-        </select> 
-        
-        <select id="selectNewRecipeNo" resultType="int">
-            <![CDATA[
-                select max(recipe_no)+1 from t_board
-            ]]>
-        </select>
-        
-        <select id="selectRecipe" resultType="recipeDTO" parameterType="int">
-            <![CDATA[
-                select * from recipe_board where recipe_no=#{recipe_no}
-            ]]>
-        </select>
-        
-        <update id="updateRecipe">
-            <![CDATA[
-                update recipe_board
-                set recipe_title=#{recipe_title}, recipe_detail=#{recipe_detail}
-                <if test="imageFileName != '' and imageFileName != null">
-                    , imageFileName=#{imageFileName}
-                </if>
-            ]]>
-            where recipe_no=#{recipe_no}
-        </update>
-        
-        <delete id="deleteRecipe" parameterType="int">
-            <![CDATA[
-                delete from recipe_board where recipe_no in (
-                    select recipe_no from recipe_board
-                    start with recipe_no = #{recipe_no}
-                    connect by prior recipe_no = parentNo
-                )
-            ]]>
-        </delete>
-    </mapper>
->>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
+
