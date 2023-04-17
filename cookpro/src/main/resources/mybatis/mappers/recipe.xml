@@ -17,12 +17,7 @@
             <result property="recipe_dislike" column="recipe_dislike"/>
         </resultMap>
 		
-		<resultMap type="imageDTO" id="imageResult">
-			<result property="imageFileNo" column="imageFileNo"/>
-			<result property="imageFileName" column="imageFileName"/>
-			<result property="recipe_no" column="recipe_no"/>
-		
-		</resultMap>
+
 		
 		<insert id="insertNewRecipe" parameterType="recipeDTO">
 			<![CDATA[
@@ -57,9 +52,6 @@
 			<![CDATA[
 				update recipe 
 				set recipe_title=#{recipe_title}, recipe_detail=#{recipe_detail}
-				<if test="imageFileName != '' and imageFileName != null">
-					, imageFileName=#{imageFileName}
-				</if>
 			]]>
 			where recipe_no=#{recipe_no}
 		</update>
