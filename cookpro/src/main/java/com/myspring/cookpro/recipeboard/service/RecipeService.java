@@ -20,4 +20,6 @@ public interface RecipeService {
 
 	void modRecipe(Map<String, Object> recipeMap);
 
+	void likeupRecipe(Map<String, Object> recipeMap);
+
 }

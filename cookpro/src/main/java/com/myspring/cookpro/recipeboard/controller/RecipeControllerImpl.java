@@ -164,7 +164,7 @@ public class RecipeControllerImpl implements RecipeController{
 	@Override
 	@RequestMapping(value="/recipeboard/removeRecipe", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity removceRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity removeRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
 		String message;
@@ -233,7 +233,6 @@ public class RecipeControllerImpl implements RecipeController{
 		String recipe_no = multiRequest.getParameter("recipe_no");
 		recipeMap.put("recipe_no", recipe_no);
 		
-		System.out.println("recipe_no: " + recipe_no);
 		String detail = multiRequest.getParameter("recipe_detail");
 		recipeMap.put("recipe_detail", detail);
 		
@@ -274,7 +273,7 @@ public class RecipeControllerImpl implements RecipeController{
 	}
 
 	@Override
-	@RequestMapping(value="/recipeboard/imageUpload.do")//
+	@RequestMapping(value="/recipeboard/imageUpload.do")
 	public void imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("utf-8");
@@ -329,5 +328,112 @@ public class RecipeControllerImpl implements RecipeController{
 		}
 
 	}
+
+	@Override
+	@RequestMapping(value="/recipeboard/recipeLike.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity likeup(MultipartHttpServletRequest multiRequest, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		multiRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> recipeMap = new HashMap<String, Object>();
+		
+		String recipe_no = multiRequest.getParameter("recipe_no");
+		recipeMap.put("recipe_no", recipe_no);
+		
+		String likeview = multiRequest.getParameter("recipe_like");
+		recipeMap.put("recipe_like", likeview);
+		
+		String message = null;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
+		int cnt = 0;
+		try {
+			
+			
+			if(cnt==0) {
+				recipeService.likeupRecipe(recipeMap);
+				cnt++;
+				message = "<script>";
+				message += "alert('추천되었습니다.');";
+				message += "location.href='"+multiRequest.getContextPath()
+					+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+				message += "</script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			} else {
+				message = "<script>";
+				message += "alert('이미 추천하셨습니다.');";
+				message += "location.href='"+multiRequest.getContextPath()
+					+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+				message += "</script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			message = "<script>";
+			message += "alert('오류.');";
+			message += "location.href='"+multiRequest.getContextPath()
+				+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		
+		return resEnt;
+		
+		
+	}
+
+	@Override
+	public ResponseEntity disLikeUp(MultipartHttpServletRequest multiRequest, HttpServletResponse response)
+			throws Exception {
+		multiRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> recipeMap = new HashMap<String, Object>();
+		
+		String recipe_no = multiRequest.getParameter("recipe_no");
+		recipeMap.put("recipe_no", recipe_no);
+		
+		String dislikeview = multiRequest.getParameter("recipe_dislike");
+		recipeMap.put("recipe_dislike", dislikeview);
+		
+		String message = null;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
+		int cnt = 0;
+		try {
+			
+			
+			if(cnt==0) {
+				recipeService.likeupRecipe(recipeMap);
+				cnt++;
+				message = "<script>";
+				message += "alert('추천되었습니다.');";
+				message += "location.href='"+multiRequest.getContextPath()
+					+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+				message += "</script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			} else {
+				message = "<script>";
+				message += "alert('이미 추천하셨습니다.');";
+				message += "location.href='"+multiRequest.getContextPath()
+					+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+				message += "</script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			message = "<script>";
+			message += "alert('오류.');";
+			message += "location.href='"+multiRequest.getContextPath()
+				+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		
+		return resEnt;
+	}
+
+	
 
 }

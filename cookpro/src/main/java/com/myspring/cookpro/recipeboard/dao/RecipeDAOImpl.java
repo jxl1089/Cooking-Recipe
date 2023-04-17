@@ -52,5 +52,11 @@ public class RecipeDAOImpl implements RecipeDAO{
 		
 	}
 
+	@Override
+	public void likeUpdate(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.recipe.likeUpdate", recipeMap);
+	}
+
 
 }

@@ -21,6 +21,7 @@
 	}
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
 <script>
 	function backToList(obj){
 		obj.action="${contextPath}/recipeboard/recipeList.do";
@@ -29,7 +30,9 @@
 	
 	function fn_enable(obj){
 		document.getElementById("rp_title").disabled=false;
-		document.getElementById("rp_detail").disabled=false;
+		document.getElementById("rp_detail").style.display="none";
+		document.getElementById("modDiv").style.display="block";
+		
 		document.getElementById("tr_btn_modify").style.display="block";
 		document.getElementById("tr_btn").style.display="none";
 	}
@@ -65,13 +68,13 @@
 		}
 	}
 	
-	function likeup(){
+	function likeup(obj){
 		obj.action ="${contextPath}/recipeboard/recipeLike.do";
 		obj.method = "post";
 		obj.submit();
 	}
 	
-	function dislikeup(){
+	function dislikeup(obj){
 		obj.action ="${contextPath}/recipeboard/recipeDislike.do";
 		obj.method = "post";
 		obj.submit();
@@ -120,12 +123,23 @@
 			<tr>
 				<td width="150" align="center" bgcolor="#FF9933">내용</td>
 				<td width="600">
-					<div rows="60" cols="60" name="recipe_detail" id="rp_detail" disabled="disabled">
-						${recipe.recipe_detail}</div>
+					<div name="recipe_detail" id="rp_detail">
+						${recipe.recipe_detail}
+					</div>
+					<div id="modDiv" style="display:none">
+						<textarea  rows="60" cols="60" name="recipe_detail" id="rp_moddetail" > 
+							${recipe.recipe_detail}
+						</textarea>	
+						<script >
+						CKEDITOR.replace("rp_moddetail",{
+							 filebrowserUploadUrl : "${contextPath}/recipeboard/imageUpload.do"
+						});
+						</script>
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" value="추천" onclick=""></td>
+				<td><input type="button" value="추천" onclick="likeup(this.form)"></td>
 				<td><input type="button" value="비추천" onclick=""></td>
 			</tr>
 			<tr id="tr_btn_modify">

@@ -27,6 +27,7 @@
 		<tr height="10" align="center" bgcolor="lightgreen">
 			<td>글번호</td>
 			<td>작성자</td>
+			<td>탭</td>
 			<td>제목</td>
 			<td>작성일자</td>
 			<td>조회수</td>
@@ -44,7 +45,8 @@
 				<c:forEach var="recipe" items="${recipesList }" varStatus="recipe_no">
 					<tr align="center">
 						<td width="5%">${recipe.recipe_no }</td>
-						<td width="10%">${recipe.id }</td>
+						<td width="5%">${recipe.id }</td>
+						<td width="5%">${recipe.recipe_tab }</td>
 						<td align="left" width="35%">
 							<span style="padding-right:30px;"></span>
 							<a class="cls1" href="${contextPath }/recipeboard/recipeView.do?recipe_no=${recipe.recipe_no}">

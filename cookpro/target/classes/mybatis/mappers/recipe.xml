@@ -65,6 +65,14 @@
 			]]>
 			
 		</delete>
+		
+		<update id="likeUpdate">
+			<![CDATA[
+				update recipe 
+				set recipe_like = recipe_like+1
+				where recipe_no=#{recipe_no}
+			]]>
+		</update>
 
 	</mapper>
 	
