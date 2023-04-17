@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.review">
-
+<mapper namespace="mapper.reviewboard">
   <resultMap type="Review_article_dto" id="reviewResult">
     <result property="review_no" column="review_no"/>
     <result property="review_level" column="REVIEW_LEVEL"/>
@@ -21,8 +21,8 @@
 
  <insert id="insertArticle" parameterType="Review_article_dto" >
  <![CDATA[
-    INSERT INTO REVIEW_BOARD (review_level, review_title, review_content, ID, WRITE_DATE)
-    VALUES (#{review_level}, #{review_title}, #{review_content}, #{id}, #{writeDate}, null)
+    INSERT INTO REVIEW_BOARD (review_no, review_level, review_title, review_content, ID)
+    VALUES (#{review_no, jdbcType=VARCHAR}, #{review_level, jdbcType=VARCHAR}, #{review_title, jdbcType=VARCHAR}, #{review_content, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR})
     ]]>
   </insert>
   
@@ -65,62 +65,5 @@
 			]]>
 			
 		</delete>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <select id="getArticleList" >
-    SELECT review_level, review_no, review_title, review_content, ID, WRITE_DATE
-    FROM REVIEW_BOARD
-    ORDER BY review_no DESC
-    <if test="startRow != null and endRow != null">
-      LIMIT #{startRow}, #{endRow}
-    </if>
-  </select>
-
-  <select id="getArticle">
-    SELECT review_level, review_no, review_title, review_content, ID, WRITE_DATE
-    FROM REVIEW_BOARD
-    WHERE review_no=#{review_no}
-  </select>
-
- 
-
-  <update id="updateArticle" >
-    UPDATE REVIEW_BOARD
-    SET TITLE=#{review_title}, CONTENT=#{review_content}, 
-    WHERE review_no=#{review_no}
-  </update>
-
-  <delete id="deleteArticle" >
-    DELETE FROM REVIEW_BOARD WHERE review_no=#{review_no}
-  </delete>
-
-  <select id="getImageFileList" >
-    SELECT IMAGE_FILE_NO, IMAGE_FILE_NAME, REG_DATE, review_no
-    FROM REVIEW_IMAGE WHERE review_no=#{review_no}
-    ORDER BY IMAGE_FILE_NO ASC
-  </select>
-
-  <insert id="insertImageFile" >
-    INSERT INTO REVIEW_IMAGE (IMAGE_FILE_NAME, REG_DATE, review_no)
-    VALUES (#{imageFileName}, #{regDate}, #{review_no})
-  </insert>
-
-  <delete id="deleteImageFile" >
-    DELETE FROM REVIEW_IMAGE WHERE IMAGE_FILE_NO=#{imageFileNo}
-  </delete>
 
 </mapper>
