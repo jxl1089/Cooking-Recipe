@@ -37,7 +37,7 @@
 				,recipe_views, recipe_like, recipe_dislike from recipe
 				start with parentNo=0
 				connect by prior recipe_no = parentNo
-				order by siblings by recipe_no desc
+				order siblings by recipe_no desc
 			]]>
 		</select> 
 		

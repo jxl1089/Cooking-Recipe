@@ -41,7 +41,7 @@
 				</tr>
 			</c:when>
 			<c:when test="${recipesList != null }">
-				<c:forEach var="recipe" items="${recipesList }" varStauts="recipe_no">
+				<c:forEach var="recipe" items="${recipesList }" varStatus="recipe_no">
 					<tr align="center">
 						<td width="5%">${recipeNum.count }</td>
 						<td width="10%">${recipe.id }</td>

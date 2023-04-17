@@ -56,7 +56,7 @@ public class RecipeControllerImpl implements RecipeController{
 	@Override
 	@RequestMapping("/recipeboard/recipeList.do")
 	public ModelAndView listRecipe(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName= request.getParameter("viewName");
+		String viewName= (String) request.getAttribute("viewName");
 		List<RecipeDTO> recipesList = recipeService.recipesList();
 
 		ModelAndView mav = new ModelAndView(viewName);
@@ -67,7 +67,8 @@ public class RecipeControllerImpl implements RecipeController{
 	@RequestMapping(value="/recipeboard/*Form.do", method=RequestMethod.GET)
 	public ModelAndView r_form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		String viewName= request.getParameter("viewName");
+		String viewName= (String) request.getAttribute("viewName");
+		
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}

@@ -70,8 +70,6 @@ ul li a{
   margin: 10px;
 }
 
-<<<<<<< HEAD
-=======
 .main2>li:hover .main3 {
   left: 100%;
 }
@@ -93,14 +91,13 @@ ul li a{
   font-weight: bold;
 }
 
->>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
 </style>
 <body>
 <div id="menu">
 		<ul class="main1">
 			<li><a href="${contextPath }/">HOME</a></li>
 			<li><a href="#">MY냉장고</a></li>
-			<li><a href="#">레시피</a></li>
+			<li><a href="${contextPath }/recipeboard/recipeList.do">레시피</a></li>
 			<li style="border: none;"><a href="#">추천</a>
 				<ul class="main2">
 					<li><a href="#">오늘의 요리</a></li>
