@@ -27,38 +27,42 @@ public class Review_dao_impl implements Review_dao{
 	public int review_insertNewArticle(Map<String, Object> articleMap) {
 		// TODO Auto-generated method stub
 		int articleNo = selectNewArticleNo();
-		articleMap.put("articleNo", articleNo);
-		sqlSession.insert("mapper.reviewboard.insertNewArticle",articleMap);
+		articleMap.put("review_no", articleNo);
+		sqlSession.insert("mapper.reviewboard.insertArticle",articleMap);
 		return articleNo;
 		
 	}
 	private int selectNewArticleNo() {
-		return sqlSession.selectOne("mapper.reviewboard.selectNewArticleNo");
+		Integer result=  sqlSession.selectOne("mapper.reviewboard.selectNewReviewNo");
+		if(result == null) {
+			result = 1;
+		}
+		return (int) result;
 	}
 
 	@Override
 	public Review_article_dto selectArticle(int articleNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("mapper.reviewboard.selectArticle",articleNo);
+		return sqlSession.selectOne("mapper.reviewboard.selectReview",articleNo);
 	}
 
 	@Override
 	public void reivew_updateArticle(Map<String, Object> articleMap) {
 		// TODO Auto-generated method stub
-		sqlSession.update("mapper.reviewboard.updateArticle", articleMap);
+		sqlSession.update("mapper.reviewboard.updateReview", articleMap);
 	}
 
 	@Override
 	public void review_deleteArticle(int articleNo) {
 		// TODO Auto-generated method stub
-		sqlSession.delete("mapper.reviewboard.deleteArticle",articleNo);
+		sqlSession.delete("mapper.reviewboard.deleteReview",articleNo);
 	}
 
 	@Override
 	public void review_insertNewImage(Map<String, Object> articleMap) {
 		// TODO Auto-generated method stub
 		List<Review_image_dto> imageFileList = (List<Review_image_dto>) articleMap.get("imageFileList");
-		int articleNo = (Integer)articleMap.get("articleNo");
+		int articleNo = (Integer)articleMap.get("review_no");
 		int imageFileNo = selectNewImageFileNo();
 		for(Review_image_dto image:imageFileList) {
 			image.setImageFileNo(++imageFileNo);
@@ -136,7 +140,7 @@ public class Review_dao_impl implements Review_dao {
         try {
             sqlSession.insert("mapper.reviewboard.insertNewImage", imageFileList);
         } catch (Exception e) {
-            // 오류 처리
+            // �삤瑜� 泥섎━
             e.printStackTrace();
         }
     }

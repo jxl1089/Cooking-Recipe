@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.review">
+<mapper namespace="mapper.reviewboard">
   <resultMap type="Review_article_dto" id="reviewResult">
     <result property="review_no" column="review_no"/>
     <result property="review_level" column="REVIEW_LEVEL"/>
@@ -21,8 +21,8 @@
 
  <insert id="insertArticle" parameterType="Review_article_dto" >
  <![CDATA[
-    INSERT INTO REVIEW_BOARD (review_level, review_title, review_content, ID, WRITE_DATE)
-    VALUES (#{review_level}, #{review_title}, #{review_content}, #{id}, #{writeDate}, null)
+    INSERT INTO REVIEW_BOARD (review_no, review_level, review_title, review_content, ID)
+    VALUES (#{review_no, jdbcType=VARCHAR}, #{review_level, jdbcType=VARCHAR}, #{review_title, jdbcType=VARCHAR}, #{review_content, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR})
     ]]>
   </insert>
   
