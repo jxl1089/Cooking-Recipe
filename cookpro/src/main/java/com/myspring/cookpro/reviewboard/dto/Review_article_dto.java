@@ -5,43 +5,42 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Review_article_dto {
-private int level;
-private int articleNo;
-private String title;
-private String content;
-private String imageFileName;
+private int review_level;
+private int review_no;
+private String review_title;
+private String review_content;
 private String id;
 private Date writeDate;
-
-public int getLevel() {
-	return level;
+private int reviewParent_no;
+public int getReviewParent_no() {
+	return reviewParent_no;
 }
-public void setLevel(int level) {
-	this.level = level;
+public void setReviewParent_no(int reviewParent_no) {
+	this.reviewParent_no = reviewParent_no;
 }
-public int getArticleNo() {
-	return articleNo;
+public int getReview_level() {
+	return review_level;
 }
-public void setArticleNo(int articleNo) {
-	this.articleNo = articleNo;
+public void setReview_level(int review_level) {
+	this.review_level = review_level;
 }
-public String getTitle() {
-	return title;
+public int getReview_no() {
+	return review_no;
 }
-public void setTitle(String title) {
-	this.title = title;
+public void setReview_no(int review_no) {
+	this.review_no = review_no;
 }
-public String getContent() {
-	return content;
+public String getReview_title() {
+	return review_title;
 }
-public void setContent(String content) {
-	this.content = content;
+public void setReview_title(String review_title) {
+	this.review_title = review_title;
 }
-public String getImageFileName() {
-	return imageFileName;
+public String getReview_content() {
+	return review_content;
 }
-public void setImageFileName(String imageFileName) {
-	this.imageFileName = imageFileName;
+public void setReview_content(String review_content) {
+	this.review_content = review_content;
 }
 public String getId() {
 	return id;
@@ -55,4 +54,5 @@ public Date getWriteDate() {
 public void setWriteDate(Date writeDate) {
 	this.writeDate = writeDate;
 }
+
 }

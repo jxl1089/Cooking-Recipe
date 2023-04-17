@@ -13,6 +13,8 @@ public interface RecipeDAO {
 
 	RecipeDTO selectRecipe(int recipeNo);
 
+	void updateRecipe(Map<String, Object> recipeMap);
+
 	//void insertNewImage(Map<String, Object> recipeMap);
 
 }

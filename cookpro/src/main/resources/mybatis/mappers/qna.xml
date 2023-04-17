@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.qna">
+	<resultMap type="qnaDTO" id="qnaResult">
+		<result property="level" column="level" />
+		<result property="articleNo" column="articleNo" />
+		<result property="parentNo" column="parentNo" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writeDate" column="writeDate" />
+		<result property="imageFileName" column="imageFileName" />
+		<result property="id" column="id" />
+	</resultMap>
+	
+	<select id="selectAllArticlesList" resultMap="qnaResult">
+		<![CDATA[
+			select level, articleNo, parentNo, title, content, writeDate, imageFileName, id from qna_board
+			start with parentNo=0
+			connect by prior articleNo=parentNo
+			order siblings by articleNo desc
+		]]>
+	</select>
+	
+	<insert id="insertNewArticle" parameterType="java.util.Map">
+		<![CDATA[
+			insert into qna_board(articleNo, title, content, imageFileName, id)
+				values(#{articleNo}, #{title}, #{content}, null, #{id})
+		]]>
+	</insert>
+	
+	<select id="selectNewArticleNo" resultType="int">
+		<![CDATA[
+			select max(articleNo)+1 from qna_board
+		]]>
+	</select>
+	
+	<select id="selectArticle" resultType="qnaDTO" parameterType="int">
+		<![CDATA[
+			select * from qna_board where articleNo = #{articleNo}
+		]]>
+	</select>
+	
+	<update id="updateArticle" parameterType="java.util.Map">
+		update qna_board set title=#{title}, content=#{content}
+		<if test="imageFileName != '' and imageFileName != null">
+			, imageFileName=#{imageFileName}
+		</if>
+		where articleNo=#{articleNo}
+	</update>
+	
+	<delete id="deleteArticle" parameterType="int">
+		<![CDATA[
+			delete from t_board where articleNo in (select articleNo from t_board start with articleNo = #{articleNo} connect by prior articleNo = parentNo)
+		]]>
+	</delete>
+	
+	<insert id="insertNewImage" parameterType="java.util.Map">
+		<foreach collection="list" item="item" open="insert all" separator=" " close="select * from dual">
+			into qna_imageFile(imageFileNo, imageFileName, articleNo, regDate)
+			values (#{item.imageFileNo}, #{item.imageFileName}, #{item.articleNo}, sysdate)
+		</foreach>
+	</insert>
+	
+	<select id="selectNewImageFileNo" resultType="int">
+		<![CDATA[
+			select nvl(max(imageFileNo),0) from qna_imageFile
+		]]>
+	</select>
+	
+	<resultMap type="qna_imageDTO" id="imageResult">
+		<result property="imageFileNo" column="imageFileNo" />
+		<result property="imageFileName" column="imageFileName" />
+		<result property="articleNo" column="articleNo" />
+	</resultMap>
+
+	<select id="selectImageFileList" resultMap="imageResult" parameterType="int">
+		<![CDATA[
+			select * from qna_imageFile where articleNo=#{articleNo}
+		]]>
+	</select>
+	
+</mapper>

@@ -1,70 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.reviewArticle">
-
-  <resultMap id="reviewArticleResultMap" type="reviewDTO">
-    <id property="articleNo" column="ARTICLE_NO"/>
-    <result property="level" column="LEVEL"/>
-    <result property="title" column="TITLE"/>
-    <result property="content" column="CONTENT"/>
-    <result property="imageFileName" column="IMAGE_FILE_NAME"/>
+<mapper namespace="mapper.review">
+  <resultMap type="Review_article_dto" id="reviewResult">
+    <result property="review_no" column="review_no"/>
+    <result property="review_level" column="REVIEW_LEVEL"/>
+    <result property="review_title" column="REVIEW_TITLE"/>
+    <result property="review_content" column="REVIEW_CONTENT"/>
     <result property="id" column="ID"/>
     <result property="writeDate" column="WRITE_DATE"/>
+    <result property="reviewParent_no" column="reviewParent_no"/>
   </resultMap>
 
-  <resultMap id="reviewImageResultMap" type="com.myspring.cookpro.reviewboard.dto.Review_image_dto">
-    <id property="imageFileNo" column="IMAGE_FILE_NO"/>
-    <result property="imageFileName" column="IMAGE_FILE_NAME"/>
-    <result property="regDate" column="REG_DATE"/>
-    <result property="articleNo" column="ARTICLE_NO"/>
+  <resultMap type="Review_image_dto" id="review_imageResult">
+            <result property="imageFileNo" column="imageFileNo"/>
+			<result property="imageFileName" column="imageFileName"/>
+			<result property="review_no" column="review_no"/>
   </resultMap>
 
-  <select id="getArticleList" resultMap="reviewArticleResultMap">
-    SELECT LEVEL, ARTICLE_NO, TITLE, CONTENT, IMAGE_FILE_NAME, ID, WRITE_DATE
-    FROM REVIEW_BOARD
-    ORDER BY ARTICLE_NO DESC
-    <if test="startRow != null and endRow != null">
-      LIMIT #{startRow}, #{endRow}
-    </if>
-  </select>
-
-  <select id="getArticle" resultMap="reviewArticleResultMap">
-    SELECT LEVEL, ARTICLE_NO, TITLE, CONTENT, IMAGE_FILE_NAME, ID, WRITE_DATE
-    FROM REVIEW_BOARD
-    WHERE ARTICLE_NO=#{articleNo}
-  </select>
-
-  <insert id="insertArticle" parameterType="com.myspring.cookpro.reviewboard.dto.Review_article_dto">
-    INSERT INTO REVIEW_BOARD
-    (LEVEL, TITLE, CONTENT, IMAGE_FILE_NAME, ID, WRITE_DATE)
-    VALUES
-    (#{level}, #{title}, #{content}, #{imageFileName}, #{id}, #{writeDate})
+ <insert id="insertArticle" parameterType="Review_article_dto" >
+ <![CDATA[
+    INSERT INTO REVIEW_BOARD (review_level, review_title, review_content, ID, WRITE_DATE)
+    VALUES (#{review_level}, #{review_title}, #{review_content}, #{id}, #{writeDate}, null)
+    ]]>
   </insert>
-
-  <update id="updateArticle" parameterType="com.myspring.cookpro.reviewboard.dto.Review_article_dto">
-    UPDATE REVIEW_BOARD
-    SET TITLE=#{title}, CONTENT=#{content}, IMAGE_FILE_NAME=#{imageFileName}
-    WHERE ARTICLE_NO=#{articleNo}
-  </update>
-
-  <delete id="deleteArticle" parameterType="int">
-    DELETE FROM REVIEW_BOARD WHERE ARTICLE_NO=#{articleNo}
-  </delete>
-
-  <select id="getImageFileList" resultMap="reviewImageResultMap">
-    SELECT IMAGE_FILE_NO, IMAGE_FILE_NAME, REG_DATE, ARTICLE_NO
-    FROM REVIEW_IMAGE WHERE ARTICLE_NO=#{articleNo}
-    ORDER BY IMAGE_FILE_NO ASC
-  </select>
-
-  <insert id="insertImageFile" parameterType="com.myspring.cookpro.reviewboard.dto.Review_image_dto">
-    INSERT INTO REVIEW_IMAGE (IMAGE_FILE_NAME, REG_DATE, ARTICLE_NO)
-    VALUES (#{imageFileName}, #{regDate}, #{articleNo})
-  </insert>
-
-  <delete id="deleteImageFile" parameterType="int">
-    DELETE FROM REVIEW_IMAGE WHERE IMAGE_FILE_NO=#{imageFileNo}
-  </delete>
+  
+<select id="selectAllReviewList" resultMap="reviewResult">
+			<![CDATA[
+				select review_no, id, review_level, review_title, writeDate, review_content,reviewParent_no from REVIEW_BOARD
+				start with reviewParent_no=0
+				connect by prior review_no = reviewParent_no
+				order siblings by review_no desc
+			]]>
+		</select> 
+		
+		<select id="selectNewReviewNo" resultType="int">
+			<![CDATA[
+				select max(review_no)+1 from REVIEW_BOARD
+			]]>
+		</select>
+		
+		<select id="selectReview" resultType="Review_article_dto" parameterType="int">
+			<![CDATA[
+				select * from REVIEW_BOARD where review_no=#{review_no}
+			]]>
+		</select>
+		
+		<update id="updateReview">
+			<![CDATA[
+				update REVIEW_BOARD 
+				set review_title=#{review_title}, review_content=#{review_content}
+				<if test="imageFileName != '' and imageFileName != null">
+					, imageFileName=#{imageFileName}
+				</if>
+			]]>
+			where review_no=#{review_no}
+		</update>
+		
+		<delete id="deleteReview" parameterType="int">
+			<![CDATA[
+				delete from REVIEW_BOARD where reviewNo in (
+				select 
+			]]>
+			
+		</delete>
 
 </mapper>

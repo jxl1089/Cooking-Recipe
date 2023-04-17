@@ -42,24 +42,15 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public RecipeDTO selectRecipe(int recipeNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("mapper.recipe.selectRecipe", recipeNo);
 	}
 
-//	@Override
-//	public void insertNewImage(Map<String, Object> recipeMap) {
-//		// TODO Auto-generated method stub
-//		List<ImageDTO> imageFileList = (List<ImageDTO>) recipeMap.get("recipe_imageList");
-//		int recipeNo = (Integer)recipeMap.get("recipe_no");
-//		int imageFileNo = selectNewImageFileNo();
-//		for(ImageDTO image : imageFileList) {
-//			image.setImageFileNo(++imageFileNo);
-//			image.setrecipeNo(recipeNo);
-//		}
-//		sqlSession.insert("mapper.recipe.insertNewImage", imageFileList);
-//	}
-//
-//	private int selectNewImageFileNo() {
-//		// TODO Auto-generated method stub
-//		return sqlSession.selectOne("mapper.recipe.selectNewImageFileNo");
-//	}
+	@Override
+	public void updateRecipe(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.recipe.updateRecipe", recipeMap);
+		
+	}
+
+
 }
