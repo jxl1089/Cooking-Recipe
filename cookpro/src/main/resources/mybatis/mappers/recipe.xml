@@ -148,8 +148,8 @@
                 <if test="imageFileName != '' and imageFileName != null">
                     , imageFileName=#{imageFileName}
                 </if>
-            ]]>
             where recipe_no=#{recipe_no}
+	]]>
         </update>
         
         <delete id="deleteRecipe" parameterType="int">
