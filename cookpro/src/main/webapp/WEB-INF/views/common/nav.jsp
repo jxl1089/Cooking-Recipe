@@ -114,7 +114,7 @@ ul li a{
 			<li><a href="#">커뮤니티</a>
 				<ul class="main2">
 					<li><a href="${contextPath}/reviewBoard/review_listArticles.do">리뷰게시판</a></li>
-					<li><a href="#">QnA</a></li>
+					<li><a href="${contextPath }/qna/qnaList.do">QnA</a></li>
 				</ul></li>
 			<li><a href="https://www.kurly.com/main">최저가</a></li>
 		</ul>
