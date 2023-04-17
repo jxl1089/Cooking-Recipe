@@ -25,7 +25,7 @@ function readURL(input) {
 	}
 }
 function backToList(obj){
-	obj.action = "${contextPath}/board/listArticles.do";
+	obj.action = "${contextPath }/recipeboard/recipeList.do";
 	obj.submit();
 }
 let cnt = 1;
