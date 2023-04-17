@@ -70,6 +70,8 @@ ul li a{
   margin: 10px;
 }
 
+<<<<<<< HEAD
+=======
 .main2>li:hover .main3 {
   left: 100%;
 }
@@ -91,6 +93,7 @@ ul li a{
   font-weight: bold;
 }
 
+>>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git
 </style>
 <body>
 <div id="menu">

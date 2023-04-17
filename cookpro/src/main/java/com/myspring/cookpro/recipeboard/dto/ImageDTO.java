@@ -10,7 +10,7 @@ public class ImageDTO {
 	private int imageFileNo;
 	private String imageFileName;
 	private Date regDate;
-	private int recipeNo;
+	private int recipe_no;
 	
 	public int getImageFileNo() {
 		return imageFileNo;
@@ -31,10 +31,10 @@ public class ImageDTO {
 		this.regDate = regDate;
 	}
 	public int getrecipeNo() {
-		return recipeNo;
+		return recipe_no;
 	}
 	public void setrecipeNo(int recipeNo) {
-		this.recipeNo = recipeNo;
+		this.recipe_no = recipeNo;
 	}
 
 }
