@@ -285,7 +285,7 @@ public class QnaControllerImpl implements QnaController{
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			message = "<script>";
-			message += "alert('삭제에 실패 하었습니다. 다시 시도해 주세요.');";
+			message += "alert('삭제에 실패했습니다. 다시 시도해 주세요.');";
 			message += "location.href='"+request.getContextPath()+"/qna/qnaList.do';";
 			message += "</script>";
 			
