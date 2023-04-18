@@ -108,7 +108,6 @@ public class RecipeControllerImpl implements RecipeController{
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 
 
-
 		String id = member.getId();
 		recipeMap.put("parentNo", 0);
 		recipeMap.put("id",id);
@@ -164,23 +163,22 @@ public class RecipeControllerImpl implements RecipeController{
 
 
 	@Override
-	@RequestMapping(value="/recipeboard/removeRecipe", method=RequestMethod.POST)
+	@RequestMapping(value="/recipeboard/removeRecipe.do", method=RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity removeRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
+		response.setCharacterEncoding("utf-8");
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Contetn-Type", "text/html; charset=utf-8");
 		try {
+			recipeService.removeSerivce(recipe_no);
 
-			File destDir = new File(CURR_IMAGE_REPO_PATH + "\\" + recipe_no);
-			FileUtils.deleteDirectory(destDir);
-//
 			message = "<script>";
 			message += "alert('삭제가 완료 되었습니다.');";
-			message += "location.href='"+request.getContextPath()+"/recipeboard/reicpeList.do';";
+			message += "location.href='"+request.getContextPath()+"/recipeboard/recipeList.do';";
 			message += "</script>";
 
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -188,7 +186,7 @@ public class RecipeControllerImpl implements RecipeController{
 			// TODO: handle exception
 			message = "<script>";
 			message += "alert('삭제에 실패 하었습니다. 다시 시도해 주세요.');";
-			message += "location.href='"+request.getContextPath()+"/reciepboard/reciepForm.do';";
+			message += "location.href='"+request.getContextPath()+"/recipeboard/recipeList.do';";
 			message += "</script>";
 
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -198,30 +196,6 @@ public class RecipeControllerImpl implements RecipeController{
 		return resEnt;
 	}
 
-	//	private List<String> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
-	//		List<String> fileList = new ArrayList<String>();
-	//		Map<String, String> recipeMap = new HashMap<String, String>();
-	//		Iterator<String> fileNames = multipartRequest.getFileNames();
-	//		
-	//		while(fileNames.hasNext()) {
-	//			String fileName = fileNames.next();
-	//			MultipartFile mFile = multipartRequest.getFile(fileName);
-	//			String originalFileName = mFile.getOriginalFilename();
-	//			fileList.add(originalFileName);
-	//			File file = new File(CURR_IMAGE_REPO_PATH+ "\\" + fileName);
-	//			if(mFile.getSize()!=0) {
-	//				if(!file.exists()) {
-	//					if(file.getParentFile().mkdirs()) {
-	//						file.createNewFile();
-	//					}
-	//				}
-	//				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH+"\\temp\\"+originalFileName));
-	//			}
-	//		}
-	//		
-	//		return fileList;
-	//			
-	//	}
 
 	@Override
 	@RequestMapping(value="/recipeboard/modRecipe.do", method=RequestMethod.POST)

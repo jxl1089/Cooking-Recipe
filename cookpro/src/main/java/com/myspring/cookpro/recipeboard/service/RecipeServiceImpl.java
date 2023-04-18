@@ -96,4 +96,10 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDAO.selectToRecipesList();
 	}
 
+	@Override
+	public void removeSerivce(int recipe_no) {
+		// TODO Auto-generated method stub
+		recipeDAO.deleteRecipe(recipe_no);
+	}
+
 }

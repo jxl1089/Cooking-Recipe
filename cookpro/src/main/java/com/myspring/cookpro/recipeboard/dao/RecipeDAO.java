@@ -31,6 +31,8 @@ public interface RecipeDAO {
 
 	List<RecipeDTO> selectToRecipesList();
 
+	void deleteRecipe(int recipe_no);
+
 
 
 	//void insertNewImage(Map<String, Object> recipeMap);

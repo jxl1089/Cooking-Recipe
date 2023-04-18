@@ -108,6 +108,12 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return recipesList;
 	}
 
+	@Override
+	public void deleteRecipe(int recipe_no) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("mapper.recipe.deleteRecipe", recipe_no);
+	}
+
 
 
 

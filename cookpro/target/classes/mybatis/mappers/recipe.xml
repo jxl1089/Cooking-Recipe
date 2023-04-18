@@ -127,7 +127,7 @@
 			<![CDATA[
 				delete from recipe where recipe_no in (
 				select recipe_no from recipe
-				start with recipe_no =#{recipe_no}
+				start with recipe_no = #{recipe_no}
 				connect by prior recipe_no=parentNo)
 			]]>
 			

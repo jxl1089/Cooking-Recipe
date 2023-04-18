@@ -36,6 +36,8 @@ public interface RecipeService {
 
 	List<RecipeDTO> recipesListTo();
 
+	void removeSerivce(int recipe_no);
+
 
 
 }
