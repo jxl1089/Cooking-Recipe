@@ -54,7 +54,7 @@ public class QnaDAOImpl implements QnaDAO{
 		// TODO Auto-generated method stub
 		sqlSession.update("mapper.qna.updateArticle", articleMap);
 	}
-	
+	//
 	@Override
 	public void deleteArticle(int articleNo) {
 		// TODO Auto-generated method stub
