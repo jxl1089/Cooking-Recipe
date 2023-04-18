@@ -83,23 +83,23 @@
 <form name="frmArticle" method="post" enctype="multipart/form-data">
 	<table border="0" align="center" >
 		<tr>
-			<td width="200" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">글번호</td>
-			<td width="500" colspan="2" align="left"><input type="text" value="${article.articleNo }" disabled="disabled" size="80">
+			<td width="150" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">글번호</td>
+			<td width="400" colspan="2" align="left"><input type="text" value="${article.articleNo }" disabled="disabled" size="80">
 			<input type="hidden" value="${article.articleNo }" name="articleNo"></td>
 		</tr>
 		<tr>
-			<td width="200" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">작성자</td>
-			<td width="500" colspan="2" align="left"><input type="text" value="${article.id }" name="id" disabled="disabled" size="80"></td>
+			<td width="150" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">작성자</td>
+			<td width="400" colspan="2" align="left"><input type="text" value="${article.id }" name="id" disabled="disabled" size="80"></td>
 		</tr>
 		<tr>
-			<td width="200" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">제목</td>
-			<td width="500" colspan="2" align="left"><input type="text" value="${article.title }" name="title" id="i_title" disabled="disabled" size="80"></td>
+			<td width="150" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">제목</td>
+			<td width="400" colspan="2" align="left"><input type="text" value="${article.title }" name="title" id="i_title" disabled="disabled" size="80"></td>
 		</tr>
 		<tr>
 			<!-- <td width="200" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">내용</td> -->
-			<td width="700" colspan="3" align="left"><textarea rows="20" cols="108" name="content" id="i_content" disabled="disabled">${article.content }</textarea></td>
+			<td width="600" colspan="3" align="left"><textarea rows="20" cols="100" name="content" id="i_content" disabled="disabled">${article.content }</textarea></td>
 		</tr>
-		<c:choose>
+<%-- 		<c:choose>
 			<c:when test="${not empty imageFileList && imageFileList != null }">
 				<c:forEach var="item" items="${imageFileList }" varStatus="status">
 					<tr>
@@ -130,15 +130,13 @@
 						onchange="readURL(this);"></td>
 				</tr>
 			</c:otherwise>
-		</c:choose>
+		</c:choose> --%>
 		<tr>
-			<td width="200" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">등록일자</td>
-			<td colspan="2" align="left"><input type="text" value="<fmt:formatDate value='${article.writeDate }' />" disabled="disabled" size="80"></td>
+			<td width="150" align="center" style="height:12px; color: white; font-size:18px; background: #FF7629;">등록일자</td>
+			<td width="400" colspan="2" align="left"><input type="text" value="<fmt:formatDate value='${article.writeDate }' />" disabled="disabled" size="80"></td>
 		</tr>
 		<tr id="tr_btn_modify">
-			<td colspan="2" align="center"><input type="button"
-				value="수정반영하기" onclick="fn_modify_article(frmArticle)"> <input
-				type='button' value="취소" onclick="backToList(frmArticle)"></td>
+			<td colspan="2" align="center"><input class="button" type="button" value="수정반영하기" onclick="fn_modify_article(frmArticle)"> <input class="button" type='button' value="취소" onclick="backToList(frmArticle)"></td>
 		</tr>
 		<tr>
 			<td></td>

@@ -36,11 +36,11 @@
 			<td colspan="2" width="400" align="left"><textarea rows="10" cols="55" name="content" maxlength="4000"></textarea></td>
 		</tr>
 
-		<tr>
+<!-- 		<tr>
 			<td width="200"><p align="left">이미지 파일 첨부</p></td>
 			<td width="100" align="left"><input type="file" name="imageFileName" onchange="readURL(this);"></td>
 			<td><img id="preview" src="#" width="150" height="150"></td>
-		</tr>
+		</tr> -->
 		<tr align="center">
 			<td colspan="3"><input class="button" type="submit" value="답글쓰기"> <input class="button" type="button" value="목록보기" onclick="backToList(this.form)"></td>
 		</tr>
