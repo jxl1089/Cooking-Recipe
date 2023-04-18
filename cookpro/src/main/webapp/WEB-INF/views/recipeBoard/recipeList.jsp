@@ -25,6 +25,14 @@
 </script>
 </head>
 <body>
+	<div align="left">
+		<a href="${contextPath }/recipeboard/recipeListKr.do">한식</a>
+		<a href="${contextPath }/recipeboard/recipeListCn.do">중식</a>
+		<a href="${contextPath }/recipeboard/recipeListJp.do">일식</a>
+		<a href="${contextPath }/recipeboard/recipeListEn.do">양식</a>
+		<a href="${contextPath }/recipeboard/recipeListOt.do">기타</a>
+		<br>
+	</div>
 	<table align="center" border="1" width="100%">
 		<tr height="10" align="center" bgcolor="lightgreen">
 			<td>글번호</td>
@@ -112,6 +120,6 @@
 		</c:if>
 	</div>
 	<a class="cls1" href="javascript:fn_recipeForm('${isLogOn }','${contextPath }/recipeboard/recipeForm.do','${contextPath }/member/loginForm.do')">
-	<p class="cls2">글쓰기</p></a>
+	<p class="cls2" align="right">글쓰기</p></a>
 </body>
 </html>
