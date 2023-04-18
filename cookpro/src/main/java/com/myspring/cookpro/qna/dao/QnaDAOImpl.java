@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.myspring.cookpro.qna.dto.ImageDTO;
 import com.myspring.cookpro.qna.dto.QnaDTO;
 
 @Repository
@@ -56,32 +55,5 @@ public class QnaDAOImpl implements QnaDAO{
 		// TODO Auto-generated method stub
 		sqlSession.delete("mapper.qna.deleteArticle", articleNo);
 	}
-	
-	@Override
-	public void insertNewImage(Map<String, Object> articleMap) {
-		// TODO Auto-generated method stub
-		List<ImageDTO> imageFileList = (List<ImageDTO>) articleMap.get("imageFileList");
-		
-		int articleNo = (Integer) articleMap.get("articleNo");
-		int imageFileNo = selectNewImageFileNo();
-		
-		for(ImageDTO image : imageFileList) {
-			image.setImageFileNo(++imageFileNo);
-			image.setArticleNo(articleNo);
-		}
-		sqlSession.insert("mapper.qna.insertNewImage", imageFileList);
-	}
 
-	private int selectNewImageFileNo() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("mapper.qna.selectNewImageFileNo");
-	}
-	
-	@Override
-	public List<ImageDTO> selectImageFileList(int articleNo) {
-		// TODO Auto-generated method stub
-		List<ImageDTO> imageFileList = sqlSession.selectList("mapper.qna.selectImageFileList", articleNo);
-	
-		return imageFileList;
-	}
 }

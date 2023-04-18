@@ -9,7 +9,6 @@
 		<typeAlias type="com.myspring.cookpro.reviewboard.dto.Review_article_dto" alias="Review_article_dto"/>
 		<typeAlias type="com.myspring.cookpro.reviewboard.dto.Review_image_dto" alias="review_image_dto"/>
 		<typeAlias type="com.myspring.cookpro.qna.dto.QnaDTO" alias="qnaDTO" />
-		<typeAlias type="com.myspring.cookpro.qna.dto.ImageDTO" alias="qna_imageDTO"/>
 	</typeAliases>
 	
 </configuration>
