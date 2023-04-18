@@ -1,69 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.reviewboard">
-  <resultMap type="Review_article_dto" id="reviewResult">
-    <result property="review_no" column="review_no"/>
-    <result property="review_level" column="REVIEW_LEVEL"/>
-    <result property="review_title" column="REVIEW_TITLE"/>
-    <result property="review_content" column="REVIEW_CONTENT"/>
-    <result property="id" column="ID"/>
-    <result property="writeDate" column="WRITE_DATE"/>
-    <result property="reviewParent_no" column="reviewParent_no"/>
-  </resultMap>
-
-  <resultMap type="Review_image_dto" id="review_imageResult">
-            <result property="imageFileNo" column="imageFileNo"/>
-			<result property="imageFileName" column="imageFileName"/>
-			<result property="review_no" column="review_no"/>
-  </resultMap>
-
- <insert id="insertArticle" parameterType="Review_article_dto" >
- <![CDATA[
-    INSERT INTO REVIEW_BOARD (review_no, review_level, review_title, review_content, ID)
-    VALUES (#{review_no, jdbcType=VARCHAR}, #{review_level, jdbcType=VARCHAR}, #{review_title, jdbcType=VARCHAR}, #{review_content, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR})
-    ]]>
-  </insert>
-  
-<select id="selectAllReviewList" resultMap="reviewResult">
-			<![CDATA[
-				select review_no, id, review_level, review_title, writeDate, review_content,reviewParent_no from REVIEW_BOARD
-				start with reviewParent_no=0
-				connect by prior review_no = reviewParent_no
-				order siblings by review_no desc
-			]]>
-		</select> 
-		
-		<select id="selectNewReviewNo" resultType="int">
-			<![CDATA[
-				select max(review_no)+1 from REVIEW_BOARD
-			]]>
-		</select>
-		
-		<select id="selectReview" resultType="Review_article_dto" parameterType="int">
-			<![CDATA[
-				select * from REVIEW_BOARD where review_no=#{review_no}
-			]]>
-		</select>
-		
-		<update id="updateReview">
-			<![CDATA[
-				update REVIEW_BOARD 
-				set review_title=#{review_title}, review_content=#{review_content}
-				<if test="imageFileName != '' and imageFileName != null">
-					, imageFileName=#{imageFileName}
-				</if>
-			]]>
-			where review_no=#{review_no}
-		</update>
-		
-		<delete id="deleteReview" parameterType="int">
-			<![CDATA[
-				delete from REVIEW_BOARD where reviewNo in (
-				select 
-			]]>
-			
-		</delete>
-
+<mapper namespace="mapper.review">
+	<resultMap type="reviewDTO" id="reviewResult">
+		<result property="level" column="level" />
+		<result property="articleNo" column="articleNo" />
+		<result property="parentNo" column="parentNo" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writeDate" column="writeDate" />
+		<result property="id" column="id" />
+	</resultMap>
+	
+	<select id="selectAllArticlesList" resultMap="reviewResult">
+		<![CDATA[
+			select level, articleNo, parentNo, title, content, writeDate, id from review_board
+			start with parentNo=0
+			connect by prior articleNo=parentNo
+			order siblings by articleNo desc
+		]]>
+	</select>
+	
+	<insert id="insertNewArticle" parameterType="java.util.Map">
+		<![CDATA[
+			insert into review_board(articleNo, parentNo, title, content, id)
+				values(#{articleNo}, #{parentNo}, #{title}, #{content}, #{id})
+		]]>
+	</insert>
+	
+	<select id="selectNewArticleNo" resultType="int">
+		<![CDATA[
+			select max(articleNo)+1 from review_board
+		]]>
+	</select>
+	
+	<select id="selectArticle" resultType="reviewDTO" parameterType="int">
+		<![CDATA[
+			select * from review_board where articleNo = #{articleNo}
+		]]>
+	</select>
+	
+	<update id="updateArticle" parameterType="java.util.Map">
+		update review_board set title=#{title}, content=#{content}
+		where articleNo=#{articleNo}
+	</update>
+	
+	<delete id="deleteArticle" parameterType="int">
+		<![CDATA[
+			delete from review_board where articleNo in (select articleNo from review_board start with articleNo = #{articleNo} connect by prior articleNo = parentNo)
+		]]>
+	</delete>
 </mapper>

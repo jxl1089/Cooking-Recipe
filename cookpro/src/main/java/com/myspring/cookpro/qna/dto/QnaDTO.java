@@ -11,7 +11,6 @@ public class QnaDTO {
 	private int parentNo;
 	private String title;
 	private String content;
-	private String imageFileName;
 	private String id;
 	private Date writeDate;
 	
@@ -44,12 +43,6 @@ public class QnaDTO {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getImageFileName() {
-		return imageFileName;
-	}
-	public void setImageFileName(String imageFileName) {
-		this.imageFileName = imageFileName;
 	}
 	public String getId() {
 		return id;

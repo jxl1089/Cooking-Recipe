@@ -42,6 +42,7 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public RecipeDTO selectRecipe(int recipeNo) {
 		// TODO Auto-generated method stub
+		sqlSession.update("mapper.recipe.viewUp", recipeNo);
 		return sqlSession.selectOne("mapper.recipe.selectRecipe", recipeNo);
 	}
 
@@ -51,6 +52,70 @@ public class RecipeDAOImpl implements RecipeDAO{
 		sqlSession.update("mapper.recipe.updateRecipe", recipeMap);
 		
 	}
+
+	@Override
+	public void likeUpdate(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.recipe.likeUpdate", recipeMap);
+	}
+
+	@Override
+	public void dislikeUpdate(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.recipe.dislikeUpdate", recipeMap);
+		
+	}
+
+	@Override
+	public List<RecipeDTO> selectKrRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectKrRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectEnRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectEnRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectCnRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectCnRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectJpRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectJpRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectOtRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectOtRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectToRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectToRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public void deleteRecipe(int recipe_no) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("mapper.recipe.deleteRecipe", recipe_no);
+	}
+
+
+
 
 
 }

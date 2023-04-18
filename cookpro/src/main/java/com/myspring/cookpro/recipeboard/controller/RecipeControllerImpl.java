@@ -79,7 +79,9 @@ public class RecipeControllerImpl implements RecipeController{
 	public ModelAndView viewRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName= (String)request.getAttribute("viewName");
+		
 		Map recipeMap = recipeService.viewRecipe(recipe_no);
+		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("recipeMap", recipeMap);
 		return mav;
@@ -104,7 +106,6 @@ public class RecipeControllerImpl implements RecipeController{
 
 		HttpSession session = multipartRequest.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
-
 
 
 		String id = member.getId();
@@ -162,23 +163,22 @@ public class RecipeControllerImpl implements RecipeController{
 
 
 	@Override
-	@RequestMapping(value="/recipeboard/removeRecipe", method=RequestMethod.POST)
+	@RequestMapping(value="/recipeboard/removeRecipe.do", method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity removceRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity removeRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
+		response.setCharacterEncoding("utf-8");
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Contetn-Type", "text/html; charset=utf-8");
 		try {
+			recipeService.removeSerivce(recipe_no);
 
-			File destDir = new File(CURR_IMAGE_REPO_PATH + "\\" + recipe_no);
-			FileUtils.deleteDirectory(destDir);
-//
 			message = "<script>";
 			message += "alert('삭제가 완료 되었습니다.');";
-			message += "location.href='"+request.getContextPath()+"/recipeboard/reicpeList.do';";
+			message += "location.href='"+request.getContextPath()+"/recipeboard/recipeList.do';";
 			message += "</script>";
 
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -186,7 +186,7 @@ public class RecipeControllerImpl implements RecipeController{
 			// TODO: handle exception
 			message = "<script>";
 			message += "alert('삭제에 실패 하었습니다. 다시 시도해 주세요.');";
-			message += "location.href='"+request.getContextPath()+"/reciepboard/reciepForm.do';";
+			message += "location.href='"+request.getContextPath()+"/recipeboard/recipeList.do';";
 			message += "</script>";
 
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -196,30 +196,6 @@ public class RecipeControllerImpl implements RecipeController{
 		return resEnt;
 	}
 
-	//	private List<String> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
-	//		List<String> fileList = new ArrayList<String>();
-	//		Map<String, String> recipeMap = new HashMap<String, String>();
-	//		Iterator<String> fileNames = multipartRequest.getFileNames();
-	//		
-	//		while(fileNames.hasNext()) {
-	//			String fileName = fileNames.next();
-	//			MultipartFile mFile = multipartRequest.getFile(fileName);
-	//			String originalFileName = mFile.getOriginalFilename();
-	//			fileList.add(originalFileName);
-	//			File file = new File(CURR_IMAGE_REPO_PATH+ "\\" + fileName);
-	//			if(mFile.getSize()!=0) {
-	//				if(!file.exists()) {
-	//					if(file.getParentFile().mkdirs()) {
-	//						file.createNewFile();
-	//					}
-	//				}
-	//				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH+"\\temp\\"+originalFileName));
-	//			}
-	//		}
-	//		
-	//		return fileList;
-	//			
-	//	}
 
 	@Override
 	@RequestMapping(value="/recipeboard/modRecipe.do", method=RequestMethod.POST)
@@ -233,7 +209,6 @@ public class RecipeControllerImpl implements RecipeController{
 		String recipe_no = multiRequest.getParameter("recipe_no");
 		recipeMap.put("recipe_no", recipe_no);
 		
-		System.out.println("recipe_no: " + recipe_no);
 		String detail = multiRequest.getParameter("recipe_detail");
 		recipeMap.put("recipe_detail", detail);
 		
@@ -274,7 +249,7 @@ public class RecipeControllerImpl implements RecipeController{
 	}
 
 	@Override
-	@RequestMapping(value="/recipeboard/imageUpload.do")//
+	@RequestMapping(value="/recipeboard/imageUpload.do")
 	public void imageUpload(MultipartHttpServletRequest multipartRequest, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("utf-8");
@@ -329,5 +304,184 @@ public class RecipeControllerImpl implements RecipeController{
 		}
 
 	}
+
+	@Override
+	@RequestMapping(value="/recipeboard/recipeLike.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity likeup(MultipartHttpServletRequest multiRequest, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		multiRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> recipeMap = new HashMap<String, Object>();
+		
+		String recipe_no = multiRequest.getParameter("recipe_no");
+		recipeMap.put("recipe_no", recipe_no);
+		
+		String likeview = multiRequest.getParameter("recipe_like");
+		recipeMap.put("recipe_like", likeview);
+		
+		String message = null;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
+		int cnt = 0;
+		try {
+			
+			
+			if(cnt==0) {
+				recipeService.likeupRecipe(recipeMap);
+				cnt++;
+				message = "<script>";
+				message += "alert('추천되었습니다.');";
+				message += "location.href='"+multiRequest.getContextPath()
+					+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+				message += "</script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			} else {
+				message = "<script>";
+				message += "alert('이미 추천하셨습니다.');";
+				message += "location.href='"+multiRequest.getContextPath()
+					+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+				message += "</script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			message = "<script>";
+			message += "alert('오류.');";
+			message += "location.href='"+multiRequest.getContextPath()
+				+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		
+		return resEnt;
+		
+		
+	}
+
+	@Override
+	@RequestMapping(value="/recipeboard/recipeDislike.do", method=RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity disLikeUp(MultipartHttpServletRequest multiRequest, HttpServletResponse response)
+			throws Exception {
+		multiRequest.setCharacterEncoding("utf-8");
+		Map<String, Object> recipeMap = new HashMap<String, Object>();
+		
+		String recipe_no = multiRequest.getParameter("recipe_no");
+		recipeMap.put("recipe_no", recipe_no);
+		
+		String dislikeview = multiRequest.getParameter("recipe_dislike");
+		recipeMap.put("recipe_dislike", dislikeview);
+		
+		String message = null;
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
+		int cnt = 0;
+		try {
+			
+			
+			if(cnt==0) {
+				recipeService.dislikeupRecipe(recipeMap);
+				cnt++;
+				message = "<script>";
+				message += "alert('추천되었습니다.');";
+				message += "location.href='"+multiRequest.getContextPath()
+					+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+				message += "</script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			} else {
+				message = "<script>";
+				message += "alert('이미 추천하셨습니다.');";
+				message += "location.href='"+multiRequest.getContextPath()
+					+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+				message += "</script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			message = "<script>";
+			message += "alert('오류.');";
+			message += "location.href='"+multiRequest.getContextPath()
+				+"/recipeboard/recipeView.do?recipe_no="+recipe_no+"';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		}
+		
+		return resEnt;
+	}
+
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListKr.do")
+	public ModelAndView listRecipe_kr(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListKr();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListOt.do")
+	public ModelAndView listRecipe_other(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListOt();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListEn.do")
+	public ModelAndView listRecipe_en(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListEn();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListCn.do")
+	public ModelAndView listRecipe_cn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListCn();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListJp.do")
+	public ModelAndView listRecipe_jp(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListJp();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListToday.do")
+	public ModelAndView listRecipe_Today(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListTo();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+
+
+	
 
 }

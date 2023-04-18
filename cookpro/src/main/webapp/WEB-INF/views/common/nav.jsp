@@ -100,14 +100,14 @@ ul li a{
 			<li><a href="${contextPath }/recipeboard/recipeList.do">레시피</a></li>
 			<li style="border: none;"><a href="#">추천</a>
 				<ul class="main2">
-					<li><a href="#">오늘의 요리</a></li>
+					<li><a href="${contextPath }/recipeboard/recipeListToday.do">오늘의 요리</a></li>
 					<li><a href="#">태그</a>
 						<ul class="main3">
-            				<li><a href="#">한식</a></li>
-							<li><a href="#">중식</a></li>
-							<li><a href="#">일식</a></li>
-							<li><a href="#">양식</a></li>
-							<li><a href="#">기타</a></li>
+            				<li><a href="${contextPath }/recipeboard/recipeListKr.do">한식</a></li>
+							<li><a href="${contextPath }/recipeboard/recipeListCn.do">중식</a></li>
+							<li><a href="${contextPath }/recipeboard/recipeListJp.do">일식</a></li>
+							<li><a href="${contextPath }/recipeboard/recipeListEn.do">양식</a></li>
+							<li><a href="${contextPath }/recipeboard/recipeListOt.do">기타</a></li>
           				</ul>
           			</li>
 				</ul></li>

@@ -15,6 +15,26 @@ public interface RecipeDAO {
 
 	void updateRecipe(Map<String, Object> recipeMap);
 
+	void likeUpdate(Map<String, Object> recipeMap);
+
+	void dislikeUpdate(Map<String, Object> recipeMap);
+
+	List<RecipeDTO> selectKrRecipesList();
+
+	List<RecipeDTO> selectEnRecipesList();
+
+	List<RecipeDTO> selectCnRecipesList();
+
+	List<RecipeDTO> selectJpRecipesList();
+
+	List<RecipeDTO> selectOtRecipesList();
+
+	List<RecipeDTO> selectToRecipesList();
+
+	void deleteRecipe(int recipe_no);
+
+
+
 	//void insertNewImage(Map<String, Object> recipeMap);
 
 }

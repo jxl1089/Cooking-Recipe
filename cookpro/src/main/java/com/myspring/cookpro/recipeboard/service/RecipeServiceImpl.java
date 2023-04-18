@@ -45,4 +45,61 @@ public class RecipeServiceImpl implements RecipeService{
 		recipeDAO.updateRecipe(recipeMap);
 		
 	}
+
+	@Override
+	public void likeupRecipe(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		recipeDAO.likeUpdate(recipeMap);
+		
+	}
+
+	@Override
+	public void dislikeupRecipe(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		recipeDAO.dislikeUpdate(recipeMap);
+		
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListKr() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectKrRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListEn() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectEnRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListCn() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectCnRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListJp() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectJpRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListOt() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectOtRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListTo() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectToRecipesList();
+	}
+
+	@Override
+	public void removeSerivce(int recipe_no) {
+		// TODO Auto-generated method stub
+		recipeDAO.deleteRecipe(recipe_no);
+	}
+
 }

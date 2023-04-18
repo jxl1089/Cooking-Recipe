@@ -11,12 +11,14 @@
 <body>
 	<div class="main-layout">
 		<a href="${contextPath }/recipeboard/recipeList.do"><button class="main-btn">Recipe</button></a>
-		<a href="${contextPath }/reviewBoard/review_listArticles.do"><button class="main-btn">Review</button></a>
+		<a href="${contextPath }/review/reviewList.do"><button class="main-btn">Review</button></a>
 		<a href="${contextPath }/qna/qnaList.do"><button class="main-btn">QnA</button></a>
 		<br>
 		<%@ include file="mainView.jsp" %>
 		<br>
-		<table class="main-table">
+		<hr>
+		<br>
+<!-- 		<table class="main-table">
 			<tr>
 				<th>
 					주간 인기 레시피
@@ -33,7 +35,8 @@
 					추천수 기준 나열 해야함
 				</td>
 			</tr>
-		</table>
+		</table> -->
+		<%@ include file="mainEmail.jsp" %>
 	</div>
 </body>
 </html>

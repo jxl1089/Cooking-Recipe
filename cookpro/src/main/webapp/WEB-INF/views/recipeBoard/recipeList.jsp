@@ -20,13 +20,28 @@
 			location.href=loginForm+'?action=/recipeboard/recipeForm.do';
 		}
 	}
+	
+
 </script>
 </head>
 <body>
-	<table align="center" border="1" width="100%">
-		<tr height="10" align="center" bgcolor="lightgreen">
+	<table align="center" >
+		<tr>
+			<td colspan="4" align="left">
+				<div>
+			<a href="${contextPath }/recipeboard/recipeListKr.do">한식</a>
+			<a href="${contextPath }/recipeboard/recipeListCn.do">중식</a>
+			<a href="${contextPath }/recipeboard/recipeListJp.do">일식</a>
+			<a href="${contextPath }/recipeboard/recipeListEn.do">양식</a>
+			<a href="${contextPath }/recipeboard/recipeListOt.do">기타</a>
+			<br>
+				</div>
+			<td>
+		</tr>
+		<tr style="height:12px; color: white; font-size:18px; background: #FF7629;">
 			<td>글번호</td>
 			<td>작성자</td>
+			<td>탭</td>
 			<td>제목</td>
 			<td>작성일자</td>
 			<td>조회수</td>
@@ -44,10 +59,11 @@
 				<c:forEach var="recipe" items="${recipesList }" varStatus="recipe_no">
 					<tr align="center">
 						<td width="5%">${recipe.recipe_no }</td>
-						<td width="10%">${recipe.id }</td>
+						<td width="5%">${recipe.id }</td>
+						<td width="5%">${recipe.recipe_tab }</td>
 						<td align="left" width="35%">
 							<span style="padding-right:30px;"></span>
-							<a class="cls1" href="${contextPath }/recipeboard/recipeView.do?recipe_no=${recipe.recipe_no}">
+							<a class="cls1" href="${contextPath }/recipeboard/recipeView.do?recipe_no=${recipe.recipe_no}" >
 								${recipe.recipe_title }
 							</a>
 						</td>
@@ -59,6 +75,20 @@
 			</c:when>
 		</c:choose>
 	</table>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<div class="cls2">
 		<c:if test="totRecipes != null">
 			<c:choose>
@@ -93,7 +123,7 @@
 			</c:choose>
 		</c:if>
 	</div>
-	<a class="cls1" href="javascript:fn_recipeForm('${isLogOn }','${contextPath }/recipeboard/recipeForm.do','${contextPath }/member/loginForm.do')">
-	<p class="cls2">글쓰기</p></a>
+	<a class="no-underline-orange" href="javascript:fn_recipeForm('${isLogOn }','${contextPath }/recipeboard/recipeForm.do','${contextPath }/member/loginForm.do')">
+	<b style="font-size:20px;" class="no-underline-orange">글쓰기</b></a>
 </body>
 </html>

@@ -15,30 +15,30 @@
 			<span class="slider-leftBtn sliderBtn"></span>
 			<div class="card-container" id="slider">
 				<div class="card">
-					<a href=""><img class="TeamPic"
+					<a href="${contextPath }/recipeboard/recipeListKr.do"><img class="TeamPic"
 						src="${contextPath }/resources/image/bibimbap.jpg"></a>
 					<p class="text">한식</p>
 					
 				</div>
 				<div class="card">
-					<a href=""><img class="TeamPic"
+					<a href="${contextPath }/recipeboard/recipeListEn.do"><img class="TeamPic"
 						src="${contextPath }/resources/image/pasta.jpg"></a>
 					<p class="text">양식</p>
 				</div>
 
 				<div class="card">
-					<a href=""><img class="TeamPic"
+					<a href="${contextPath }/recipeboard/recipeListJp.do"><img class="TeamPic"
 						src="${contextPath }/resources/image/sushi.jpg"></a>
 					<p class="text">일식</p>
 				</div>
 
 				<div class="card">
-					<a href=""><img class="TeamPic"
+					<a href="${contextPath }/recipeboard/recipeListCn.do"><img class="TeamPic"
 						src="${contextPath }/resources/image/mandu.jpg"></a>
 					<p class="text">중식</p>
 				</div>
 				<div class="card">
-					<a href=""><img class="TeamPic"
+					<a href="${contextPath }/recipeboard/recipeListOt.do"><img class="TeamPic"
 						src="${contextPath }/resources/image/juice.jpg"
 						alt="TeamPicture"></a>
 					<p class="text">기타</p>

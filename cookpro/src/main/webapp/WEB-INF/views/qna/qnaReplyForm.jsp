@@ -23,6 +23,7 @@
 	}
 </script>
 
+<<<<<<< HEAD
 
 
 	<h1 style="text-align: center;">답글 쓰기</h1>
@@ -51,3 +52,28 @@
 			</tr>
 		</table>
 	</form>
+=======
+<form name="articleForm" method="post" action="${contextPath }/qna/addReply.do" enctype="multipart/form-data">
+<input type="hidden" name="parentNo" value="<%=parentNo%>">
+	<table border="0" align="center">
+		<h1 style="text-align: center; color: #FF7629;">답글 쓰기</h1>
+		<tr>
+			<td width="200"><p align="left">글제목</p></td>
+			<td colspan="2" width="400" align="left"><input type="text" size="55" maxlength="500" name="title"></td>
+		</tr>
+		<tr>
+			<td width="200"><p align="left">글내용</p></td>
+			<td colspan="2" width="400" align="left"><textarea rows="10" cols="55" name="content" maxlength="4000"></textarea></td>
+		</tr>
+
+<!-- 		<tr>
+			<td width="200"><p align="left">이미지 파일 첨부</p></td>
+			<td width="100" align="left"><input type="file" name="imageFileName" onchange="readURL(this);"></td>
+			<td><img id="preview" src="#" width="150" height="150"></td>
+		</tr> -->
+		<tr align="center">
+			<td colspan="3"><input class="button" type="submit" value="답글쓰기"> <input class="button" type="button" value="목록보기" onclick="backToList(this.form)"></td>
+		</tr>
+	</table>
+</form>
+>>>>>>> branch 'main' of https://github.com/jxl1089/Cooking-Recipe.git

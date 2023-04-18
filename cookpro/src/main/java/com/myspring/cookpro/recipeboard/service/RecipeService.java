@@ -20,4 +20,24 @@ public interface RecipeService {
 
 	void modRecipe(Map<String, Object> recipeMap);
 
+	void likeupRecipe(Map<String, Object> recipeMap);
+
+	void dislikeupRecipe(Map<String, Object> recipeMap);
+
+	List<RecipeDTO> recipesListKr();
+
+	List<RecipeDTO> recipesListEn();
+
+	List<RecipeDTO> recipesListCn();
+
+	List<RecipeDTO> recipesListJp();
+
+	List<RecipeDTO> recipesListOt();
+
+	List<RecipeDTO> recipesListTo();
+
+	void removeSerivce(int recipe_no);
+
+
+
 }
