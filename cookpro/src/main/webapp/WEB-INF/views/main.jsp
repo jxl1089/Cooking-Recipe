@@ -11,7 +11,7 @@
 <body>
 	<div class="main-layout">
 		<a href="${contextPath }/recipeboard/recipeList.do"><button class="main-btn">Recipe</button></a>
-		<a href="${contextPath }/reviewBoard/review_listArticles.do"><button class="main-btn">Review</button></a>
+		<a href="${contextPath }/review/reviewList.do"><button class="main-btn">Review</button></a>
 		<a href="${contextPath }/qna/qnaList.do"><button class="main-btn">QnA</button></a>
 		<br>
 		<%@ include file="mainView.jsp" %>

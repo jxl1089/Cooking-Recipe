@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2.0.dtd">
+	
+<tiles-definitions>
+	<definition name="/review/reviewList" extends="baseLayout">
+		<put-attribute name="title" value="리뷰목록" />
+		<put-attribute name="body" value="/WEB-INF/views/review/reviewList.jsp" />
+	</definition>
+	
+	<definition name="/review/reviewForm" extends="baseLayout">
+		<put-attribute name="title" value="리뷰작성" />
+		<put-attribute name="body" value="/WEB-INF/views/review/reviewForm.jsp" />
+	</definition>
+	
+	<definition name="/review/viewArticle" extends="baseLayout">
+		<put-attribute name="title" value="리뷰상세글" />
+		<put-attribute name="body" value="/WEB-INF/views/review/reviewView.jsp" />
+	</definition>
+	
+	<definition name="/review/reviewReplyForm" extends="baseLayout">
+		<put-attribute name="title" value="리뷰답글쓰기" />
+		<put-attribute name="body" value="/WEB-INF/views/review/reviewReplyForm.jsp" />
+	</definition>
+</tiles-definitions>
