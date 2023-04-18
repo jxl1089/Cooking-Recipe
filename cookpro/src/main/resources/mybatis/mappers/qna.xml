@@ -25,8 +25,8 @@
 	
 	<insert id="insertNewArticle" parameterType="java.util.Map">
 		<![CDATA[
-			insert into qna_board(articleNo, title, content, imageFileName, id)
-				values(#{articleNo}, #{title}, #{content}, null, #{id})
+			insert into qna_board(articleNo, parentNo, title, content, imageFileName, id)
+				values(#{articleNo}, #{parentNo}, #{title}, #{content}, null, #{id})
 		]]>
 	</insert>
 	
@@ -52,7 +52,7 @@
 	
 	<delete id="deleteArticle" parameterType="int">
 		<![CDATA[
-			delete from t_board where articleNo in (select articleNo from t_board start with articleNo = #{articleNo} connect by prior articleNo = parentNo)
+			delete from qna_board where articleNo in (select articleNo from qna_board start with articleNo = #{articleNo} connect by prior articleNo = parentNo)
 		]]>
 	</delete>
 	

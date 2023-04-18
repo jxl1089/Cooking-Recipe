@@ -15,4 +15,5 @@ public interface QnaController {
 	public ModelAndView viewArticle(@RequestParam("articleNo") int articleNo, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 	public ResponseEntity removeArticle(@RequestParam("articleNo") int articleNo, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity replyArticle(@RequestParam("parentNo") int parentNo, MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception;
 }
