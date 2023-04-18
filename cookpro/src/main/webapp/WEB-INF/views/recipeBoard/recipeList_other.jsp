@@ -112,6 +112,6 @@
 		</c:if>
 	</div>
 	<a class="cls1" href="javascript:fn_recipeForm('${isLogOn }','${contextPath }/recipeboard/recipeForm.do','${contextPath }/member/loginForm.do')">
-	<p class="cls2" align="right">글쓰기</p></a>
+	<p class="cls2" align="right">쓰기</p></a>
 </body>
 </html>
