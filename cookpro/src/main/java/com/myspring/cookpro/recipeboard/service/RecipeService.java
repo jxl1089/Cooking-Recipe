@@ -34,6 +34,8 @@ public interface RecipeService {
 
 	List<RecipeDTO> recipesListOt();
 
+	List<RecipeDTO> recipesListTo();
+
 
 
 }

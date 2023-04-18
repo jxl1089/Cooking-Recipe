@@ -101,6 +101,13 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return recipesList;
 	}
 
+	@Override
+	public List<RecipeDTO> selectToRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectToRecipeList");
+		return recipesList;
+	}
+
 
 
 

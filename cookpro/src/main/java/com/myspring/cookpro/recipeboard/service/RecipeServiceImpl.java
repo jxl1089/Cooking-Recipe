@@ -90,4 +90,10 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDAO.selectOtRecipesList();
 	}
 
+	@Override
+	public List<RecipeDTO> recipesListTo() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectToRecipesList();
+	}
+
 }

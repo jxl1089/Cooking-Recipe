@@ -25,6 +25,7 @@
 </script>
 </head>
 <body>
+	<h1>추천 요리</h1>
 	<table align="center" >
 		<tr>
 			<td colspan="4" align="left">

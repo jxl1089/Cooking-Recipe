@@ -25,8 +25,20 @@
 </script>
 </head>
 <body>
-	<table align="center" border="1" width="100%">
-		<tr height="10" align="center" bgcolor="lightgreen">
+	<table align="center" >
+		<tr>
+			<td colspan="4" align="left">
+				<div>
+			<a href="${contextPath }/recipeboard/recipeListKr.do">한식</a>
+			<a href="${contextPath }/recipeboard/recipeListCn.do">중식</a>
+			<a href="${contextPath }/recipeboard/recipeListJp.do">일식</a>
+			<a href="${contextPath }/recipeboard/recipeListEn.do">양식</a>
+			<a href="${contextPath }/recipeboard/recipeListOt.do">기타</a>
+			<br>
+				</div>
+			<td>
+		</tr>
+		<tr style="height:12px; color: white; font-size:18px; background: #FF7629;">
 			<td>글번호</td>
 			<td>작성자</td>
 			<td>탭</td>
@@ -111,7 +123,7 @@
 			</c:choose>
 		</c:if>
 	</div>
-	<a class="cls1" href="javascript:fn_recipeForm('${isLogOn }','${contextPath }/recipeboard/recipeForm.do','${contextPath }/member/loginForm.do')">
-	<p class="cls2" align="right">글쓰기</p></a>
+		<a class="no-underline-orange" href="javascript:fn_recipeForm('${isLogOn }','${contextPath }/recipeboard/recipeForm.do','${contextPath }/member/loginForm.do')">
+	<b style="font-size:20px;" class="no-underline-orange">글쓰기</b></a>
 </body>
 </html>

@@ -29,6 +29,8 @@ public interface RecipeDAO {
 
 	List<RecipeDTO> selectOtRecipesList();
 
+	List<RecipeDTO> selectToRecipesList();
+
 
 
 	//void insertNewImage(Map<String, Object> recipeMap);

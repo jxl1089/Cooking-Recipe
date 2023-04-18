@@ -28,4 +28,5 @@ public interface RecipeController {
 	public ModelAndView listRecipe_cn(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listRecipe_jp(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView listRecipe_other(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listRecipe_Today(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

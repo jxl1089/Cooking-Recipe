@@ -100,7 +100,7 @@ ul li a{
 			<li><a href="${contextPath }/recipeboard/recipeList.do">레시피</a></li>
 			<li style="border: none;"><a href="#">추천</a>
 				<ul class="main2">
-					<li><a href="#">오늘의 요리</a></li>
+					<li><a href="${contextPath }/recipeboard/recipeListToday.do">오늘의 요리</a></li>
 					<li><a href="#">태그</a>
 						<ul class="main3">
             				<li><a href="${contextPath }/recipeboard/recipeListKr.do">한식</a></li>

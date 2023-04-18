@@ -495,6 +495,18 @@ public class RecipeControllerImpl implements RecipeController{
 		return mav;
 	}
 
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListToday.do")
+	public ModelAndView listRecipe_Today(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListTo();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+
 
 	
 
