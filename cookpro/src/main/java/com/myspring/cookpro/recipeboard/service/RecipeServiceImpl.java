@@ -52,4 +52,11 @@ public class RecipeServiceImpl implements RecipeService{
 		recipeDAO.likeUpdate(recipeMap);
 		
 	}
+
+	@Override
+	public void dislikeupRecipe(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		recipeDAO.dislikeUpdate(recipeMap);
+		
+	}
 }

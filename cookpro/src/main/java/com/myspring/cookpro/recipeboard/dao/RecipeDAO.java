@@ -17,6 +17,8 @@ public interface RecipeDAO {
 
 	void likeUpdate(Map<String, Object> recipeMap);
 
+	void dislikeUpdate(Map<String, Object> recipeMap);
+
 	//void insertNewImage(Map<String, Object> recipeMap);
 
 }

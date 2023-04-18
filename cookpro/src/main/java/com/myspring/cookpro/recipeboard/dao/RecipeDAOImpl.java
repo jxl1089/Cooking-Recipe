@@ -58,5 +58,12 @@ public class RecipeDAOImpl implements RecipeDAO{
 		sqlSession.update("mapper.recipe.likeUpdate", recipeMap);
 	}
 
+	@Override
+	public void dislikeUpdate(Map<String, Object> recipeMap) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.recipe.dislikeUpdate", recipeMap);
+		
+	}
+
 
 }

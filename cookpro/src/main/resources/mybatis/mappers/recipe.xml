@@ -73,5 +73,13 @@
 				where recipe_no=#{recipe_no}
 			]]>
 		</update>
+		
+		<update id="dislikeUpdate">
+			<![CDATA[
+				update recipe 
+				set recipe_dislike = recipe_dislike+1
+				where recipe_no=#{recipe_no}
+			]]>
+		</update>
 
 	</mapper>

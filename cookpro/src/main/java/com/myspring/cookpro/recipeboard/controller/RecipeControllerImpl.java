@@ -405,7 +405,7 @@ public class RecipeControllerImpl implements RecipeController{
 			
 			
 			if(cnt==0) {
-				recipeService.likeupRecipe(recipeMap);
+				recipeService.dislikeupRecipe(recipeMap);
 				cnt++;
 				message = "<script>";
 				message += "alert('추천되었습니다.');";
