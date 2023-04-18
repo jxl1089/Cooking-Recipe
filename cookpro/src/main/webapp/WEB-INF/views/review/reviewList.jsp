@@ -16,7 +16,8 @@
 </script>
 
 <table class="main-table">
-	<tr class="main-table" style="height:12px; color: white; font-size:18px; background: #FF7629;">
+	<h1 style="text-align:center; color:#FF7629;">REVIEW</h1>
+	<tr class="main-table" style="height:12px; color: white; font-size:18px; background: #FF7629; border-top:1px solid black;">
 		<td>글번호</td>
 		<td>작성자</td>
 		<td>제목</td>

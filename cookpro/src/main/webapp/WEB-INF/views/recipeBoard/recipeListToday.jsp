@@ -26,7 +26,7 @@
 </head>
 <body>
 	<table class="main-table">
-	<h1 style="text-align:center; color:#FF7629;">추천 요리</h1>
+	<h1 style="text-align:center; color:#FF7629;">오늘의 요리</h1>
 		<tr>
 			<td colspan="4" align="left" style="padding: 5px;">
 				<div>

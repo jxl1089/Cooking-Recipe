@@ -26,6 +26,7 @@
 </head>
 <body>
 	<table class="main-table">
+		<h1 style="text-align:center; color:#FF7629;">RECIPE</h1>
 		<tr>
 			<td colspan="4" align="left" style="padding: 5px;">
 				<div>
@@ -38,7 +39,7 @@
 				</div>
 			<td>
 		</tr>
-		<tr class="main-table" style="height:12px; color: white; font-size:18px; background: #FF7629;">
+		<tr class="main-table" style="height:12px; color: white; font-size:18px; background: #FF7629; border-top:1px solid black;">
 			<td>글번호</td>
 			<td>작성자</td>
 			<td>탭</td>
