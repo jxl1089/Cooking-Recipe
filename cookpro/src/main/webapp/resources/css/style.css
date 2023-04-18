@@ -184,8 +184,9 @@
 	background-color: #FF7629;
 }
 
-
 .main-table{
 	text-align: center;
 	width:100%;
+	border-collapse: collapse;
+	border: 1px solid black;
 }

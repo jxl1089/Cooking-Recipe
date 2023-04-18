@@ -5,11 +5,11 @@
 <mapper namespace="mapper.reviewboard">
   <resultMap type="Review_article_dto" id="reviewResult">
     <result property="review_no" column="review_no"/>
-    <result property="review_level" column="REVIEW_LEVEL"/>
-    <result property="review_title" column="REVIEW_TITLE"/>
-    <result property="review_content" column="REVIEW_CONTENT"/>
-    <result property="id" column="ID"/>
-    <result property="writeDate" column="WRITE_DATE"/>
+    <result property="review_level" column="review_level"/>
+    <result property="review_title" column="review_title"/>
+    <result property="review_content" column="review_content"/>
+    <result property="id" column="id"/>
+    <result property="writeDate" column="write_date"/>
     <result property="reviewParent_no" column="reviewParent_no"/>
   </resultMap>
 
@@ -24,7 +24,7 @@
     INSERT INTO REVIEW_BOARD (review_no, review_level, review_title, review_content, ID)
     VALUES (#{review_no, jdbcType=VARCHAR}, #{review_level, jdbcType=VARCHAR}, #{review_title, jdbcType=VARCHAR}, #{review_content, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR})
     ]]>
-  </insert>
+  </insert>	
   
 <select id="selectAllReviewList" resultMap="reviewResult">
 			<![CDATA[

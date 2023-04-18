@@ -19,7 +19,7 @@ public class Review_dao_impl implements Review_dao{
 	@Override
 	public List<Review_article_dto> selectAllArticlesList() {
 		// TODO Auto-generated method stub
-		List<Review_article_dto> articlesList=  sqlSession.selectList("mapper.reviewboard.selectAllArticlesList");
+		List<Review_article_dto> articlesList=  sqlSession.selectList("mapper.reviewboard.selectAllReviewList");
 		return articlesList;
 	}
 
@@ -58,31 +58,7 @@ public class Review_dao_impl implements Review_dao{
 		sqlSession.delete("mapper.reviewboard.deleteReview",articleNo);
 	}
 
-	@Override
-	public void review_insertNewImage(Map<String, Object> articleMap) {
-		// TODO Auto-generated method stub
-		List<Review_image_dto> imageFileList = (List<Review_image_dto>) articleMap.get("imageFileList");
-		int articleNo = (Integer)articleMap.get("review_no");
-		int imageFileNo = selectNewImageFileNo();
-		for(Review_image_dto image:imageFileList) {
-			image.setImageFileNo(++imageFileNo);
-			image.setArticleNo(articleNo);
-		}
-		sqlSession.insert("mapper.reviewboard.insertNewImage",imageFileList);
-	}
-	private int selectNewImageFileNo() {
-		return sqlSession.selectOne("mapper.reviewboard.selectNewImageFileNo");
-	}
-
-	@Override
-	public List<Review_image_dto> selectImageFileList(int articleNo) {
-		// TODO Auto-generated method stub
-		List<Review_image_dto> imageFileList = sqlSession.selectList("mapper.reviewboard.selectImageFIleList",articleNo);
-		for(Review_image_dto image:imageFileList) {
-			System.out.println(image.getImageFileName());
-		}
-		return imageFileList; 
-	}
+	
 
 }
 

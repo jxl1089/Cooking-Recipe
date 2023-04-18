@@ -15,8 +15,8 @@
 	}
 </script>
 
-<table align="center" border="1" width="100%">
-	<tr height="10" align="center" bgcolor="lightgreen">
+<table class="main-table">
+	<tr class="main-table" style="height:12px; color: white; font-size:18px; background: #FF7629;">
 		<td>글번호</td>
 		<td>작성자</td>
 		<td>제목</td>
@@ -24,7 +24,7 @@
 	</tr>
 	<c:choose>
 		<c:when test="${articlesList == null }">
-			<tr height="10">
+			<tr class="main-table" height="10">
 				<td colspan="4"><b><span style="font-size: 9pt;">등록된
 							글이 없습니다</span></b></td>
 			</tr>
@@ -32,8 +32,8 @@
 		<c:when test="${articlesList != null }">
 			<c:forEach var="article" items="${articlesList }"
 				varStatus="articleNum">
-				<tr align="center">
-					<td width="5%">${articleNum.count }</td>
+				<tr class="main-table">
+					<td width="5%" >${articleNum.count }</td>
 					<td width="10%">${article.id }</td>
 					<td align="left" width="35%"><span
 						style="padding-right: 30px;"></span> <c:choose>
@@ -41,12 +41,12 @@
 								<c:forEach begin="1" end="${article.level }" step="1">
 									<span style="padding-left: 20px;"></span>
 								</c:forEach>
-								<span style="font-size: 12px;">[답변]</span>
-								<a class="cls1"
+								<span style="font-size: 12px; color:#FF7629;">[답변]</span>
+								<a class="no-underline"
 									href="${contextPath }/qna/viewArticle.do?articleNo=${article.articleNo }">${article.title }</a>
 							</c:when>
 							<c:otherwise>
-								<a class="cls1"
+								<a class="no-underline"
 									href="${contextPath }/qna/viewArticle.do?articleNo=${article.articleNo }">${article.title }</a>
 							</c:otherwise>
 						</c:choose></td>
@@ -96,5 +96,5 @@
 		</c:choose>
 	</c:if>
 </div>
-<a class="cls1" href="javascript:fn_articleForm('${isLogOn }','${contextPath }/qna/qnaForm.do','${contextPath }/member/loginForm.do')"><p class="cls2">글쓰기</p></a>
+<a class="no-underline-orange" href="javascript:fn_articleForm('${isLogOn }','${contextPath }/qna/qnaForm.do','${contextPath }/member/loginForm.do')"><b style="font-size:20px;"><br>글쓰기</b></a>
 

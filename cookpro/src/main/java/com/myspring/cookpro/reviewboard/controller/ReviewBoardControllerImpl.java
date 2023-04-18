@@ -34,7 +34,7 @@ import com.myspring.cookpro.reviewboard.dto.Review_image_dto;
 
 @Controller
 public class ReviewBoardControllerImpl implements ReviewBoardController{
-	private static final String CURR_IMAGE_REPO_PATH = ""; // ���߿� ä������ ���
+	private static final String CURR_IMAGE_REPO_PATH = ""; // 占쏙옙占쌩울옙 채占쏙옙占쏙옙占쏙옙 占쏙옙占�
 	@Autowired
 	ReviewService reviewService;
 	@Autowired
@@ -66,24 +66,13 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 			articleMap.put(name, value);
 		}
 		
-		List<String> fileList = review_upload(multipartRequest);
-		List<Review_image_dto> imageFileList = new ArrayList<Review_image_dto>();
-		if(fileList != null && fileList.size() != 0) {
-			for(String fileName : fileList) {
-				Review_image_dto image = new Review_image_dto();
-				image.setImageFileName(fileName);
-				imageFileList.add(image);
-			}
-			articleMap.put("imageFileList", imageFileList);
-		}
-		
 		HttpSession session = multipartRequest.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		
 		String id = member.getId();
 		articleMap.put("parentNo", 0);
 		articleMap.put("id", id);
-				
+		
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -91,37 +80,26 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 		
 		try {
 			int articleNo = reviewService.review_addNewArticle(articleMap);
-			if(imageFileList != null && imageFileList.size() != 0) {
-				for(Review_image_dto imageDTO : imageFileList) {
-					File srcFile = new File(CURR_IMAGE_REPO_PATH+ "\\temp\\" 
-							+ imageDTO.getImageFileName());
-					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+articleNo);
-					FileUtils.moveFileToDirectory(srcFile, destDir, true);
-				}
-			}
+
 			message = "<script>";
-			message += "alert('글 작성에 실패하였습니다.');";
+			message += "alert('성공.');";
 			message += "location.href='" + multipartRequest.getContextPath()
-				+"/board/listArticles.do';";
+				+"/reviewBoard/review_listArticles.do';";
 			message += "</script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
-			if(imageFileList != null && imageFileList.size() != 0) {
-				for(Review_image_dto Review_image_dto : imageFileList) {
-					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\temp\\"
-							+Review_image_dto.getImageFileName());
-					srcFile.delete();
-				}
-			}
+			
 			message = "<script>";
-			message += "alert('다시 글 작성 페이지로 이동합니다.');";
+			message += "alert('실패.');";
 			message += "location.href='" + multipartRequest.getContextPath()
-				+"/board/articleForm.do';";
+				+"/reviewBoard/review_listArticles.do';";
 			message += "</script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 			e.printStackTrace();
 		}
+		
+		
 		return resEnt;
 	}
 
@@ -223,7 +201,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('글이 수정되었습니다.');";
+			message += "alert('湲��씠 �닔�젙�릺�뿀�뒿�땲�떎.');";
 			message += "location.href='"+multipartRequest.getContextPath()
 				+"/board/viewArticle.do?articleNo="+articleNo+"';";
 			message += "</script>";
@@ -238,7 +216,7 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 				}
 			}
 			message = "<script>";
-			message += "alert('글 수정 중 오류가 발생하였습니다. 다시 시도해주세요.');";
+			message += "alert('湲� �닔�젙 以� �삤瑜섍� 諛쒖깮�븯���뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱꽭�슂.');";
 			message += "location.href='"+multipartRequest.getContextPath()
 				+"/board/viewArticle.do?articleNo="+articleNo+"';";
 			message += "</script>";
@@ -264,14 +242,14 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 			FileUtils.deleteDirectory(destDir);
 			
 			message = "<script>";
-			message += "alert('글이 삭제되었습니다.');";
+			message += "alert('湲��씠 �궘�젣�릺�뿀�뒿�땲�떎.');";
 			message += "location.href='"+request.getContextPath()+"/board/listArticles.do';";
 			message += "</script>";
 			
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			message = "<script>";
-			message += "alert('글 삭제에 실패하였습니다. 다시 시도해주세요.');";
+			message += "alert('湲� �궘�젣�뿉 �떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱꽭�슂.');";
 			message += "location.href='"+request.getContextPath()+"/board/listArticles.do';";
 			message += "</script>";
 			

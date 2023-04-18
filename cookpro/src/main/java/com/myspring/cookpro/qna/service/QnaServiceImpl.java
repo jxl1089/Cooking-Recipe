@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myspring.cookpro.qna.dao.QnaDAO;
-import com.myspring.cookpro.qna.dto.ImageDTO;
 import com.myspring.cookpro.qna.dto.QnaDTO;
 
 @Service
@@ -27,7 +26,6 @@ public class QnaServiceImpl implements QnaService{
 		// TODO Auto-generated method stub
 		int articleNo = qnaDAO.insertNewArticle(articleMap);
 		articleMap.put("articleNo", articleNo);
-		qnaDAO.insertNewImage(articleMap);
 		return articleNo;
 
 	}
@@ -38,10 +36,7 @@ public class QnaServiceImpl implements QnaService{
 		Map articleMap = new HashMap();
 		QnaDTO articleDTO = qnaDAO.selectArticle(articleNo);
 		
-		List<ImageDTO> imageFileList = qnaDAO.selectImageFileList(articleNo);
-		
 		articleMap.put("article", articleDTO);
-		articleMap.put("imageFileList", imageFileList);
 		
 		return articleMap;
 	}
