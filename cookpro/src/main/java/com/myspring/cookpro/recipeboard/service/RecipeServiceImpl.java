@@ -102,4 +102,10 @@ public class RecipeServiceImpl implements RecipeService{
 		recipeDAO.deleteRecipe(recipe_no);
 	}
 
+	@Override
+	public List<RecipeDTO> recipesListMy() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectMyRecipesList();
+	}
+
 }

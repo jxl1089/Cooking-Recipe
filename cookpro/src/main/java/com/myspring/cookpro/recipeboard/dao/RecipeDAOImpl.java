@@ -114,6 +114,13 @@ public class RecipeDAOImpl implements RecipeDAO{
 		sqlSession.delete("mapper.recipe.deleteRecipe", recipe_no);
 	}
 
+	@Override
+	public List<RecipeDTO> selectMyRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectMyRecipeList");
+		return recipesList;
+	}
+
 
 
 

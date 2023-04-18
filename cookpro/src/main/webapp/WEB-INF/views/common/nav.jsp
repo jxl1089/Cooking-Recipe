@@ -96,7 +96,7 @@ ul li a{
 <div id="menu">
 		<ul class="main1">
 			<li><a href="${contextPath }/">HOME</a></li>
-			<li><a href="#">MY냉장고</a></li>
+			<li><a href="${contextPath }/recipeboard/recipeListMy.do">MY냉장고</a></li>
 			<li><a href="${contextPath }/recipeboard/recipeList.do">레시피</a></li>
 			<li style="border: none;"><a href="#">추천</a>
 				<ul class="main2">
