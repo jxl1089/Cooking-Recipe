@@ -88,6 +88,13 @@
 	font-size: 12px;
 }
 
+.no-underline-tab{
+	text-decoration: none;
+	color:white;
+	font-size: 20px;
+	background: #FF7629;
+	margin: 5px;
+}
 
 .r_detail {
 	border: 5px solid darkblue;
