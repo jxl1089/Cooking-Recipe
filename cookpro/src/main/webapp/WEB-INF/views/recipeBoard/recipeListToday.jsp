@@ -25,21 +25,21 @@
 </script>
 </head>
 <body>
-	<h1>추천 요리</h1>
-	<table align="center" >
+	<table class="main-table">
+	<h1 style="text-align:center; color:#FF7629;">추천 요리</h1>
 		<tr>
-			<td colspan="4" align="left">
+			<td colspan="4" align="left" style="padding: 5px;">
 				<div>
-			<a href="${contextPath }/recipeboard/recipeListKr.do">한식</a>
-			<a href="${contextPath }/recipeboard/recipeListCn.do">중식</a>
-			<a href="${contextPath }/recipeboard/recipeListJp.do">일식</a>
-			<a href="${contextPath }/recipeboard/recipeListEn.do">양식</a>
-			<a href="${contextPath }/recipeboard/recipeListOt.do">기타</a>
+			<a class="no-underline-tab" href="${contextPath }/recipeboard/recipeListKr.do">&nbsp; 한식 &nbsp;</a>
+			<a class="no-underline-tab" href="${contextPath }/recipeboard/recipeListCn.do">&nbsp; 중식 &nbsp;</a>
+			<a class="no-underline-tab" href="${contextPath }/recipeboard/recipeListJp.do">&nbsp; 일식 &nbsp;</a>
+			<a class="no-underline-tab" href="${contextPath }/recipeboard/recipeListEn.do">&nbsp; 양식 &nbsp;</a>
+			<a class="no-underline-tab" href="${contextPath }/recipeboard/recipeListOt.do">&nbsp; 기타 &nbsp;</a>
 			<br>
 				</div>
 			<td>
 		</tr>
-		<tr style="height:12px; color: white; font-size:18px; background: #FF7629;">
+		<tr class="main-table" style="height:12px; color: white; font-size:18px; background: #FF7629;">
 			<td>글번호</td>
 			<td>작성자</td>
 			<td>탭</td>
@@ -62,15 +62,15 @@
 						<td width="5%">${recipe.recipe_no }</td>
 						<td width="5%">${recipe.id }</td>
 						<td width="5%">${recipe.recipe_tab }</td>
-						<td align="left" width="35%">
+						<td align="left" width="50%">
 							<span style="padding-right:30px;"></span>
-							<a class="cls1" href="${contextPath }/recipeboard/recipeView.do?recipe_no=${recipe.recipe_no}" >
+							<a class="no-underline" href="${contextPath }/recipeboard/recipeView.do?recipe_no=${recipe.recipe_no}" >
 								${recipe.recipe_title }
 							</a>
 						</td>
 						<td width="10%"><fmt:formatDate value="${recipe.writeDate }"/></td>
-						<td>${recipe.recipe_views }</td>
-						<td>${recipe.recipe_like }</td>
+						<td width="5%">${recipe.recipe_views }</td>
+						<td width="5%">${recipe.recipe_like }</td>
 					</tr>
 				</c:forEach>
 			</c:when>
@@ -124,7 +124,8 @@
 			</c:choose>
 		</c:if>
 	</div>
+	<br>
 	<a class="no-underline-orange" href="javascript:fn_recipeForm('${isLogOn }','${contextPath }/recipeboard/recipeForm.do','${contextPath }/member/loginForm.do')">
-	<b style="font-size:20px;" class="no-underline-orange">글쓰기</b></a>
+	<b style="font-size:20px;">글쓰기</b></a>
 </body>
 </html>
