@@ -57,7 +57,7 @@
 								</c:when>
 								<c:otherwise>
 									<a class="clas1" href="${contextPath }/reviewBoard/review_viewArticle.do?articleNo=${reviewboard.review_no}">
-										${reviewboard.title }
+										${reviewboard.review_title }
 									</a>
 								</c:otherwise>
 							</c:choose>

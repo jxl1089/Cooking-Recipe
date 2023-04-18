@@ -66,28 +66,38 @@ public class ReviewBoardControllerImpl implements ReviewBoardController{
 			articleMap.put(name, value);
 		}
 		
-		List<String> fileList = review_upload(multipartRequest);
-		List<Review_image_dto> imageFileList = new ArrayList<Review_image_dto>();
-		if(fileList != null && fileList.size() != 0) {
-			for(String fileName : fileList) {
-				Review_image_dto image = new Review_image_dto();
-				image.setImageFileName(fileName);
-				imageFileList.add(image);
-			}
-			articleMap.put("imageFileList", imageFileList);
-		}
-		
 		HttpSession session = multipartRequest.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		
 		String id = member.getId();
 		articleMap.put("parentNo", 0);
 		articleMap.put("id", id);
-				
+		
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
+		
+		try {
+			int articleNo = reviewService.review_addNewArticle(articleMap);
+
+			message = "<script>";
+			message += "alert('성공.');";
+			message += "location.href='" + multipartRequest.getContextPath()
+				+"/reviewBoard/review_listArticles.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			message = "<script>";
+			message += "alert('실패.');";
+			message += "location.href='" + multipartRequest.getContextPath()
+				+"/reviewBoard/review_listArticles.do';";
+			message += "</script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
 		
 		
 		return resEnt;
