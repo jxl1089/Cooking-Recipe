@@ -24,4 +24,6 @@ public interface RecipeService {
 
 	void dislikeupRecipe(Map<String, Object> recipeMap);
 
+
+
 }

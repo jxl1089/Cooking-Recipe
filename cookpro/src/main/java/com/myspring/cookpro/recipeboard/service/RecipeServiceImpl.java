@@ -59,4 +59,5 @@ public class RecipeServiceImpl implements RecipeService{
 		recipeDAO.dislikeUpdate(recipeMap);
 		
 	}
+
 }

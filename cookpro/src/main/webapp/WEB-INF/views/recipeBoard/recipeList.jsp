@@ -20,6 +20,12 @@
 			location.href=loginForm+'?action=/recipeboard/recipeForm.do';
 		}
 	}
+	
+	function fn_view(obj){
+		obj.action ="${contextPath}/recipeboard/recipeViewUp.do";
+		obj.method = "post";
+		obj.submit();
+	}
 </script>
 </head>
 <body>
@@ -49,7 +55,7 @@
 						<td width="5%">${recipe.recipe_tab }</td>
 						<td align="left" width="35%">
 							<span style="padding-right:30px;"></span>
-							<a class="cls1" href="${contextPath }/recipeboard/recipeView.do?recipe_no=${recipe.recipe_no}">
+							<a class="cls1" onclick="fn_view(this.form)" href="${contextPath }/recipeboard/recipeView.do?recipe_no=${recipe.recipe_no}" >
 								${recipe.recipe_title }
 							</a>
 						</td>

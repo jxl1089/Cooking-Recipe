@@ -93,7 +93,7 @@
 					<input type="hidden" value="${recipe.recipe_no }" name="recipe_no">
 				</td>
 				<td align="center">
-					게시 날짜:
+					게시일:
 				</td>
 				<td>
 					<input type="text" value="<fmt:formatDate value='${recipe.writeDate}'/>" disabled="disabled">
@@ -120,8 +120,8 @@
 					<input cols="200" type="text" value="${recipe.recipe_title }" name="recipe_title" id="rp_title" disabled="disabled" style="width:500px;">
 				</td>				
 			</tr>
-			<tr>
-				<td width="150" align="center" bgcolor="#FF9933">내용</td>
+			<tr colspan="2">
+				<td width="150"></td>
 				<td width="600">
 					<div name="recipe_detail" id="rp_detail">
 						${recipe.recipe_detail}
@@ -140,7 +140,7 @@
 			</tr>
 			<tr>
 				<td><input type="button" value="추천" onclick="likeup(this.form)"></td>
-				<td><input type="button" value="비추천" onclick=""></td>
+				<td><input type="button" value="비추천" onclick="dislikeup(this.form)"></td>
 			</tr>
 			<tr id="tr_btn_modify">
 				<td colspan="2" align="center"	>

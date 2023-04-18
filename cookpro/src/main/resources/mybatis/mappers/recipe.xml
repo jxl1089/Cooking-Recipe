@@ -79,8 +79,13 @@
 				update recipe 
 				set recipe_dislike = recipe_dislike+1
 				where recipe_no=#{recipe_no}
-				
 			]]>
+		</update>
+		
+		<update id="viewUp">
+				update recipe 
+				set recipe_views = recipe_views+1
+				where recipe_no=#{recipe_no}
 		</update>
 
 	</mapper>

@@ -42,6 +42,7 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public RecipeDTO selectRecipe(int recipeNo) {
 		// TODO Auto-generated method stub
+		sqlSession.update("mapper.recipe.viewUp", recipeNo);
 		return sqlSession.selectOne("mapper.recipe.selectRecipe", recipeNo);
 	}
 
@@ -64,6 +65,9 @@ public class RecipeDAOImpl implements RecipeDAO{
 		sqlSession.update("mapper.recipe.dislikeUpdate", recipeMap);
 		
 	}
+
+
+
 
 
 }

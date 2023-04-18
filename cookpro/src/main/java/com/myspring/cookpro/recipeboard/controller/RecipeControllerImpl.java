@@ -79,7 +79,9 @@ public class RecipeControllerImpl implements RecipeController{
 	public ModelAndView viewRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName= (String)request.getAttribute("viewName");
+		
 		Map recipeMap = recipeService.viewRecipe(recipe_no);
+		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("recipeMap", recipeMap);
 		return mav;
@@ -385,6 +387,8 @@ public class RecipeControllerImpl implements RecipeController{
 	}
 
 	@Override
+	@RequestMapping(value="/recipeboard/recipeDislike.do", method=RequestMethod.POST)
+	@ResponseBody
 	public ResponseEntity disLikeUp(MultipartHttpServletRequest multiRequest, HttpServletResponse response)
 			throws Exception {
 		multiRequest.setCharacterEncoding("utf-8");
@@ -433,6 +437,7 @@ public class RecipeControllerImpl implements RecipeController{
 		
 		return resEnt;
 	}
+
 
 	
 

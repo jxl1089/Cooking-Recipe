@@ -23,5 +23,4 @@ public interface RecipeController {
 	//ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception;
 	public ResponseEntity likeup(MultipartHttpServletRequest multiRequest,HttpServletResponse response) throws Exception;
 	public ResponseEntity disLikeUp(MultipartHttpServletRequest multiRequest, HttpServletResponse response) throws Exception;
-	
 }
