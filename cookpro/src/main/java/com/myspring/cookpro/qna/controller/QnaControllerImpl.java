@@ -264,7 +264,7 @@ public class QnaControllerImpl implements QnaController{
 	}
 	
 	@Override
-	@RequestMapping(value="/qna/removeArticle.do", method=RequestMethod.POST)
+	@RequestMapping(value="/qna/removeArticle.do", method=RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity removeArticle(int articleNo, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
