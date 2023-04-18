@@ -3,6 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
+<script>
+	function fn_myPage(isLogOn){
+		if(isLogOn != '' && isLogOn != 'false'){
+			location.href='${contextPath }/member/myPageForm.do';
+		} else{
+			alert('로그인 후 입장 가능합니다');
+			location.href='${contextPath }/member/loginForm.do';
+		}
+	}
+</script>
+
 <style>
 ul li {
 	display:inline-block;
@@ -96,7 +107,7 @@ ul li a{
 <div id="menu">
 		<ul class="main1">
 			<li><a href="${contextPath }/">HOME</a></li>
-			<li><a href="${contextPath }/recipeboard/recipeListMy.do">MY냉장고</a></li>
+			<li><a href="javascript:fn_myPage('${isLogOn }')">MY냉장고</a></li>
 			<li><a href="${contextPath }/recipeboard/recipeList.do">레시피</a></li>
 			<li style="border: none;"><a href="#">추천</a>
 				<ul class="main2">
