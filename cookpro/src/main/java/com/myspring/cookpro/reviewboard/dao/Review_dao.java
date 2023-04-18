@@ -12,6 +12,5 @@ int review_insertNewArticle(Map<String, Object> articleMap);
 Review_article_dto selectArticle(int articleNo);
 void reivew_updateArticle(Map<String, Object> articleMap);
 void review_deleteArticle(int articleNo);
-void review_insertNewImage(Map<String, Object> articleMap);
-List<Review_image_dto>selectImageFileList(int articleNo);
+
 }

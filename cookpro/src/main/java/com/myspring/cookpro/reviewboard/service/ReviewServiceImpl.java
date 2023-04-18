@@ -27,7 +27,6 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		int articleNo = review_dao.review_insertNewArticle(articleMap);
 		articleMap.put("articleNo", articleNo);
-		review_dao.review_insertNewImage(articleMap);
 		return articleNo;
 	}
 
@@ -36,9 +35,7 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		Map articleMap = new HashMap();
 		Review_article_dto review_article_dto = review_dao.selectArticle(articleNo);
-		List<Review_image_dto> imageFileList = review_dao.selectImageFileList(articleNo);
 		articleMap.put("article",review_article_dto);
-		articleMap.put("imageFileList", imageFileList);
 		return articleMap;
 	}
 
