@@ -36,6 +36,63 @@
 			]]>
 		</select> 
 		
+		
+		<select id="selectKrRecipeList" resultMap="recipeResult">
+			<![CDATA[
+				select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail
+				,recipe_views, recipe_like, recipe_dislike from recipe
+				where recipe_tab = '한식'
+				start with parentNo=0
+				connect by prior recipe_no = parentNo
+				order siblings by recipe_no desc
+			]]>
+		</select>
+		
+		<select id="selectEnRecipeList" resultMap="recipeResult">
+			<![CDATA[
+				select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail
+				,recipe_views, recipe_like, recipe_dislike from recipe
+				where recipe_tab = '양식'
+				start with parentNo=0
+				connect by prior recipe_no = parentNo
+				order siblings by recipe_no desc
+			]]>
+		</select> 
+		
+		<select id="selectCnRecipeList" resultMap="recipeResult">
+			<![CDATA[
+				select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail
+				,recipe_views, recipe_like, recipe_dislike from recipe
+				where recipe_tab = '중식'
+				start with parentNo=0
+				connect by prior recipe_no = parentNo
+				order siblings by recipe_no desc
+			]]>
+		</select> 
+		
+		<select id="selectJpRecipeList" resultMap="recipeResult">
+			<![CDATA[
+				select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail
+				,recipe_views, recipe_like, recipe_dislike from recipe
+				where recipe_tab = '일식'
+				start with parentNo=0
+				connect by prior recipe_no = parentNo
+				order siblings by recipe_no desc
+			]]>
+		</select> 
+		
+		<select id="selectOtRecipeList" resultMap="recipeResult">
+			<![CDATA[
+				select recipe_no, id, parentNo, recipe_tab, writeDate, recipe_title, recipe_detail
+				,recipe_views, recipe_like, recipe_dislike from recipe
+				where recipe_tab = '기타'
+				start with parentNo=0
+				connect by prior recipe_no = parentNo
+				order siblings by recipe_no desc
+			]]>
+		</select> 
+		
+		
 		<select id="selectNewRecipeNo" resultType="int">
 			<![CDATA[
 				select max(recipe_no)+1 from recipe

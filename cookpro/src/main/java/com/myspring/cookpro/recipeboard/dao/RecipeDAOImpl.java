@@ -66,6 +66,41 @@ public class RecipeDAOImpl implements RecipeDAO{
 		
 	}
 
+	@Override
+	public List<RecipeDTO> selectKrRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectKrRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectEnRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectEnRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectCnRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectCnRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectJpRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectJpRecipeList");
+		return recipesList;
+	}
+
+	@Override
+	public List<RecipeDTO> selectOtRecipesList() {
+		// TODO Auto-generated method stub
+		List<RecipeDTO> recipesList = sqlSession.selectList("mapper.recipe.selectOtRecipeList");
+		return recipesList;
+	}
+
 
 
 

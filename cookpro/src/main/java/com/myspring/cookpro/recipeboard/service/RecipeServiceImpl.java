@@ -60,4 +60,34 @@ public class RecipeServiceImpl implements RecipeService{
 		
 	}
 
+	@Override
+	public List<RecipeDTO> recipesListKr() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectKrRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListEn() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectEnRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListCn() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectCnRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListJp() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectJpRecipesList();
+	}
+
+	@Override
+	public List<RecipeDTO> recipesListOt() {
+		// TODO Auto-generated method stub
+		return recipeDAO.selectOtRecipesList();
+	}
+
 }

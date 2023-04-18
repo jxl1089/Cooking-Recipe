@@ -24,6 +24,16 @@ public interface RecipeService {
 
 	void dislikeupRecipe(Map<String, Object> recipeMap);
 
+	List<RecipeDTO> recipesListKr();
+
+	List<RecipeDTO> recipesListEn();
+
+	List<RecipeDTO> recipesListCn();
+
+	List<RecipeDTO> recipesListJp();
+
+	List<RecipeDTO> recipesListOt();
+
 
 
 }

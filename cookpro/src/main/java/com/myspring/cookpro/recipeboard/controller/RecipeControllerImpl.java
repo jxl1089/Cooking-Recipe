@@ -438,6 +438,63 @@ public class RecipeControllerImpl implements RecipeController{
 		return resEnt;
 	}
 
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListKr.do")
+	public ModelAndView listRecipe_kr(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListKr();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListOt.do")
+	public ModelAndView listRecipe_other(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListOt();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListEn.do")
+	public ModelAndView listRecipe_en(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListEn();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListCn.do")
+	public ModelAndView listRecipe_cn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListCn();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+	@Override
+	@RequestMapping(value="/recipeboard/recipeListJp.do")
+	public ModelAndView listRecipe_jp(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName= (String) request.getAttribute("viewName");
+		List<RecipeDTO> recipesList = recipeService.recipesListJp();
+
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("recipesList",recipesList);
+		return mav;
+	}
+
 
 	
 

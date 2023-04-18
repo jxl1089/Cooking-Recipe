@@ -19,5 +19,29 @@
 		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeView.jsp"/>
 	</definition>
 	
+	<definition name="/recipeboard/recipeListKr" extends="baseLayout">
+		<put-attribute name="title" value="레시피 게시판"/>
+		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeList_kr.jsp"/>
+	</definition>
+	
+	<definition name="/recipeboard/recipeListEn" extends="baseLayout">
+		<put-attribute name="title" value="레시피 게시판"/>
+		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeList_en.jsp"/>
+	</definition>
+	
+	<definition name="/recipeboard/recipeListCn" extends="baseLayout">
+		<put-attribute name="title" value="레시피 게시판"/>
+		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeList_cn.jsp"/>
+	</definition>
+	
+	<definition name="/recipeboard/recipeListJp" extends="baseLayout">
+		<put-attribute name="title" value="레시피 게시판"/>
+		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeList_jp.jsp"/>
+	</definition>
+	
+	<definition name="/recipeboard/recipeListOt" extends="baseLayout">
+		<put-attribute name="title" value="레시피 게시판"/>
+		<put-attribute name="body" value="/WEB-INF/views/recipeBoard/recipeList_other.jsp"/>
+	</definition>
 	
 </tiles-definitions>

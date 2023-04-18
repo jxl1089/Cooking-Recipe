@@ -23,4 +23,9 @@ public interface RecipeController {
 	//ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception;
 	public ResponseEntity likeup(MultipartHttpServletRequest multiRequest,HttpServletResponse response) throws Exception;
 	public ResponseEntity disLikeUp(MultipartHttpServletRequest multiRequest, HttpServletResponse response) throws Exception;
+	public ModelAndView listRecipe_kr(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listRecipe_en(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listRecipe_cn(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listRecipe_jp(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listRecipe_other(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
