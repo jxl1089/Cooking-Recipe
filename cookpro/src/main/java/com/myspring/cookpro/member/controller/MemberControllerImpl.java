@@ -252,7 +252,7 @@ public class MemberControllerImpl implements MemberController{
 		String content = request.getParameter("content");
 		
 		/* 원래는 관리자 이메일로 보내도록 해야함(임시로 고객이메일 사용) */
-		memberService.sendMail(email, "[우리의레시피] "+ name + "님의 문의 : " + subject, content+"<br><br>답변 받을 이메일: " + email);
+		memberService.sendMail(email, "[우리의레시피] "+ name + "님의 문의 : " + subject, content+"<br><br>답변 받을 이메일: " + email +"<br><br><br>※ 기능 이해를 돕기 위해 수신자를 관리자가 아닌 고객으로 설정함");
 		
 		out.print("<script>");
 		out.print("alert('문의 내용이 전송되었습니다. 빠른 시일 내에 답변 드리겠습니다.');");
