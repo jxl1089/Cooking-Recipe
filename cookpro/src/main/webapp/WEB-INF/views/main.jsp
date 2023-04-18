@@ -16,7 +16,9 @@
 		<br>
 		<%@ include file="mainView.jsp" %>
 		<br>
-		<table class="main-table">
+		<hr>
+		<br>
+<!-- 		<table class="main-table">
 			<tr>
 				<th>
 					주간 인기 레시피
@@ -33,7 +35,8 @@
 					추천수 기준 나열 해야함
 				</td>
 			</tr>
-		</table>
+		</table> -->
+		<%@ include file="mainEmail.jsp" %>
 	</div>
 </body>
 </html>
