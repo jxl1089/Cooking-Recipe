@@ -37,7 +37,7 @@
 	
 	function fn_remove_article(url, articleNo){
 		let form = document.createElement("form");
-		form.setAttribute("method", "post");
+		form.setAttribute("method", "get");
 		form.setAttribute("action", url);
 		
 		let articleNoInput = document.createElement("input");
@@ -61,7 +61,7 @@
 	}
 	function fn_reply_form(url, parentNo){
 		let form = document.createElement("form");
-		form.setAttribute("method", "post");
+		form.setAttribute("method", "get");
 		form.setAttribute("action",url);
 		
 		let parentInput = document.createElement("input");
@@ -158,7 +158,7 @@
 					<input type="button" value="삭제하기" onclick="fn_remove_article('${contextPath}/qna/removeArticle.do', ${article.articleNo })">
 				</c:if>
 					<input type="button" value="리스트로 돌아가기" onclick="backToList(this.form)">
-					<input type="button" value="답글쓰기" onclick="fn_reply_form('${contextPath }/qna/replyForm.do', ${article.articleNo })">;
+					<input type="button" value="답글쓰기" onclick="fn_reply_form('${contextPath }/qna/qnaReplyForm.do', ${article.articleNo })">
 				</td>
 			</tr>
 		</table>

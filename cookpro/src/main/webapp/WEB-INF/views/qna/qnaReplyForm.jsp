@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 
+<%
+	int parentNo = Integer.parseInt(request.getParameter("parentNo"));
+%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	function readURL(input){
@@ -23,7 +26,8 @@
 
 
 	<h1 style="text-align: center;">답글 쓰기</h1>
-	<form name="articleForm" method="get" action="${contextPath }/qna/addReply.do" enctype="multipart/form-data">
+	<form name="articleForm" method="post" action="${contextPath }/qna/addReply.do" enctype="multipart/form-data">
+		<input type="hidden" name="parentNo" value="<%=parentNo%>">
 		<table border="0" align="center">
 			<tr>
 				<td align="right">글제목</td>
