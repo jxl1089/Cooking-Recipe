@@ -35,7 +35,12 @@ public class QnaDAOImpl implements QnaDAO{
 	
 	private int selectNewArticleNo() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("mapper.qna.selectNewArticleNo");
+		
+		Integer result = sqlSession.selectOne("mapper.qna.selectNewArticleNo");
+		 if(result == null) {
+				result = 1;
+			}
+		 return result;
 	}
 	
 	@Override

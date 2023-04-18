@@ -168,7 +168,7 @@ public class RecipeControllerImpl implements RecipeController{
 	public ResponseEntity removeRecipe(int recipe_no, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
-		response.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();

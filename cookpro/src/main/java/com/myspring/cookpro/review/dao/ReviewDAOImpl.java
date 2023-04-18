@@ -35,7 +35,12 @@ public class ReviewDAOImpl implements ReviewDAO{
 	
 	private int selectNewArticleNo() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("mapper.review.selectNewArticleNo");
+		
+		 Integer result = sqlSession.selectOne("mapper.review.selectNewArticleNo");
+		 if(result == null) {
+				result = 1;
+			}
+		 return result;
 	}
 	
 	@Override
