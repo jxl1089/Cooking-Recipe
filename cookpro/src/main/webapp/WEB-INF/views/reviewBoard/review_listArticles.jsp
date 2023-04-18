@@ -42,27 +42,27 @@
 				<c:forEach var="article" items="${articlesList }" varStatus="articleNum">
 					<tr align="center">
 						<td width="5%">${articleNum.count }</td>
-						<td width="10%">${article.id }</td>
+						<td width="10%">${reviewboard.id }</td>
 						<td align="left" width="35%">
 							<span style="padding-right:30px;"></span>
 							<c:choose>
-								<c:when test="${article.level > 1 }">
-									<c:forEach begin="1" end="${article.level }" step="1">
+								<c:when test="${reviewboard.review_level > 1 }">
+									<c:forEach begin="1" end="${reviewboard.review_level }" step="1">
 										<span style="padding-left:20px;"></span>
 									</c:forEach>
 									<span style="font-size:12px;">[답변]</span>
-									<a class="cls1" href="${contextPath }/reviewBoard/review_viewArticle.do?articleNo=${article.articleNo}">
-										${article.title }
+									<a class="cls1" href="${contextPath }/reviewBoard/review_viewArticle.do?articleNo=${reviewboard.review_no}">
+										${reviewboard.review_title }
 									</a>
 								</c:when>
 								<c:otherwise>
-									<a class="clas1" href="${contextPath }/reviewBoard/review_viewArticle.do?articleNo=${article.articleNo}">
-										${article.title }
+									<a class="clas1" href="${contextPath }/reviewBoard/review_viewArticle.do?articleNo=${reviewboard.review_no}">
+										${reviewboard.title }
 									</a>
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td width="10%"><fmt:formatDate value="${article.writeDate }" /></td>
+						<td width="10%"><fmt:formatDate value="${reviewboard.writeDate }" /></td>
 					</tr>
 				</c:forEach>
 			</c:when>
@@ -102,7 +102,7 @@
 			</c:choose>
 		</c:if>
 	</div>
-	<a class="cls1" href="javascript:fn_articleForm('${isLogOn }','${contextPath }/reveiwBoard/review_Form.do','${contextPath }/member/loginForm.do')">
+	<a class="cls1" href="javascript:fn_articleForm('${isLogOn }','${contextPath }/reviewBoard/review_Form.do','${contextPath }/member/loginForm.do')">
 	<p class="cls2">글쓰기</p></a>
 </body>
 </html>
